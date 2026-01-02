@@ -1,0 +1,27 @@
+# Config files with sensitive data
+config/database.php
+
+# PHP cache
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads (jika ada file terupload besar)
+assets/images/kegiatan/*
+!assets/images/kegiatan/.gitkeep
+assets/images/warga/*
+!assets/images/warga/.gitkeep
+
+# Temporary files
+*.bak
+*~
