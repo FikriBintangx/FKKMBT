@@ -6,7 +6,7 @@ class Chatbot_model extends CI_Model {
     private $knowledge_base = [];
 
     public function __construct() {
-        parent::__construct();
+        // parent::__construct(); // Removed - causes error on production
         $this->_init_knowledge();
         $this->_check_table();
     }
