@@ -23,7 +23,7 @@
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
                     <li class="nav-item"><a class="nav-link active" href="<?= base_url('user/dashboard') ?>">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/iuran') ?>">Iuran Saya</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/laporan') ?>">Laporan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/lapor') ?>">Laporan</a></li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light btn-sm" href="<?= base_url('auth/logout') ?>">Logout</a>
                     </li>
@@ -198,7 +198,17 @@
                             </div>
                         </a>
                     </div>
-                    <!-- ... other quick links ... -->
+                    </div>
+                    <div class="col-6">
+                        <a href="<?= base_url('user/lapor') ?>" class="card border-0 shadow-sm text-decoration-none quick-card-modern" style="border-radius: 16px; transition: all 0.3s;">
+                            <div class="card-body p-3 text-center">
+                                <div class="rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);">
+                                    <i class="bi bi-megaphone-fill fs-4 text-white"></i>
+                                </div>
+                                <span class="fw-bold small d-block" style="color: #1f2937;">Lapor Warga</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -245,7 +255,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label text-muted small fw-bold ms-2">DESKRIPSI DETAIL</label>
-                        <textarea class="form-control form-control-bubble" name="deskripsi" rows="4" style="border-radius: 20px;" placeholder="Jelaskan masalah secara rinci..." required></textarea>
+                        <textarea class="form-control form-control-bubble" name="isi" rows="4" style="border-radius: 20px;" placeholder="Jelaskan masalah secara rinci..." required></textarea>
                     </div>
                     <div class="mb-3">
                         <label class="form-label text-muted small fw-bold ms-2">FOTO BUKTI (OPSIONAL)</label>

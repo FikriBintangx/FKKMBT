@@ -40,27 +40,8 @@
 </head>
 <body class="bg-light">
 
-    <!-- Navbar Replacement -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%);">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="<?= base_url('admin/dashboard') ?>">
-                <span class="fw-bold fs-4">FKKMBT Admin</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navAdmin">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navAdmin">
-                <ul class="navbar-nav ms-auto align-items-center gap-2">
-                    <li class="nav-item"><a class="nav-link active" href="<?= base_url('admin/dashboard') ?>">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/warga') ?>">Warga</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('admin/keuangan') ?>">Keuangan</a></li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm" href="<?= base_url('auth/logout') ?>">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Top Navbar -->
+    <?php $this->load->view('admin/templates/navbar'); ?>
 
     <div class="container py-4" style="margin-top: 60px;">
         
@@ -84,7 +65,7 @@
             <div class="col-lg-4">
                 <div class="row g-3 mb-4">
                     <div class="col-6">
-                        <a href="<?= base_url('admin/iuran') ?>" class="text-decoration-none">
+                        <a href="<?= base_url('admin/keuangan') ?>" class="text-decoration-none">
                             <div class="card-stat-small bg-yellow-gradient shadow-sm">
                                 <small class="text-white-50 fw-bold">Menunggu Verifikasi</small>
                                 <div class="d-flex justify-content-between align-items-end mt-2">
@@ -167,7 +148,7 @@
                 <div class="card border-0 shadow-sm rounded-4 mb-4">
                     <div class="card-header bg-white border-bottom-0 pt-4 px-4 d-flex justify-content-between align-items-center">
                         <h6 class="fw-bold m-0">Perlu Verifikasi (<?= $count_pending ?>)</h6>
-                        <a href="<?= base_url('admin/iuran') ?>" class="btn btn-sm btn-outline-primary rounded-pill">Lihat</a>
+                        <a href="<?= base_url('admin/keuangan') ?>" class="btn btn-sm btn-outline-primary rounded-pill">Lihat</a>
                     </div>
                     <div class="card-body pt-0">
                         <?php if(!empty($pending_list)): ?>
