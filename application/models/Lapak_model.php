@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Lapak_model extends CI_Model {
 
     public function __construct() {
-        parent::__construct();
+        // parent::__construct(); // Removed - causes error on some servers
         $this->_check_table();
     }
 
