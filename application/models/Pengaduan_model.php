@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pengaduan_model extends CI_Model {
 
     public function __construct() {
-        parent::__construct();
+        // parent::__construct(); // Removed to fix 'Cannot call constructor' error
         // Auto-create table if not exists
         $this->_check_table();
     }
