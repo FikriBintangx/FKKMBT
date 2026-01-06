@@ -23,8 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// Dynamic Base URL Detection (Works for Localhost, Subdomain, and Subfolder)
-$root = (isset($_SERVER['HTTPS']) ? "https://" : "http://") . $_SERVER['HTTP_HOST'];
+// Dynamic Base URL (Robust HTTPS detection)
+$is_https = (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) === 'on') 
+            || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) === 'https');
+
+$root = ($is_https ? "https://" : "http://") . $_SERVER['HTTP_HOST'];
 $root .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $root;
 
