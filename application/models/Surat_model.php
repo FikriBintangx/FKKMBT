@@ -31,4 +31,19 @@ class Surat_model extends CI_Model {
         $this->db->order_by('tgl_request', 'DESC');
         return $this->db->get_where('surat_pengantar', ['user_id' => $user_id])->result_array();
     }
+
+    public function get_all_requests() {
+        $this->db->select('s.*, u.username, w.nama_lengkap, w.blok, w.no_rumah');
+        $this->db->from('surat_pengantar s');
+        $this->db->join('users u', 's.user_id = u.id');
+        $this->db->join('warga w', 'w.user_id = u.id', 'left');
+        $this->db->order_by('s.tgl_request', 'DESC');
+        return $this->db->get()->result_array();
+    }
+
+    public function update_status($id, $status, $keterangan) {
+        $data = ['status' => $status, 'keterangan_admin' => $keterangan];
+        $this->db->where('id', $id);
+        return $this->db->update('surat_pengantar', $data);
+    }
 }

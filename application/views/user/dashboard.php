@@ -26,6 +26,8 @@
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/lapor') ?>">Laporan</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/surat') ?>">E-Surat</a></li>
                     <li class="nav-item"><a class="nav-link text-warning fw-bold" href="<?= base_url('user/lapak') ?>"><i class="bi bi-shop me-1"></i>Lapak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/voting') ?>"><i class="bi bi-box-seam me-1"></i>E-Voting</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/forum') ?>"><i class="bi bi-chat-dots me-1"></i>Forum</a></li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light btn-sm" href="<?= base_url('auth/logout') ?>">Logout</a>
                     </li>

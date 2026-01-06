@@ -39,6 +39,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?= $this->uri->segment(2) == 'panic' ? 'active fw-bold' : '' ?>" href="<?= base_url('admin/panic') ?>">
+                        <i class="bi bi-broadcast-pin me-1"></i> SOS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $this->uri->segment(2) == 'surat' ? 'active fw-bold' : '' ?>" href="<?= base_url('admin/surat') ?>">
+                        <i class="bi bi-file-earmark-text me-1"></i> E-Surat
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $this->uri->segment(2) == 'lapak' ? 'active fw-bold' : '' ?>" href="<?= base_url('admin/lapak') ?>">
+                        <i class="bi bi-shop me-1"></i> Lapak
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?= $this->uri->segment(2) == 'keuangan' ? 'active fw-bold' : '' ?>" href="<?= base_url('admin/keuangan') ?>">
                         <i class="bi bi-wallet2 me-1"></i> Keuangan
                     </a>
