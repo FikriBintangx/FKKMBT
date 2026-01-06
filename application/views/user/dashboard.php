@@ -7,7 +7,55 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
+    <style>
+        /* MOBILE NATIVE COMPACT - INLINE FOR IMMEDIATE EFFECT */
+        @media (max-width: 768px) {
+            * { box-sizing: border-box; }
+            .container { padding: 0.25rem !important; max-width: 100% !important; }
+            .main-content, main { padding-top: 55px !important; padding-bottom: 0.25rem !important; }
+            .py-5, .py-4, .py-3 { padding-top: 0.25rem !important; padding-bottom: 0.25rem !important; }
+            .mb-5 { margin-bottom: 0.3rem !important; }
+            .mb-4 { margin-bottom: 0.25rem !important; }
+            .mb-3 { margin-bottom: 0.2rem !important; }
+            .row { --bs-gutter-x: 0.25rem !important; --bs-gutter-y: 0.25rem !important; margin: 0 !important; }
+            .col-md-4, .col-md-6, [class*="col-"] { padding: 0.125rem !important; margin-bottom: 0.25rem !important; }
+            header { padding: 0.25rem 0 !important; margin-bottom: 0.3rem !important; flex-direction: column !important; }
+            header h2 { font-size: 1.1rem !important; margin: 0 !important; }
+            header p { font-size: 0.7rem !important; margin: 0 !important; }
+            header .d-flex.gap-3 { gap: 0.3rem !important; width: 100%; margin-top: 0.3rem !important; }
+            header .btn { padding: 0.3rem 0.6rem !important; font-size: 0.7rem !important; }
+            .card { border-radius: 8px !important; margin-bottom: 0.25rem !important; }
+            .card-body { padding: 0.4rem !important; }
+            .card h3 { font-size: 1rem !important; margin-bottom: 0.15rem !important; }
+            .card h4 { font-size: 0.9rem !important; }
+            .card h5 { font-size: 0.85rem !important; }
+            .card p, .card small { font-size: 0.75rem !important; margin-bottom: 0.1rem !important; }
+            .card .rounded-circle { width: 30px !important; height: 30px !important; }
+            .card .rounded-circle i { font-size: 0.9rem !important; }
+            .badge { padding: 0.15rem 0.4rem !important; font-size: 0.65rem !important; }
+            .quick-card-modern .card-body { padding: 0.3rem !important; }
+            .quick-card-modern .rounded-circle { width: 30px !important; height: 30px !important; }
+            .quick-card-modern i { font-size: 0.9rem !important; }
+            .quick-card-modern .fw-bold { font-size: 0.7rem !important; }
+            .table { font-size: 0.7rem !important; }
+            .table thead th { padding: 0.3rem 0.25rem !important; font-size: 0.65rem !important; }
+            .table tbody td { padding: 0.3rem 0.25rem !important; }
+            .navbar { padding: 0.4rem 0.5rem !important; }
+            .navbar-brand { font-size: 1rem !important; }
+            .nav-link { padding: 0.4rem 0.6rem !important; font-size: 0.8rem !important; }
+            .btn { padding: 0.4rem 0.8rem !important; font-size: 0.8rem !important; }
+            h1 { font-size: 1.3rem !important; }
+            h2 { font-size: 1.1rem !important; }
+            h3 { font-size: 1rem !important; }
+            h4 { font-size: 0.9rem !important; }
+        }
+        @media (max-width: 375px) {
+            .container { padding: 0.2rem !important; }
+            .card-body { padding: 0.3rem !important; }
+            header h2 { font-size: 1rem !important; }
+        }
+    </style>
 </head>
 <body>
 
