@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ti2b8143/public_html/
+    - export DEPLOYPATH=/home/ti2b8143/public_html/fkkmbt.ti24se1.my.id/
     - /bin/cp -R * $DEPLOYPATH
