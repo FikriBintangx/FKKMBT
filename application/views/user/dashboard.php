@@ -24,6 +24,8 @@
                     <li class="nav-item"><a class="nav-link active" href="<?= base_url('user/dashboard') ?>">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/iuran') ?>">Iuran Saya</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/lapor') ?>">Laporan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/surat') ?>">E-Surat</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning fw-bold" href="<?= base_url('user/lapak') ?>"><i class="bi bi-shop me-1"></i>Lapak</a></li>
                     <li class="nav-item">
                         <a class="btn btn-outline-light btn-sm" href="<?= base_url('auth/logout') ?>">Logout</a>
                     </li>
@@ -47,9 +49,9 @@
             </div>
             <div class="d-flex gap-3">
                 <button class="btn btn-light rounded-circle shadow-sm p-2" style="width: 45px; height: 45px;"><i class="bi bi-bell"></i></button>
-                <button class="btn btn-primary btn-bubble shadow-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#laporModal">
-                    <i class="bi bi-megaphone-fill"></i> Lapor Warga
-                </button>
+                <a href="<?= base_url('user/panic') ?>" class="btn btn-danger shadow-sm d-flex align-items-center gap-2 rounded-pill px-4 blink-anim">
+                    <i class="bi bi-broadcast"></i> SOS
+                </a>
             </div>
         </header>
 
@@ -207,6 +209,14 @@
                                 </div>
                                 <span class="fw-bold small d-block" style="color: #1f2937;">Lapor Warga</span>
                             </div>
+                    <div class="col-6">
+                        <a href="<?= base_url('user/lapak') ?>" class="card border-0 shadow-sm text-decoration-none quick-card-modern" style="border-radius: 16px; transition: all 0.3s;">
+                            <div class="card-body p-3 text-center">
+                                <div class="rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);">
+                                    <i class="bi bi-basket-fill fs-4 text-white"></i>
+                                </div>
+                                <span class="fw-bold small d-block" style="color: #1f2937;">Belanja Warga</span>
+                            </div>
                         </a>
                     </div>
                 </div>
@@ -226,6 +236,8 @@
                 transform: translateY(-3px);
                 box-shadow: 0 8px 20px rgba(0,0,0,0.15) !important;
             }
+            @keyframes blink-red { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+            .blink-anim { animation: blink-red 2s infinite; }
         </style>
     </main>
 
