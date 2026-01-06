@@ -1,27 +1,32 @@
-# Config files with sensitive data
-config/database.php
-
-# PHP cache
-*.log
-*.tmp
-
-# OS files
 .DS_Store
-Thumbs.db
-desktop.ini
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
+application/cache/*
+!application/cache/index.html
 
-# Uploads (jika ada file terupload besar)
-assets/images/kegiatan/*
-!assets/images/kegiatan/.gitkeep
-assets/images/warga/*
-!assets/images/warga/.gitkeep
+application/logs/*
+!application/logs/index.html
 
-# Temporary files
-*.bak
-*~
+!application/*/.htaccess
+
+composer.lock
+tests/mocks/database/ci_test.sqlite
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/

@@ -1,258 +1,308 @@
 <?php
-session_start();
-require_once 'config/config.php';
-require_once 'config/database.php';
-?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FKKMBT - Forum Komunikasi Koordinasi Masyarakat Bukit Tiara</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%);">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="index.php">
-                <img src="assets/images/LOGO/LOGOFKKMBT.jpg" alt="FKKMBT Logo" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; transition: transform 0.3s;" data-bs-toggle="modal" data-bs-target="#logoModal" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                <span class="fw-bold fs-4">FKKMBT</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center gap-2">
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>" href="index.php">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'tentang.php' ? 'active' : '' ?>" href="tentang.php">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'kegiatan.php' ? 'active' : '' ?>" href="kegiatan.php">Kegiatan</a></li>
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'warga.php' ? 'active' : '' ?>" href="warga.php">Direktori Warga</a></li>
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'struktur.php' ? 'active' : '' ?>" href="struktur.php">Struktur FKKMBT</a></li>
-                    <li class="nav-item"><a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'iuran.php' ? 'active' : '' ?>" href="iuran.php">Iuran</a></li>
-                    <?php if(isset($_SESSION['user_id'])): ?>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" href="<?= $_SESSION['role'] == 'admin' ? 'admin/dashboard.php' : 'user/dashboard.php' ?>">
-                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
-                            </a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" href="login.php">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * Copyright (c) 2014 - 2019, British Columbia Institute of Technology
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @package	CodeIgniter
+ * @author	EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2019, British Columbia Institute of Technology (https://bcit.ca/)
+ * @license	https://opensource.org/licenses/MIT	MIT License
+ * @link	https://codeigniter.com
+ * @since	Version 1.0.0
+ * @filesource
+ */
 
-    <!-- Hero Section -->
-    <section class="hero-section text-white" id="beranda" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%); padding-top: 100px; margin-top: 56px;">
-        <div class="container">
-            <div class="hero-badge">
-                <i class="bi bi-stars"></i>
-                <span>Selamat Datang di Portal Komunitas</span>
-            </div>
-            <h1>FKKMBT</h1>
-            <p class="subtitle">Forum Komunikasi dan Koordinasi</p>
-            <p class="highlight">Masyarakat Bukit Tiara</p>
-            <p>Bersama membangun komunitas yang harmonis, sejahtera, dan saling mendukung.<br>
-            Portal resmi untuk informasi, kegiatan, dan koordinasi warga Perumahan Bukit Tiara.</p>
-            
-            <div class="hero-buttons">
-                <a href="register.php" class="btn btn-hero-primary">
-                    Jelajahi Sekarang
-                    <i class="bi bi-arrow-right"></i>
-                </a>
-                <a href="login.php" class="btn btn-hero-secondary">
-                    Masuk Portal
-                </a>
-            </div>
+/*
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ */
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Warga Aktif</span>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-buildings-fill"></i></div>
-                    <span class="stat-number">A - T</span>
-                    <span class="stat-label">Blok Hunian</span>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-calendar-event-fill"></i></div>
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Kegiatan/Tahun</span>
-                </div>
-            </div>
-        </div>
-    </section>
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+switch (ENVIRONMENT)
+{
+	case 'development':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+	break;
 
-    <!-- Features Section -->
-    <section class="py-5" id="tentang">
-        <div class="container">
-            <div class="section-title mb-5">
-                <h6>Fitur Lengkap</h6>
-                <h2>Semua yang Anda Butuhkan</h2>
-                <p>Portal lengkap untuk mengakses informasi dan layanan komunitas Bukit Tiara</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-teal">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <h4>Sejarah & Tentang</h4>
-                        <p>Mengenal lebih dekat sejarah dan visi misi komunitas Bukit Tiara</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-orange">
-                            <i class="bi bi-calendar-event"></i>
-                        </div>
-                        <h4>Kegiatan Organisasi</h4>
-                        <p>Informasi kegiatan RT/RW, FKKMBT, Karang Taruna, dan lainnya</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-blue">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h4>Direktori Warga</h4>
-                        <p>Database alamat warga dari Blok A sampai T lengkap dengan nomor rumah</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-purple">
-                            <i class="bi bi-diagram-3"></i>
-                        </div>
-                        <h4>Struktur Organisasi</h4>
-                        <p>Susunan pengurus FKKMBT dan FKKMMBT periode aktif</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-red">
-                            <i class="bi bi-credit-card"></i>
-                        </div>
-                        <h4>Iuran Warga</h4>
-                        <p>Informasi dan status pembayaran iuran bulanan warga</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-slate">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <h4>Portal Admin</h4>
-                        <p>Akses khusus untuk pengelolaan data dan konten website</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	case 'testing':
+	case 'production':
+		ini_set('display_errors', 0);
+		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+	break;
 
-    <!-- CTA Section -->
-    <section class="container my-5">
-        <div class="cta-section">
-            <div class="cta-badge">
-                <i class="bi bi-rainbow"></i>
-                <span>Bergabung Bersama Kami</span>
-            </div>
-            <h2>Jadilah Bagian dari Komunitas<br>Bukit Tiara</h2>
-            <p>Akses informasi lengkap, ikuti kegiatan komunitas, dan berkontribusi untuk kemajuan lingkungan kita bersama.</p>
-            <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <a href="register.php" class="btn btn-cta-primary">
-                    Daftar Sekarang
-                    <i class="bi bi-arrow-right"></i>
-                </a>
-                <a href="#tentang" class="btn btn-cta-secondary">
-                    Pelajari Lebih Lanjut
-                </a>
-            </div>
-        </div>
-    </section>
+	default:
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'The application environment is not set correctly.';
+		exit(1); // EXIT_ERROR
+}
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="footer-logo">
-                        <div class="logo-circle">F</div>
-                        <div class="brand-text">
-                            <strong>FKKMBT</strong>
-                        </div>
-                    </div>
-                    <p class="text-white-50">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
-                </div>
-                
-                <div class="col-md-2">
-                    <h6>Menu Cepat</h6>
-                    <a href="tentang.php">Tentang Kami</a>
-                    <a href="kegiatan.php">Kegiatan</a>
-                    <a href="struktur.php">Organisasi </a>
-                </div>
-                
-                <div class="col-md-3">
-                    <h6>Organisasi</h6>
-                    <a href="struktur.php?tab=fkkmbt">Struktur FKKMBT</a>
-                    <a href="struktur.php?tab=fkkmmbt">Struktur FKKMMBT</a>
-                </div>
-                
-                <div class="col-md-3">
-                    <h6>Kontak</h6>
-                    <p class="text-white-50 mb-2">
-                        <i class="bi bi-geo-alt me-2"></i>
-                        Perumahan Bukit Tiara, Kecamatan Cikupa, Kabupaten Tangerang, Banten 15710
-                    </p>
-                    <p class="text-white-50 mb-2">
-                        <i class="bi bi-telephone me-2"></i>
-                        087786720942
-                    </p>
-                </div>
-            </div>
-            
-            <hr class="my-4">
-            
-            <div class="text-center text-white-50">
-                <p class="mb-0">&copy; 2025 FKKMBT. Developed by Ceva_Star.</p>
-            </div>
-        </div>
-    </footer>
+/*
+ *---------------------------------------------------------------
+ * SYSTEM DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" directory.
+ * Set the path if it is not in the same directory as this file.
+ */
+	$system_path = 'system';
+
+/*
+ *---------------------------------------------------------------
+ * APPLICATION DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * directory than the default one you can set its name here. The directory
+ * can also be renamed or relocated anywhere on your server. If you do,
+ * use an absolute (full) server path.
+ * For more info please see the user guide:
+ *
+ * https://codeigniter.com/userguide3/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ */
+	$application_folder = 'application';
+
+/*
+ *---------------------------------------------------------------
+ * VIEW DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want to move the view directory out of the application
+ * directory, set the path to it here. The directory can be renamed
+ * and relocated anywhere on your server. If blank, it will default
+ * to the standard location inside your application directory.
+ * If you do move this, use an absolute (full) server path.
+ *
+ * NO TRAILING SLASH!
+ */
+	$view_folder = '';
 
 
-    <!-- Logo Zoom Modal -->
-    <div class="modal fade" id="logoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="modal-body text-center p-0">
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 10;"></button>
-                    <img src="assets/images/LOGO/LOGOFKKMBT.jpg" alt="FKKMBT Logo" class="img-fluid rounded-circle" style="max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-                    <h3 class="text-white mt-3 fw-bold">FKKMBT</h3>
-                    <p class="text-white-50">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara</p>
-                </div>
-            </div>
-        </div>
-    </div>
+/*
+ * --------------------------------------------------------------------
+ * DEFAULT CONTROLLER
+ * --------------------------------------------------------------------
+ *
+ * Normally you will set your default controller in the routes.php file.
+ * You can, however, force a custom routing by hard-coding a
+ * specific controller class/function here. For most applications, you
+ * WILL NOT set your routing here, but it's an option for those
+ * special instances where you might want to override the standard
+ * routing in a specific front controller that shares a common CI installation.
+ *
+ * IMPORTANT: If you set the routing here, NO OTHER controller will be
+ * callable. In essence, this preference limits your application to ONE
+ * specific controller. Leave the function name blank if you need
+ * to call functions dynamically via the URI.
+ *
+ * Un-comment the $routing array below to use this feature
+ */
+	// The directory name, relative to the "controllers" directory.  Leave blank
+	// if your controller is not in a sub-directory within the "controllers" one
+	// $routing['directory'] = '';
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+	// The controller class file name.  Example:  mycontroller
+	// $routing['controller'] = '';
+
+	// The controller function you wish to be called.
+	// $routing['function']	= '';
+
+
+/*
+ * -------------------------------------------------------------------
+ *  CUSTOM CONFIG VALUES
+ * -------------------------------------------------------------------
+ *
+ * The $assign_to_config array below will be passed dynamically to the
+ * config class when initialized. This allows you to set custom config
+ * items or override any default config values found in the config.php file.
+ * This can be handy as it permits you to share one application between
+ * multiple front controller files, with each file containing different
+ * config values.
+ *
+ * Un-comment the $assign_to_config array below to use this feature
+ */
+	// $assign_to_config['name_of_config_item'] = 'value of config item';
+
+
+
+// --------------------------------------------------------------------
+// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
+// --------------------------------------------------------------------
+
+/*
+ * ---------------------------------------------------------------
+ *  Resolve the system path for increased reliability
+ * ---------------------------------------------------------------
+ */
+
+	// Set the current directory correctly for CLI requests
+	if (defined('STDIN'))
+	{
+		chdir(dirname(__FILE__));
+	}
+
+	if (($_temp = realpath($system_path)) !== FALSE)
+	{
+		$system_path = $_temp.DIRECTORY_SEPARATOR;
+	}
+	else
+	{
+		// Ensure there's a trailing slash
+		$system_path = strtr(
+			rtrim($system_path, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		).DIRECTORY_SEPARATOR;
+	}
+
+	// Is the system path correct?
+	if ( ! is_dir($system_path))
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
+		exit(3); // EXIT_CONFIG
+	}
+
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+	// The name of THIS file
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// Path to the system directory
+	define('BASEPATH', $system_path);
+
+	// Path to the front controller (this file) directory
+	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+
+	// Name of the "system" directory
+	define('SYSDIR', basename(BASEPATH));
+
+	// The path to the "application" directory
+	if (is_dir($application_folder))
+	{
+		if (($_temp = realpath($application_folder)) !== FALSE)
+		{
+			$application_folder = $_temp;
+		}
+		else
+		{
+			$application_folder = strtr(
+				rtrim($application_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(BASEPATH.$application_folder.DIRECTORY_SEPARATOR))
+	{
+		$application_folder = BASEPATH.strtr(
+			trim($application_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
+
+	// The path to the "views" directory
+	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.'views';
+	}
+	elseif (is_dir($view_folder))
+	{
+		if (($_temp = realpath($view_folder)) !== FALSE)
+		{
+			$view_folder = $_temp;
+		}
+		else
+		{
+			$view_folder = strtr(
+				rtrim($view_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(APPPATH.$view_folder.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.strtr(
+			trim($view_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
