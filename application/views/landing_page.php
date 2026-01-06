@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css?v='.time()) ?>">
 </head>
 <body>
@@ -51,17 +52,17 @@
     <!-- Hero Section -->
     <section class="hero-section text-white" id="beranda" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%); padding-top: 100px; margin-top: 56px;">
         <div class="container">
-            <div class="hero-badge">
+            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
                 <i class="bi bi-stars"></i>
                 <span>Selamat Datang di Portal Komunitas</span>
             </div>
-            <h1>FKKMBT</h1>
-            <p class="subtitle">Forum Komunikasi dan Koordinasi</p>
-            <p class="highlight">Masyarakat Bukit Tiara</p>
-            <p>Bersama membangun komunitas yang harmonis, sejahtera, dan saling mendukung.<br>
+            <h1 data-aos="fade-up" data-aos-delay="200">FKKMBT</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="300">Forum Komunikasi dan Koordinasi</p>
+            <p class="highlight" data-aos="fade-up" data-aos-delay="400">Masyarakat Bukit Tiara</p>
+            <p data-aos="fade-up" data-aos-delay="500">Bersama membangun komunitas yang harmonis, sejahtera, dan saling mendukung.<br>
             Portal resmi untuk informasi, kegiatan, dan koordinasi warga Perumahan Bukit Tiara.</p>
             
-            <div class="hero-buttons">
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
                 <a href="<?= base_url('auth/register') ?>" class="btn btn-hero-primary">
                     Jelajahi Sekarang
                     <i class="bi bi-arrow-right"></i>
@@ -71,7 +72,7 @@
                 </a>
             </div>
 
-            <div class="hero-stats">
+            <div class="hero-stats" data-aos="fade-up" data-aos-delay="700">
                 <div class="stat-item">
                     <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
                     <span class="stat-number">500+</span>
@@ -94,14 +95,14 @@
     <!-- Features Section -->
     <section class="py-5" id="tentang">
         <div class="container">
-            <div class="section-title mb-5">
+            <div class="section-title mb-5" data-aos="fade-up">
                 <h6>Fitur Lengkap</h6>
                 <h2>Semua yang Anda Butuhkan</h2>
                 <p>Portal lengkap untuk mengakses informasi dan layanan komunitas Bukit Tiara</p>
             </div>
             
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-teal">
                             <i class="bi bi-clock-history"></i>
@@ -111,7 +112,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-orange">
                             <i class="bi bi-calendar-event"></i>
@@ -121,7 +122,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-blue">
                             <i class="bi bi-book"></i>
@@ -131,7 +132,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-purple">
                             <i class="bi bi-diagram-3"></i>
@@ -141,7 +142,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-red">
                             <i class="bi bi-credit-card"></i>
@@ -151,7 +152,7 @@
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
                     <div class="feature-card">
                         <div class="feature-icon-box icon-slate">
                             <i class="bi bi-shield-lock"></i>
@@ -248,6 +249,72 @@
         </div>
     </div>
 
+    <!-- Panic Button & Modal -->
+    <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
+        <div class="text-end" style="pointer-events: auto;">
+            <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 60px; height: 60px;" data-bs-toggle="modal" data-bs-target="#panicModal">
+                <i class="bi bi-exclamation-triangle-fill fs-3"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="panicModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header bg-danger text-white border-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-shield-exclamation me-2"></i>DARURAT / EMERGENCY</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-muted text-center mb-4">Tekan tombol di bawah untuk menghubungi nomor darurat.</p>
+                    <div class="d-grid gap-3">
+                        <a href="tel:112" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-telephone-fill me-2"></i>Panggilan Darurat Umum</span>
+                            <span class="fw-bold">112</span>
+                        </a>
+                        <a href="tel:110" class="btn btn-outline-warning text-dark btn-lg d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-shield-fill me-2"></i>Polisi</span>
+                            <span class="fw-bold">110</span>
+                        </a>
+                        <a href="tel:113" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-fire me-2"></i>Pemadam Kebakaran</span>
+                            <span class="fw-bold">113</span>
+                        </a>
+                        <a href="tel:118" class="btn btn-outline-success btn-lg d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-hospital-fill me-2"></i>Ambulans</span>
+                            <span class="fw-bold">118</span>
+                        </a>
+                         <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between">
+                            <span><i class="bi bi-person-badge-fill me-2"></i>Satpam / Security</span>
+                            <span class="fw-bold">Hubungi Pos</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .shake-animation {
+            animation: shake 5s cubic-bezier(.36,.07,.19,.97) both infinite;
+            transform: translate3d(0, 0, 0);
+        }
+        @keyframes shake {
+            1%, 9% { transform: translate3d(-1px, 0, 0); }
+            2%, 8% { transform: translate3d(2px, 0, 0); }
+            3%, 5%, 7% { transform: translate3d(-4px, 0, 0); }
+            4%, 6% { transform: translate3d(4px, 0, 0); }
+            10%, 100% { transform: translate3d(0, 0, 0); }
+        }
+    </style>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+    </script>
 </body>
 </html>
