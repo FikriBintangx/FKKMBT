@@ -86,81 +86,77 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="main-content container py-4 mt-5 pt-5">
+    <main class="main-content" style="padding: 0.5rem; margin-top: 55px;">
 
         <!-- Header -->
-        <header class="d-flex justify-content-between align-items-center mb-5">
+        <header style="margin-bottom: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem;">
             <div>
                 <?php 
                 $sapaan = (isset($warga['jenis_kelamin']) && $warga['jenis_kelamin'] == 'P') ? 'Kak' : 'Mas';
                 $display_name = explode('@', $this->session->userdata('username'))[0];
                 ?>
-                <h2 class="fw-bold mb-1">Selamat Datang, <?= $sapaan ?> <?= $display_name ?></h2>
-                <p class="text-muted"><i class="bi bi-calendar4 me-2"></i> <?= date('l, d F Y') ?></p>
+                <h2 style="font-size: 1.2rem; margin: 0; font-weight: 700;">Selamat Datang, <?= $sapaan ?> <?= $display_name ?></h2>
+                <p style="font-size: 0.75rem; margin: 0; color: #6b7280;"><i class="bi bi-calendar4" style="font-size: 0.7rem;"></i> <?= date('d M Y') ?></p>
             </div>
-            <div class="d-flex gap-3">
-                <button class="btn btn-light rounded-circle shadow-sm p-2" style="width: 45px; height: 45px;"><i class="bi bi-bell"></i></button>
-                <a href="<?= base_url('user/chatbot') ?>" class="btn btn-success shadow-sm d-flex align-items-center gap-2 rounded-pill px-3">
-                    <i class="bi bi-robot"></i> Tanya Pak RT
-                </a>
-                <a href="<?= base_url('user/panic') ?>" class="btn btn-danger shadow-sm d-flex align-items-center gap-2 rounded-pill px-4 blink-anim">
-                    <i class="bi bi-broadcast"></i> SOS
-                </a>
+            <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                <button class="btn btn-light" style="padding: 0.4rem; border-radius: 50%; width: 35px; height: 35px;"><i class="bi bi-bell" style="font-size: 0.9rem;"></i></button>
+                <a href="<?= base_url('user/chatbot') ?>" class="btn btn-success" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 20px;"><i class="bi bi-robot"></i> Tanya</a>
+                <a href="<?= base_url('user/panic') ?>" class="btn btn-danger" style="padding: 0.4rem 0.75rem; font-size: 0.75rem; border-radius: 20px;"><i class="bi bi-broadcast"></i> SOS</a>
             </div>
         </header>
 
         <!-- Stats Row with Enhanced Design -->
-        <div class="row g-4 mb-5">
-            <div class="col-md-4">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-bottom: 0.5rem;">
+            <div>
                 <div class="card border-0 h-100 overflow-hidden position-relative" style="border-radius: 20px; transition: all 0.3s;">
                     <!-- Gradient Background -->
                     <div class="position-absolute w-100 h-100" style="background: linear-gradient(135deg, <?= $unpaid > 0 ? '#fee2e2' : '#d1fae5' ?> 0%, <?= $unpaid > 0 ? '#fecaca' : '#a7f3d0' ?> 100%); opacity: 0.6;"></div>
-                    <div class="card-body p-4 position-relative">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <span class="text-muted fw-semibold small">Status Iuran (<?= date('M Y') ?>)</span>
-                            <div class="rounded-circle p-2" style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <i class="bi <?= $icon_class ?> fs-5"></i>
+                    <div style="padding: 0.5rem; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem;">
+                            <span style="font-size: 0.7rem; color: #6b7280; font-weight: 600;">Status Iuran (<?= date('M Y') ?>)</span>
+                            <div style="border-radius: 50%; padding: 0.3rem; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi <?= $icon_class ?>" style="font-size: 0.9rem;"></i>
                             </div>
                         </div>
-                        <h3 class="fw-bold <?= $status_class ?> mb-2"><?= $status_iuran ?></h3>
-                        <small class="text-muted fw-medium"><?= $status_desc ?></small>
+                        <h3 style="font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem;" class="<?= $status_class ?>"><?= $status_iuran ?></h3>
+                        <small style="font-size: 0.7rem; color: #6b7280;"><?= $status_desc ?></small>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card border-0 h-100 overflow-hidden position-relative stat-card-hover" style="border-radius: 20px; background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%); transition: all 0.3s;">
-                    <div class="card-body p-4 position-relative text-white">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <span class="fw-semibold small opacity-90">Total Kas Warga</span>
-                            <div class="rounded-circle p-2" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
-                                <i class="bi bi-piggy-bank-fill fs-5"></i>
+            <div>
+                <div class="card border-0" style="border-radius: 12px; background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%);">
+                    <div style="padding: 0.5rem; position: relative; color: white;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem;">
+                            <span style="font-size: 0.7rem; opacity: 0.9; font-weight: 600;">Total Kas Warga</span>
+                            <div style="border-radius: 50%; padding: 0.3rem; background: rgba(255,255,255,0.2); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-piggy-bank-fill" style="font-size: 0.9rem;"></i>
                             </div>
                         </div>
-                        <h3 class="fw-bold mb-2">Rp <?= number_format($total_kas, 0, ',', '.') ?></h3>
-                        <span class="badge px-3 py-1" style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3);">
-                            <i class="bi bi-arrow-up me-1"></i>+2.5% dari bulan lalu
+                        <h3 style="font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem;">Rp <?= number_format($total_kas, 0, ',', '.') ?></h3>
+                        <span style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; padding: 0.15rem 0.5rem; border-radius: 12px; font-size: 0.65rem;">
+                            <i class="bi bi-arrow-up"></i> +2.5% dari bulan lalu
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card border-0 h-100 overflow-hidden position-relative" style="border-radius: 20px; transition: all 0.3s;">
+            <div>
+                <div class="card border-0" style="border-radius: 12px; overflow: hidden; position: relative;">
                     <div class="position-absolute w-100 h-100" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); opacity: 0.6;"></div>
-                    <div class="card-body p-4 position-relative">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <span class="text-muted fw-semibold small">Kegiatan Bulan Ini</span>
-                            <div class="rounded-circle p-2" style="background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                                <i class="bi bi-calendar-check-fill text-warning fs-5"></i>
+                    <div style="padding: 0.5rem; position: relative;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.3rem;">
+                            <span style="font-size: 0.7rem; color: #6b7280; font-weight: 600;">Kegiatan Bulan Ini</span>
+                            <div style="border-radius: 50%; padding: 0.3rem; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-calendar-check-fill text-warning" style="font-size: 0.9rem;"></i>
                             </div>
                         </div>
-                        <h3 class="fw-bold mb-2"><?= $kegiatan_count ?> Agenda</h3>
-                        <small class="text-muted fw-medium">Ayo berpartisipasi!</small>
+                        <h3 style="font-weight: 700; font-size: 1rem; margin-bottom: 0.2rem;"><?= $kegiatan_count ?> Agenda</h3>
+                        <small style="font-size: 0.7rem; color: #6b7280;">Ayo berpartisipasi!</small>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row g-4">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-bottom: 0.5rem;">
             <!-- Left Column: Announcements -->
             <div class="col-lg-8">
                 <div class="d-flex justify-content-between align-items-center mb-4">
