@@ -51,6 +51,9 @@
             </div>
             <div class="d-flex gap-3">
                 <button class="btn btn-light rounded-circle shadow-sm p-2" style="width: 45px; height: 45px;"><i class="bi bi-bell"></i></button>
+                <a href="<?= base_url('user/chatbot') ?>" class="btn btn-success shadow-sm d-flex align-items-center gap-2 rounded-pill px-3">
+                    <i class="bi bi-robot"></i> Tanya Pak RT
+                </a>
                 <a href="<?= base_url('user/panic') ?>" class="btn btn-danger shadow-sm d-flex align-items-center gap-2 rounded-pill px-4 blink-anim">
                     <i class="bi bi-broadcast"></i> SOS
                 </a>
