@@ -8,16 +8,16 @@
                         <strong class="fs-5 text-white">FKKMBT</strong>
                     </div>
                     <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
-                    <p class="text-white small" style="line-height: 1.6; opacity: 1 !important;">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
+                    <p class="text-white small" style="line-height: 1.6;">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
                 </div>
                 
                 <div class="col-md-2">
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Menu Cepat</h6>
                     <ul class="list-unstyled d-flex flex-column gap-2">
                         <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
-                        <li><a href="<?= base_url('tentang') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Tentang Kami</a></li>
-                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Kegiatan</a></li>
-                        <li><a href="<?= base_url('struktur') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Organisasi</a></li>
+                        <li><a href="<?= base_url('tentang') ?>" class="text-white text-decoration-none hover-white">Tentang Kami</a></li>
+                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white text-decoration-none hover-white">Kegiatan</a></li>
+                        <li><a href="<?= base_url('struktur') ?>" class="text-white text-decoration-none hover-white">Organisasi</a></li>
                     </ul>
                 </div>
                 
@@ -25,19 +25,19 @@
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Organisasi</h6>
                     <ul class="list-unstyled d-flex flex-column gap-2">
                         <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
-                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Struktur FKKMBT</a></li>
-                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Struktur FKKMMBT</a></li>
+                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white text-decoration-none hover-white">Struktur FKKMBT</a></li>
+                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white text-decoration-none hover-white">Struktur FKKMMBT</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-3">
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Kontak</h6>
                     <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
-                    <p class="text-white small mb-2" style="opacity: 1;">
+                    <p class="text-white small mb-2">
                         <i class="bi bi-geo-alt me-2 text-white"></i>
                         Perumahan Bukit Tiara, Cikupa, Tangerang
                     </p>
-                    <p class="text-white small mb-2" style="opacity: 1;">
+                    <p class="text-white small mb-2">
                         <i class="bi bi-whatsapp me-2 text-white"></i>
                         0877-8672-0942
                     </p>
