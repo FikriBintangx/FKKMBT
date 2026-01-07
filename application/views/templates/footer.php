@@ -1,61 +1,79 @@
     <!-- Footer -->
-    <footer class="mt-auto pt-5 pb-3 text-white" style="margin-top: 100px !important; background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%);">
+    <footer class="mt-auto pt-5 pb-3 text-white" style="margin-top: 50px !important; background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%);">
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" class="rounded-circle border border-white" style="width: 40px; height: 40px;">
-                        <strong class="fs-5">FKKMBT</strong>
+                        <strong class="fs-5 text-white">FKKMBT</strong>
                     </div>
-                    <p class="text-white-50 small" style="line-height: 1.6;">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
+                    <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
+                    <p class="text-white small" style="line-height: 1.6; opacity: 1 !important;">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
                 </div>
                 
                 <div class="col-md-2">
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Menu Cepat</h6>
                     <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="<?= base_url('tentang') ?>" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
-                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white-50 text-decoration-none hover-white">Kegiatan</a></li>
-                        <li><a href="<?= base_url('struktur') ?>" class="text-white-50 text-decoration-none hover-white">Organisasi</a></li>
+                        <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
+                        <li><a href="<?= base_url('tentang') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Tentang Kami</a></li>
+                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Kegiatan</a></li>
+                        <li><a href="<?= base_url('struktur') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Organisasi</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-3">
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Organisasi</h6>
                     <ul class="list-unstyled d-flex flex-column gap-2">
-                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white-50 text-decoration-none hover-white">Struktur FKKMBT</a></li>
-                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white-50 text-decoration-none hover-white">Struktur FKKMMBT</a></li>
+                        <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
+                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Struktur FKKMBT</a></li>
+                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white text-decoration-none hover-white" style="opacity: 1;">Struktur FKKMMBT</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-3">
                     <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Kontak</h6>
-                    <p class="text-white-50 small mb-2">
-                        <i class="bi bi-geo-alt me-2 text-success"></i>
+                    <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
+                    <p class="text-white small mb-2" style="opacity: 1;">
+                        <i class="bi bi-geo-alt me-2 text-white"></i>
                         Perumahan Bukit Tiara, Cikupa, Tangerang
                     </p>
-                    <p class="text-white-50 small mb-2">
-                        <i class="bi bi-whatsapp me-2 text-success"></i>
+                    <p class="text-white small mb-2" style="opacity: 1;">
+                        <i class="bi bi-whatsapp me-2 text-white"></i>
                         0877-8672-0942
                     </p>
                 </div>
             </div>
             
-            <hr class="my-4 border-secondary opacity-25">
+            <hr class="my-4 border-white opacity-100">
             
-            <div class="text-center text-white-50 small">
+            <!-- CHANGED: Replaced 'text-white-50' with 'text-white' -->
+            <div class="text-center text-white small">
                 <p class="mb-0">&copy; 2025 FKKMBT. Developed by Ceva_Star.</p>
             </div>
         </div>
+        
+        <!-- Bottom Spacer for Mobile Nav -->
+        <div class="d-lg-none" style="height: 60px;"></div>
     </footer>
 
     <!-- Panic Button & Modal - Same as before -->
-    <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
+    <div class="fixed-bottom p-4 d-none d-lg-block" style="z-index: 1050; pointer-events: none;">
         <div class="text-end" style="pointer-events: auto;">
             <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.3);" data-bs-toggle="modal" data-bs-target="#panicModal">
                 <i class="bi bi-exclamation-triangle-fill fs-3"></i>
             </button>
         </div>
     </div>
+
+    <!-- Mobile Panic Button (Adjusted Position) -->
+    <div class="fixed-bottom p-3 d-lg-none" style="z-index: 1040; pointer-events: none; bottom: 70px;">
+        <div class="text-end" style="pointer-events: auto;">
+             <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 50px; height: 50px; border: 3px solid rgba(255,255,255,0.3);" data-bs-toggle="modal" data-bs-target="#panicModal">
+                <i class="bi bi-exclamation-triangle-fill fs-4"></i>
+            </button>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="panicModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-bottom">
