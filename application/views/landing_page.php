@@ -11,229 +11,202 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css?v='.time()) ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
     <style>
-        .hero-section {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 140px 0 80px;
+        /* New Fresh Hero Section */
+        .hero-section-alt {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 40px 20px 60px;
             border-radius: 0 0 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section-alt::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(22, 163, 74, 0.05) 0%, transparent 70%);
+            z-index: 0;
+        }
+        .hero-badge-alt {
+            background: #dcfce7;
+            color: #166534;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 11px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        .hero-title-alt {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #1e293b;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-desc-alt {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* App-Like Grid Menu */
+        .app-menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 0 10px;
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+        .app-menu-item {
+            background: white;
+            padding: 20px 15px;
+            border-radius: 20px;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid rgba(0,0,0,0.02);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .app-menu-item:active { transform: scale(0.98); }
+        .app-menu-icon {
+            width: 50px; height: 50px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+        .app-menu-item:hover .app-menu-icon { transform: rotateY(180deg); }
+        .app-menu-title {
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .app-menu-desc {
+            color: #94a3b8;
+            font-size: 10px;
+            line-height: 1.3;
+        }
+
+        /* Call To Action Card */
+        .cta-card {
+            background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%);
+            border-radius: 24px;
+            padding: 30px;
+            text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
-            margin-top: -80px; /* Compensate for navbar */
+            margin-top: 40px;
+            box-shadow: 0 20px 40px rgba(22, 163, 74, 0.25);
         }
-        .hero-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(to right, #ffffff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-        }
-        .hero-badge {
+        .cta-card::after {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 100px; height: 100px;
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-        .stat-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: center;
-            height: 100%;
-        }
-        .feature-icon-circle {
-            width: 60px; height: 60px;
-            border-radius: 50%;
-            background: #f1f5f9;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px;
-            margin: 0 auto 15px;
-            color: #1e293b;
+            border-radius: 0 0 0 100%;
         }
     </style>
 </head>
 <body class="bg-light">
     
-    <!-- Navbar Included -->
+    <!-- Navbar (Dark Green) -->
     <?php $this->load->view('templates/header'); ?>
 
-    <!-- Hero Section -->
-    <section class="hero-section">
-        <div class="container text-center">
-            <div class="hero-badge" data-aos="fade-down">
-                <i class="bi bi-stars text-warning"></i>
-                <span>Portal Resmi Warga Bukit Tiara</span>
+    <!-- Fresh Hero Section -->
+    <section class="hero-section-alt">
+        <div class="container">
+            <div class="hero-badge-alt" data-aos="zoom-in">
+                <i class="bi bi-shield-check-fill"></i> PORTAL RESMI
             </div>
             
-            <h1 class="hero-title" data-aos="fade-up">Membangun Komunitas<br>Yang Lebih Harmonis</h1>
-            <p class="text-white-50 mb-5 px-3" data-aos="fade-up" data-aos-delay="100">
-                Pusat informasi, kegiatan, layanan, dan transparansi iuran untuk seluruh warga Perumahan Bukit Tiara.
+            <h1 class="hero-title-alt" data-aos="fade-up">Bukit Tiara<br><span style="color: #16a34a;">Community App</span></h1>
+            <p class="hero-desc-alt" data-aos="fade-up" data-aos-delay="100">
+                Satu aplikasi untuk segala kebutuhan warga. Informasi transparan, layanan cepat, dan komunitas yang lebih guyub.
             </p>
-            
-            <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
-                <a href="<?= base_url('auth/login') ?>" class="btn btn-primary rounded-pill px-4 py-3 fw-bold shadow-lg">
-                    Masuk Portal <i class="bi bi-arrow-right ms-2"></i>
-                </a>
-                <a href="#fitur" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold">
-                    Pelajari Fitur
-                </a>
-            </div>
+
+            <a href="<?= base_url('auth/login') ?>" class="btn btn-dark rounded-pill px-5 py-3 fw-bold shadow-lg position-relative z-1" data-aos="fade-up" data-aos-delay="200" style="background: #1e293b; border: none;">
+                Masuk Member Area
+            </a>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="container" style="margin-top: -40px; position: relative; z-index: 10;">
-        <div class="row g-3">
-            <div class="col-4">
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="fw-bold mb-0 text-primary">500+</h3>
-                    <small class="text-muted fw-bold" style="font-size: 10px;">WARGA</small>
+    <!-- App Grid Menu -->
+    <div class="container px-3 pb-5">
+        <div class="app-menu-grid">
+            <!-- Warga -->
+            <a href="<?= base_url('warga') ?>" class="app-menu-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="app-menu-icon" style="background: #e0f2fe; color: #0284c7;">
+                    <i class="bi bi-people-fill"></i>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="fw-bold mb-0 text-success">20</h3>
-                    <small class="text-muted fw-bold" style="font-size: 10px;">BLOK</small>
+                <h6 class="app-menu-title">Direktori Warga</h6>
+                <span class="app-menu-desc">Cari tetangga & blok</span>
+            </a>
+
+            <!-- Iuran -->
+            <a href="<?= base_url('iuran') ?>" class="app-menu-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="app-menu-icon" style="background: #fef9c3; color: #ca8a04;">
+                    <i class="bi bi-wallet2"></i>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
-                    <h3 class="fw-bold mb-0 text-warning">50+</h3>
-                    <small class="text-muted fw-bold" style="font-size: 10px;">KEGIATAN</small>
+                <h6 class="app-menu-title">Info Iuran</h6>
+                <span class="app-menu-desc">Transparansi dana</span>
+            </a>
+
+            <!-- Kegiatan -->
+            <a href="<?= base_url('kegiatan') ?>" class="app-menu-item" data-aos="fade-up" data-aos-delay="500">
+                <div class="app-menu-icon" style="background: #fee2e2; color: #dc2626;">
+                    <i class="bi bi-calendar-event"></i>
                 </div>
-            </div>
-        </div>
-    </section>
+                <h6 class="app-menu-title">Agenda Warga</h6>
+                <span class="app-menu-desc">Jadwal & dokumentasi</span>
+            </a>
 
-    <!-- Features Grid -->
-    <section class="container py-5" id="fitur">
-        <div class="d-flex justify-content-between align-items-end mb-4">
-            <div>
-                <span class="text-primary fw-bold small text-uppercase ls-1">Layanan</span>
-                <h3 class="fw-bold text-dark mt-1">Akses Mudah</h3>
-            </div>
+            <!-- Struktur -->
+            <a href="<?= base_url('struktur') ?>" class="app-menu-item" data-aos="fade-up" data-aos-delay="600">
+                <div class="app-menu-icon" style="background: #dcfce7; color: #16a34a;">
+                    <i class="bi bi-diagram-3"></i>
+                </div>
+                <h6 class="app-menu-title">Organisasi</h6>
+                <span class="app-menu-desc">Pengurus RT/RW</span>
+            </a>
         </div>
 
-        <div class="row g-4">
-            <div class="col-6 col-md-4" data-aos="fade-up">
-                <a href="<?= base_url('tentang') ?>" class="text-decoration-none">
-                    <div class="stat-card">
-                        <div class="feature-icon-circle text-white bg-primary shadow-sm">
-                            <i class="bi bi-info-circle-fill"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark mb-1">Tentang Kami</h6>
-                        <small class="text-secondary" style="font-size: 11px;">Visi & Misi FKKMBT</small>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
-                <a href="<?= base_url('kegiatan') ?>" class="text-decoration-none">
-                    <div class="stat-card">
-                        <div class="feature-icon-circle text-white bg-danger shadow-sm">
-                            <i class="bi bi-calendar-event-fill"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark mb-1">Kegiatan</h6>
-                        <small class="text-secondary" style="font-size: 11px;">Agenda Warga</small>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="<?= base_url('warga') ?>" class="text-decoration-none">
-                    <div class="stat-card">
-                        <div class="feature-icon-circle text-white bg-success shadow-sm">
-                            <i class="bi bi-people-fill"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark mb-1">Direktori</h6>
-                        <small class="text-secondary" style="font-size: 11px;">Data Warga</small>
-                    </div>
-                </a>
-            </div>
-            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
-                <a href="<?= base_url('iuran') ?>" class="text-decoration-none">
-                    <div class="stat-card">
-                        <div class="feature-icon-circle text-white bg-warning shadow-sm">
-                            <i class="bi bi-wallet-fill"></i>
-                        </div>
-                        <h6 class="fw-bold text-dark mb-1">Info Iuran</h6>
-                        <small class="text-secondary" style="font-size: 11px;">Transparansi Dana</small>
-                    </div>
-                </a>
-            </div>
+        <!-- CTA Login / Register -->
+        <div class="cta-card" data-aos="flip-up" data-aos-delay="700">
+            <i class="bi bi-door-open-fill display-4 mb-3 d-block text-warning opacity-75"></i>
+            <h3 class="fw-bold mb-2">Warga Bukit Tiara?</h3>
+            <p class="opacity-75 small mb-4">Login untuk akses fitur eksklusif: Lapor Warga, Panic Button, dan E-Voting.</p>
+            <a href="<?= base_url('auth/login') ?>" class="btn btn-light text-success fw-bold rounded-pill px-4 py-2 w-100 shadow-sm">
+                Login Sekarang
+            </a>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <!-- Footer -->
+    <!-- Footer (Dark Green) -->
     <?php $this->load->view('templates/footer'); ?>
 
-    <!-- Panic Button & Modal -->
-    <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
-        <div class="text-end" style="pointer-events: auto;">
-            <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 60px; height: 60px;" data-bs-toggle="modal" data-bs-target="#panicModal">
-                <i class="bi bi-exclamation-triangle-fill fs-3"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Panic Modal -->
-    <div class="modal fade" id="panicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-bottom">
-            <div class="modal-content border-0 shadow-lg rounded-top-5">
-                <div class="modal-header border-0 pb-0 justify-content-center">
-                    <div style="width: 50px; height: 5px; background: #e2e8f0; border-radius: 10px;"></div>
-                </div>
-                <div class="modal-body p-4 text-center">
-                    <div class="bg-danger-subtle text-danger rounded-circle d-inline-flex p-3 mb-3">
-                        <i class="bi bi-shield-exclamation fs-1"></i>
-                    </div>
-                    <h4 class="fw-bold mb-2">Panggilan Darurat</h4>
-                    <p class="text-muted small mb-4">Segera hubungi bantuan jika Anda dalam keadaan darurat.</p>
-                    
-                    <div class="d-grid gap-3">
-                        <a href="tel:112" class="btn btn-light btn-lg d-flex align-items-center justify-content-between p-3 border">
-                            <span class="d-flex align-items-center gap-3">
-                                <i class="bi bi-telephone-fill text-danger"></i> Darurat Umum
-                            </span>
-                            <span class="fw-bold text-dark">112</span>
-                        </a>
-                        <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between p-3">
-                            <span class="d-flex align-items-center gap-3">
-                                <i class="bi bi-person-badge-fill"></i> Satpam
-                            </span>
-                            <span class="fw-bold">Call Pos</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        .shake-animation {
-            animation: shake 5s cubic-bezier(.36,.07,.19,.97) both infinite;
-            transform: translate3d(0, 0, 0);
-        }
-        @keyframes shake {
-            1%, 9% { transform: translate3d(-1px, 0, 0); }
-            2%, 8% { transform: translate3d(2px, 0, 0); }
-            3%, 5%, 7% { transform: translate3d(-4px, 0, 0); }
-            4%, 6% { transform: translate3d(4px, 0, 0); }
-            10%, 100% { transform: translate3d(0, 0, 0); }
-        }
-        .modal-dialog-bottom { margin: 0; display: flex; align-items: flex-end; min-height: 100%; }
-        .modal.fade .modal-dialog-bottom { transform: translate(0, 100%); }
-        .modal.show .modal-dialog-bottom { transform: none; transition: transform 0.3s ease-out; }
-    </style>
-
+    <!-- Panic Modal Scripts & Styles -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
