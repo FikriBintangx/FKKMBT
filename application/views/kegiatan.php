@@ -1,224 +1,130 @@
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h6 class="text-primary fw-bold text-uppercase">Galeri & Agenda</h6>
-        <h1 class="fw-bold">Kegiatan Warga</h1>
-        <p class="text-muted col-lg-8 mx-auto">Dokumentasi kegiatan rutin dan agenda acara mendatang di lingkungan Bukit Tiara.</p>
+<div class="container py-4">
+    <div class="text-center mb-5 mt-3">
+        <span class="badge bg-danger-subtle text-danger rounded-pill mb-2 px-3 fw-bold">AGENDA & DOKUMENTASI</span>
+        <h2 class="fw-bold display-6">Kegiatan Warga<br>Bukit Tiara</h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+            Jadwal kegiatan rutin dan dokumentasi acara kebersamaan warga.
+        </p>
     </div>
 
-    <!-- Calendar Section -->
-    <div class="row mb-5">
-        <div class="col-lg-12">
-            <div class="card border-0 shadow-sm overflow-hidden">
-                <div class="card-header bg-white border-bottom-0 p-4 d-flex justify-content-between align-items-center">
-                    <h4 class="mb-0 fw-bold"><i class="bi bi-calendar-week me-2 text-primary"></i>Kalender Kegiatan</h4>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-outline-light text-dark btn-sm"><i class="bi bi-chevron-left"></i></button>
-                        <span class="fw-bold px-3 py-1 bg-light rounded">Agustus 2025</span>
-                        <button class="btn btn-outline-light text-dark btn-sm"><i class="bi bi-chevron-right"></i></button>
-                    </div>
+    <!-- Featured Event Card -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-5">
+        <div class="row g-0">
+            <div class="col-md-6 bg-dark text-white p-5 d-flex flex-column justify-content-center position-relative">
+                <div class="position-absolute top-0 start-0 p-4">
+                    <span class="badge bg-warning text-dark fw-bold">AKAN DATANG</span>
                 </div>
-                <div class="card-body p-0">
-                    <!-- Calendar Grid -->
-                    <div class="calendar-grid">
-                        <!-- Days Header -->
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Minggu</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Senin</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Selasa</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Rabu</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Kamis</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Jumat</div>
-                        <div class="calendar-header bg-light fw-bold text-center py-3 text-secondary">Sabtu</div>
-
-                        <!-- Calendar Days (Logic would be dynamic in real app, static for demo) -->
-                        
-                        <!-- Empty Previous Month Days -->
-                        <div class="calendar-day text-muted bg-light bg-opacity-25">27</div>
-                        <div class="calendar-day text-muted bg-light bg-opacity-25">28</div>
-                        <div class="calendar-day text-muted bg-light bg-opacity-25">29</div>
-                        <div class="calendar-day text-muted bg-light bg-opacity-25">30</div>
-                        <div class="calendar-day text-muted bg-light bg-opacity-25">31</div>
-                        
-                        <!-- Aug 1 -->
-                        <div class="calendar-day">1</div>
-                        <!-- Aug 2 (Today Demo) -->
-                        <div class="calendar-day active-today">
-                            2
-                            <span class="badge bg-primary mt-1 d-block text-truncate" style="font-size: 0.65rem;">Rapat RT</span>
-                        </div>
-                         <div class="calendar-day">3 <span class="badge bg-success mt-1 d-block text-truncate" style="font-size: 0.65rem;">Senam</span></div>
-                        <div class="calendar-day">4</div>
-                        <div class="calendar-day">5</div>
-                        <div class="calendar-day">6</div>
-                        <div class="calendar-day">7</div>
-                        <div class="calendar-day">8</div>
-                        <div class="calendar-day">9</div>
-                        <!-- Aug 10 -->
-                        <div class="calendar-day">
-                            10
-                             <span class="badge bg-success mt-1 d-block text-truncate" style="font-size: 0.65rem;">Posyandu</span>
-                        </div>
-                        <div class="calendar-day">11</div>
-                        <div class="calendar-day">12</div>
-                        <div class="calendar-day">13</div>
-                        <div class="calendar-day">14</div>
-                        <div class="calendar-day">15</div>
-                        <div class="calendar-day">16</div>
-                        <!-- Aug 17 (Event) -->
-                        <div class="calendar-day event-date">
-                            17
-                            <span class="badge bg-danger mt-1 d-block text-truncate" style="font-size: 0.65rem;">HUT RI ke-80</span>
-                        </div>
-                        <div class="calendar-day">18</div>
-                        <div class="calendar-day">19</div>
-                        <div class="calendar-day">20</div>
-                        <div class="calendar-day">21</div>
-                        <div class="calendar-day">22</div>
-                        <div class="calendar-day">23</div>
-                        <div class="calendar-day">24 <span class="badge bg-success mt-1 d-block text-truncate" style="font-size: 0.65rem;">Senam</span></div>
-                        <div class="calendar-day">25</div>
-                        <div class="calendar-day">26</div>
-                        <div class="calendar-day">27</div>
-                        <div class="calendar-day">28</div>
-                        <div class="calendar-day">29</div>
-                        <div class="calendar-day">30</div>
-                        <div class="calendar-day">31</div>
-                        
-                        <!-- Empty Next Month Days -->
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">1</div>
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">2</div>
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">3</div>
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">4</div>
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">5</div>
-                         <div class="calendar-day text-muted bg-light bg-opacity-25">6</div>
-
+                <h4 class="text-white-50 mb-1">AGUSTUS 2025</h4>
+                <h1 class="fw-bold mb-3">Pesta Rakyat HUT RI ke-80</h1>
+                <p class="opacity-75 mb-4">Mari meriahkan perayaan kemerdekaan dengan berbagai lomba seru dan panggung gembira.</p>
+                
+                <div class="d-flex gap-4">
+                    <div>
+                        <i class="bi bi-calendar-check fs-4 d-block mb-1 text-warning"></i>
+                        <span class="small fw-bold">17 AGUSTUS</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-clock fs-4 d-block mb-1 text-warning"></i>
+                        <span class="small fw-bold">08:00 WIB</span>
+                    </div>
+                    <div>
+                        <i class="bi bi-geo-alt fs-4 d-block mb-1 text-warning"></i>
+                        <span class="small fw-bold">LAP. UTAMA</span>
                     </div>
                 </div>
             </div>
-            
-            <style>
-                .calendar-grid {
-                    display: grid;
-                    grid-template-columns: repeat(7, 1fr);
-                    border-top: 1px solid #dee2e6;
-                    border-left: 1px solid #dee2e6;
-                }
-                .calendar-header {
-                    border-right: 1px solid #dee2e6;
-                    border-bottom: 1px solid #dee2e6;
-                    font-size: 0.9rem;
-                }
-                .calendar-day {
-                    min-height: 120px;
-                    background-color: #fff;
-                    border-right: 1px solid #dee2e6;
-                    border-bottom: 1px solid #dee2e6;
-                    padding: 10px;
-                    font-weight: 500;
-                    color: #495057;
-                    transition: background-color 0.2s;
-                }
-                .calendar-day:hover {
-                    background-color: #f8f9fa;
-                }
-                .active-today {
-                    background-color: #e8f4fd !important; /* Soft Blue */
-                    color: #0d6efd;
-                    font-weight: bold;
-                }
-                .event-date {
-                    background-color: #fdf2e9; /* Soft Orange */
-                }
-                @media (max-width: 768px) {
-                    .calendar-day {
-                        min-height: 80px;
-                        font-size: 0.8rem;
-                    }
-                    .calendar-header {
-                        font-size: 0.7rem;
-                        padding: 5px 0;
-                    }
-                }
-            </style>
+            <div class="col-md-6 bg-light" style="min-height: 300px; background: url('https://images.unsplash.com/photo-1533646506450-718683510e14?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;"></div>
         </div>
     </div>
 
-    <!-- Event List (Secondary) -->
-    <div class="card border-0 shadow-sm mb-5">
-        <div class="card-header bg-white p-3">
-             <h6 class="mb-0 fw-bold">Detail Agenda</h6>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-hover mb-0 align-middle">
-                <thead class="bg-light">
-                    <tr>
-                        <th class="ps-4">Tanggal</th>
-                        <th>Kegiatan</th>
-                        <th>Lokasi</th>
-                        <th>Waktu</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="ps-4 fw-bold text-primary">17 Agustus 2025</td>
-                        <td>Pesta Rakyat HUT RI ke-80</td>
-                        <td>Lapangan Utama</td>
-                        <td>08:00 - Selesai</td>
-                        <td><span class="badge bg-warning text-dark">Segera</span></td>
-                    </tr>
-                    <tr>
-                        <td class="ps-4 fw-bold text-primary">Setiap Minggu</td>
-                        <td>Senam Sehat Bersama</td>
-                        <td>Halaman Balai Warga</td>
-                        <td>06:30 - 08:00</td>
-                        <td><span class="badge bg-success">Rutin</span></td>
-                    </tr>
-                    <tr>
-                        <td class="ps-4 fw-bold text-primary">Setiap Bulan (Tgl 10)</td>
-                        <td>Posyandu Balita & Lansia</td>
-                        <td>Posyandu Mawar</td>
-                        <td>09:00 - 12:00</td>
-                        <td><span class="badge bg-success">Rutin</span></td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Monthly Agenda -->
+    <div class="row mb-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header bg-white p-4 border-0 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold mb-0">Agenda Rutin</h5>
+                    <button class="btn btn-sm btn-light rounded-pill px-3">Lihat Kalender</button>
+                </div>
+                <div class="list-group list-group-flush">
+                    <!-- Item 1 -->
+                    <div class="list-group-item p-4 border-light-subtle d-flex align-items-center gap-3">
+                        <div class="bg-primary-subtle text-primary rounded-3 text-center p-2" style="min-width: 60px;">
+                            <span class="d-block fw-bold small">SETIAP</span>
+                            <span class="d-block fw-bold fs-5">MINGGU</span>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Senam Sehat Bersama</h6>
+                            <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i> 06:30 - 08:00 WIB • Halaman Balai Warga</p>
+                        </div>
+                        <span class="badge bg-success rounded-pill">Aktif</span>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="list-group-item p-4 border-light-subtle d-flex align-items-center gap-3">
+                        <div class="bg-warning-subtle text-warning rounded-3 text-center p-2" style="min-width: 60px;">
+                            <span class="d-block fw-bold small">SETIAP</span>
+                            <span class="d-block fw-bold fs-5">TGL 10</span>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Posyandu Balita & Lansia</h6>
+                            <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i> 09:00 - 12:00 WIB • Posyandu Mawar</p>
+                        </div>
+                        <span class="badge bg-success rounded-pill">Aktif</span>
+                    </div>
+
+                     <!-- Item 3 -->
+                     <div class="list-group-item p-4 border-light-subtle d-flex align-items-center gap-3">
+                        <div class="bg-info-subtle text-info rounded-3 text-center p-2" style="min-width: 60px;">
+                            <span class="d-block fw-bold small">SETIAP</span>
+                            <span class="d-block fw-bold fs-5">SABTU</span>
+                        </div>
+                        <div class="flex-grow-1">
+                            <h6 class="fw-bold mb-1">Kerja Bakti Lingkungan</h6>
+                            <p class="text-muted small mb-0"><i class="bi bi-clock me-1"></i> 07:00 - Selesai • Area Blok Masing-masing</p>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">Tentative</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <!-- Gallery Grid -->
-    <h4 class="mb-4">Galeri Kegiatan</h4>
-    <div class="row g-4">
-        <!-- Placeholder Images -->
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
-                    <i class="bi bi-image fs-1"></i>
+    <h5 class="fw-bold mb-4 px-2 border-start border-4 border-primary ms-2 ps-3">Dokumentasi Terbaru</h5>
+    <div class="row g-3">
+        <div class="col-6 col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-4x3 bg-light">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="object-fit-cover">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Kerja Bakti Masal</h5>
-                    <p class="card-text text-muted small">Membersihkan saluran air antisipasi banjir.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
-                    <i class="bi bi-image fs-1"></i>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">Malam Tirakatan</h5>
-                    <p class="card-text text-muted small">Doa bersama menyambut hari kemerdekaan.</p>
+                <div class="card-body p-3">
+                    <small class="text-primary fw-bold" style="font-size: 10px;">SOSIAL</small>
+                    <h6 class="fw-bold mb-1 mt-1 text-truncate">Santunan Anak Yatim</h6>
+                    <small class="text-muted">April 2025</small>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm h-100">
-                <div class="bg-light d-flex align-items-center justify-content-center text-muted" style="height: 200px;">
-                    <i class="bi bi-image fs-1"></i>
+        <div class="col-6 col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-4x3 bg-light">
+                    <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="object-fit-cover">
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Santunan Anak Yatim</h5>
-                    <p class="card-text text-muted small">Berbagi kebahagiaan di bulan Ramadhan.</p>
+                <div class="card-body p-3">
+                    <small class="text-primary fw-bold" style="font-size: 10px;">LINGKUNGAN</small>
+                    <h6 class="fw-bold mb-1 mt-1 text-truncate">Kerja Bakti Masal</h6>
+                    <small class="text-muted">Maret 2025</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
+                <div class="ratio ratio-4x3 bg-light">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" class="object-fit-cover">
+                </div>
+                <div class="card-body p-3">
+                    <small class="text-primary fw-bold" style="font-size: 10px;">RELIGI</small>
+                    <h6 class="fw-bold mb-1 mt-1 text-truncate">Malam Tirakatan</h6>
+                    <small class="text-muted">Agustus 2024</small>
                 </div>
             </div>
         </div>

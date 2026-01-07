@@ -2,252 +2,195 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FKKMBT - Forum Komunikasi Koordinasi Masyarakat Bukit Tiara</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css?v='.time()) ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 140px 0 80px;
+            border-radius: 0 0 40px 40px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            margin-top: -80px; /* Compensate for navbar */
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        .hero-badge {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            height: 100%;
+        }
+        .feature-icon-circle {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: #f1f5f9;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 15px;
+            color: #1e293b;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%);">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="<?= base_url() ?>">
-                <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" alt="FKKMBT Logo" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; cursor: pointer; transition: transform 0.3s;" data-bs-toggle="modal" data-bs-target="#logoModal" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
-                <span class="fw-bold fs-4">FKKMBT</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center gap-2">
-                    <li class="nav-item"><a class="nav-link active" href="<?= base_url() ?>">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('tentang') ?>">Tentang</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('kegiatan') ?>">Kegiatan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('warga') ?>">Direktori Warga</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('struktur') ?>">Struktur FKKMBT</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('iuran') ?>">Iuran</a></li>
-                    <?php if($this->session->userdata('user_id')): ?>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" href="<?= ($this->session->userdata('role') == 'admin') ? base_url('admin/dashboard') : base_url('user/dashboard') ?>">
-                                <i class="bi bi-speedometer2 me-2"></i>Dashboard
-                            </a>
-                        </li>
-                    <?php else: ?>
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light" href="<?= base_url('auth/login') ?>">
-                                <i class="bi bi-box-arrow-in-right me-2"></i>Masuk
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="bg-light">
+    
+    <!-- Navbar Included -->
+    <?php $this->load->view('templates/header'); ?>
 
     <!-- Hero Section -->
-    <section class="hero-section text-white" id="beranda" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%); padding-top: 100px; margin-top: 56px;">
-        <div class="container">
-            <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
-                <i class="bi bi-stars"></i>
-                <span>Selamat Datang di Portal Komunitas</span>
+    <section class="hero-section">
+        <div class="container text-center">
+            <div class="hero-badge" data-aos="fade-down">
+                <i class="bi bi-stars text-warning"></i>
+                <span>Portal Resmi Warga Bukit Tiara</span>
             </div>
-            <h1 data-aos="fade-up" data-aos-delay="200">FKKMBT</h1>
-            <p class="subtitle" data-aos="fade-up" data-aos-delay="300">Forum Komunikasi dan Koordinasi</p>
-            <p class="highlight" data-aos="fade-up" data-aos-delay="400">Masyarakat Bukit Tiara</p>
-            <p data-aos="fade-up" data-aos-delay="500">Bersama membangun komunitas yang harmonis, sejahtera, dan saling mendukung.<br>
-            Portal resmi untuk informasi, kegiatan, dan koordinasi warga Perumahan Bukit Tiara.</p>
             
-            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="600">
-                <a href="<?= base_url('auth/register') ?>" class="btn btn-hero-primary">
-                    Jelajahi Sekarang
-                    <i class="bi bi-arrow-right"></i>
+            <h1 class="hero-title" data-aos="fade-up">Membangun Komunitas<br>Yang Lebih Harmonis</h1>
+            <p class="text-white-50 mb-5 px-3" data-aos="fade-up" data-aos-delay="100">
+                Pusat informasi, kegiatan, layanan, dan transparansi iuran untuk seluruh warga Perumahan Bukit Tiara.
+            </p>
+            
+            <div class="d-flex justify-content-center gap-3" data-aos="fade-up" data-aos-delay="200">
+                <a href="<?= base_url('auth/login') ?>" class="btn btn-primary rounded-pill px-4 py-3 fw-bold shadow-lg">
+                    Masuk Portal <i class="bi bi-arrow-right ms-2"></i>
                 </a>
-                <a href="<?= base_url('auth/login') ?>" class="btn btn-hero-secondary">
-                    Masuk Portal
+                <a href="#fitur" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold">
+                    Pelajari Fitur
                 </a>
             </div>
+        </div>
+    </section>
 
-            <div class="hero-stats" data-aos="fade-up" data-aos-delay="700">
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
-                    <span class="stat-number">500+</span>
-                    <span class="stat-label">Warga Aktif</span>
+    <!-- Stats Section -->
+    <section class="container" style="margin-top: -40px; position: relative; z-index: 10;">
+        <div class="row g-3">
+            <div class="col-4">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="fw-bold mb-0 text-primary">500+</h3>
+                    <small class="text-muted fw-bold" style="font-size: 10px;">WARGA</small>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-buildings-fill"></i></div>
-                    <span class="stat-number">A - T</span>
-                    <span class="stat-label">Blok Hunian</span>
+            </div>
+            <div class="col-4">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="fw-bold mb-0 text-success">20</h3>
+                    <small class="text-muted fw-bold" style="font-size: 10px;">BLOK</small>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-icon"><i class="bi bi-calendar-event-fill"></i></div>
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">Kegiatan/Tahun</span>
+            </div>
+            <div class="col-4">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
+                    <h3 class="fw-bold mb-0 text-warning">50+</h3>
+                    <small class="text-muted fw-bold" style="font-size: 10px;">KEGIATAN</small>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="py-5" id="tentang">
-        <div class="container">
-            <div class="section-title mb-5" data-aos="fade-up">
-                <h6>Fitur Lengkap</h6>
-                <h2>Semua yang Anda Butuhkan</h2>
-                <p>Portal lengkap untuk mengakses informasi dan layanan komunitas Bukit Tiara</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-teal">
-                            <i class="bi bi-clock-history"></i>
-                        </div>
-                        <h4>Sejarah & Tentang</h4>
-                        <p>Mengenal lebih dekat sejarah dan visi misi komunitas Bukit Tiara</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-orange">
-                            <i class="bi bi-calendar-event"></i>
-                        </div>
-                        <h4>Kegiatan Organisasi</h4>
-                        <p>Informasi kegiatan RT/RW, FKKMBT, Karang Taruna, dan lainnya</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-blue">
-                            <i class="bi bi-book"></i>
-                        </div>
-                        <h4>Direktori Warga</h4>
-                        <p>Database alamat warga dari Blok A sampai T lengkap dengan nomor rumah</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-purple">
-                            <i class="bi bi-diagram-3"></i>
-                        </div>
-                        <h4>Struktur Organisasi</h4>
-                        <p>Susunan pengurus FKKMBT dan FKKMMBT periode aktif</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-red">
-                            <i class="bi bi-credit-card"></i>
-                        </div>
-                        <h4>Iuran Warga</h4>
-                        <p>Informasi dan status pembayaran iuran bulanan warga</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
-                    <div class="feature-card">
-                        <div class="feature-icon-box icon-slate">
-                            <i class="bi bi-shield-lock"></i>
-                        </div>
-                        <h4>Portal Admin</h4>
-                        <p>Akses khusus untuk pengelolaan data dan konten website</p>
-                    </div>
-                </div>
+    <!-- Features Grid -->
+    <section class="container py-5" id="fitur">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <span class="text-primary fw-bold small text-uppercase ls-1">Layanan</span>
+                <h3 class="fw-bold text-dark mt-1">Akses Mudah</h3>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="container my-5">
-        <div class="cta-section">
-            <div class="cta-badge">
-                <i class="bi bi-rainbow"></i>
-                <span>Bergabung Bersama Kami</span>
-            </div>
-            <h2>Jadilah Bagian dari Komunitas<br>Bukit Tiara</h2>
-            <p>Akses informasi lengkap, ikuti kegiatan komunitas, dan berkontribusi untuk kemajuan lingkungan kita bersama.</p>
-            <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <a href="<?= base_url('auth/register') ?>" class="btn btn-cta-primary">
-                    Daftar Sekarang
-                    <i class="bi bi-arrow-right"></i>
+        <div class="row g-4">
+            <div class="col-6 col-md-4" data-aos="fade-up">
+                <a href="<?= base_url('tentang') ?>" class="text-decoration-none">
+                    <div class="stat-card">
+                        <div class="feature-icon-circle text-primary bg-primary-subtle">
+                            <i class="bi bi-info-circle-fill"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Tentang Kami</h6>
+                        <small class="text-muted" style="font-size: 11px;">Visi & Misi FKKMBT</small>
+                    </div>
                 </a>
-                <a href="#tentang" class="btn btn-cta-secondary">
-                    Pelajari Lebih Lanjut
+            </div>
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <a href="<?= base_url('kegiatan') ?>" class="text-decoration-none">
+                    <div class="stat-card">
+                        <div class="feature-icon-circle text-danger bg-danger-subtle">
+                            <i class="bi bi-calendar-event-fill"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Kegiatan</h6>
+                        <small class="text-muted" style="font-size: 11px;">Agenda Warga</small>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="<?= base_url('warga') ?>" class="text-decoration-none">
+                    <div class="stat-card">
+                        <div class="feature-icon-circle text-success bg-success-subtle">
+                            <i class="bi bi-people-fill"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Direktori</h6>
+                        <small class="text-muted" style="font-size: 11px;">Data Warga</small>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <a href="<?= base_url('iuran') ?>" class="text-decoration-none">
+                    <div class="stat-card">
+                        <div class="feature-icon-circle text-warning bg-warning-subtle">
+                            <i class="bi bi-wallet-fill"></i>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-1">Info Iuran</h6>
+                        <small class="text-muted" style="font-size: 11px;">Transparansi Dana</small>
+                    </div>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="footer-logo">
-                        <div class="logo-circle">F</div>
-                        <div class="brand-text">
-                            <strong>FKKMBT</strong>
-                        </div>
-                    </div>
-                    <p class="text-white-50">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
-                </div>
-                
-                <div class="col-md-2">
-                    <h6>Menu Cepat</h6>
-                    <a href="<?= base_url('tentang') ?>">Tentang Kami</a>
-                    <a href="<?= base_url('kegiatan') ?>">Kegiatan</a>
-                    <a href="<?= base_url('struktur') ?>">Organisasi </a>
-                </div>
-                
-                <div class="col-md-3">
-                    <h6>Organisasi</h6>
-                    <a href="<?= base_url('struktur?tab=fkkmbt') ?>">Struktur FKKMBT</a>
-                    <a href="<?= base_url('struktur?tab=fkkmmbt') ?>">Struktur FKKMMBT</a>
-                </div>
-                
-                <div class="col-md-3">
-                    <h6>Kontak</h6>
-                    <p class="text-white-50 mb-2">
-                        <i class="bi bi-geo-alt me-2"></i>
-                        Perumahan Bukit Tiara, Kecamatan Cikupa, Kabupaten Tangerang, Banten 15710
-                    </p>
-                    <p class="text-white-50 mb-2">
-                        <i class="bi bi-telephone me-2"></i>
-                        087786720942
-                    </p>
-                </div>
+    <footer class="bg-white py-5">
+        <div class="container text-center">
+            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
+                <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" width="40" class="rounded-circle">
+                <span class="fw-bold fs-5 text-dark">FKKMBT</span>
             </div>
-            
-            <hr class="my-4">
-            
-            <div class="text-center text-white-50">
-                <p class="mb-0">&copy; 2025 FKKMBT. Developed by Ceva_Star.</p>
+            <p class="text-muted small mb-4 px-4">
+                Forum Komunikasi Koordinasi Masyarakat Bukit Tiara.<br>
+                Mewujudkan lingkungan yang aman, nyaman, dan harmonis.
+            </p>
+            <div class="d-flex justify-content-center gap-3 mb-4">
+                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-whatsapp"></i></a>
             </div>
+            <hr class="border-light-subtle w-50 mx-auto">
+            <small class="text-muted">© 2025 FKKMBT. All Rights Reserved.</small>
         </div>
     </footer>
-
-
-    <!-- Logo Zoom Modal -->
-    <div class="modal fade" id="logoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-transparent border-0">
-                <div class="modal-body text-center p-0">
-                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 10;"></button>
-                    <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" alt="FKKMBT Logo" class="img-fluid rounded-circle" style="max-width: 400px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-                    <h3 class="text-white mt-3 fw-bold">FKKMBT</h3>
-                    <p class="text-white-50">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara</p>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Panic Button & Modal -->
     <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
@@ -258,35 +201,32 @@
         </div>
     </div>
 
+    <!-- Panic Modal -->
     <div class="modal fade" id="panicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header bg-danger text-white border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-shield-exclamation me-2"></i>DARURAT / EMERGENCY</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-bottom">
+            <div class="modal-content border-0 shadow-lg rounded-top-5">
+                <div class="modal-header border-0 pb-0 justify-content-center">
+                    <div style="width: 50px; height: 5px; background: #e2e8f0; border-radius: 10px;"></div>
                 </div>
-                <div class="modal-body p-4">
-                    <p class="text-muted text-center mb-4">Tekan tombol di bawah untuk menghubungi nomor darurat.</p>
+                <div class="modal-body p-4 text-center">
+                    <div class="bg-danger-subtle text-danger rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-shield-exclamation fs-1"></i>
+                    </div>
+                    <h4 class="fw-bold mb-2">Panggilan Darurat</h4>
+                    <p class="text-muted small mb-4">Segera hubungi bantuan jika Anda dalam keadaan darurat.</p>
+                    
                     <div class="d-grid gap-3">
-                        <a href="tel:112" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-telephone-fill me-2"></i>Panggilan Darurat Umum</span>
-                            <span class="fw-bold">112</span>
+                        <a href="tel:112" class="btn btn-light btn-lg d-flex align-items-center justify-content-between p-3 border">
+                            <span class="d-flex align-items-center gap-3">
+                                <i class="bi bi-telephone-fill text-danger"></i> Darurat Umum
+                            </span>
+                            <span class="fw-bold text-dark">112</span>
                         </a>
-                        <a href="tel:110" class="btn btn-outline-warning text-dark btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-shield-fill me-2"></i>Polisi</span>
-                            <span class="fw-bold">110</span>
-                        </a>
-                        <a href="tel:113" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-fire me-2"></i>Pemadam Kebakaran</span>
-                            <span class="fw-bold">113</span>
-                        </a>
-                        <a href="tel:118" class="btn btn-outline-success btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-hospital-fill me-2"></i>Ambulans</span>
-                            <span class="fw-bold">118</span>
-                        </a>
-                         <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-person-badge-fill me-2"></i>Satpam / Security</span>
-                            <span class="fw-bold">Hubungi Pos</span>
+                        <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between p-3">
+                            <span class="d-flex align-items-center gap-3">
+                                <i class="bi bi-person-badge-fill"></i> Satpam
+                            </span>
+                            <span class="fw-bold">Call Pos</span>
                         </a>
                     </div>
                 </div>
@@ -306,15 +246,15 @@
             4%, 6% { transform: translate3d(4px, 0, 0); }
             10%, 100% { transform: translate3d(0, 0, 0); }
         }
+        .modal-dialog-bottom { margin: 0; display: flex; align-items: flex-end; min-height: 100%; }
+        .modal.fade .modal-dialog-bottom { transform: translate(0, 100%); }
+        .modal.show .modal-dialog-bottom { transform: none; transition: transform 0.3s ease-out; }
     </style>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>

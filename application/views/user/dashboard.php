@@ -6,8 +6,6 @@
     <title>Dashboard Warga - FKKMBT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
@@ -30,6 +28,17 @@
         }
         .section-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 1.25rem; color: #1e293b; }
         .text-truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .feature-coming-soon { opacity: 0.6; filter: grayscale(1); position: relative; }
+        .feature-coming-soon::after {
+            content: "Soon";
+            position: absolute;
+            top: -5px; right: -5px;
+            background: #64748b; color: white;
+            font-size: 8px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="bg-light">
@@ -136,11 +145,12 @@
                     </div>
                     <span class="quick-label">Tanya AI</span>
                 </a>
-                <a href="<?= base_url('user/profil') ?>" class="quick-item">
-                    <div class="quick-icon bg-light text-dark shadow-none border">
-                        <i class="bi bi-gear-fill text-secondary"></i>
+                <!-- New CCTV Menu (Coming Soon) -->
+                 <a href="#" class="quick-item feature-coming-soon" onclick="return false;">
+                    <div class="quick-icon shadow-sm" style="background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0;">
+                         <i class="bi bi-camera-video"></i>
                     </div>
-                    <span class="quick-label">Profil</span>
+                    <span class="quick-label">CCTV<br>Area</span>
                 </a>
             </div>
         </section>

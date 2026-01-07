@@ -1,45 +1,72 @@
-<div class="container py-5">
-    <div class="row align-items-center mb-5">
-        <div class="col-lg-6">
-            <h6 class="text-primary fw-bold text-uppercase">Tentang Kami</h6>
-            <h1 class="fw-bold mb-4 display-5">Membangun Harmoni di Bukit Tiara</h1>
-            <p class="lead text-secondary">FKKMBT (Forum Komunikasi Koordinasi Masyarakat Bukit Tiara) adalah wadah pemersatu warga untuk menciptakan lingkungan yang aman, nyaman, dan guyub.</p>
-            <p>Berdiri sejak tahun [Tahun], kami berkomitmen untuk menjadi jembatan aspirasi warga dan penyelenggara kegiatan positif yang mempererat tali silaturahmi antar tetangga.</p>
+<div class="container py-4">
+    <div class="text-center mb-5 mt-3">
+        <span class="badge bg-primary-subtle text-primary rounded-pill mb-2 px-3 fw-bold">PROFIL KOMUNITAS</span>
+        <h2 class="fw-bold display-6">Membangun Harmoni<br>di Bukit Tiara</h2>
+        <p class="text-muted mx-auto" style="max-width: 600px;">
+            FKKMBT adalah wadah pemersatu warga untuk menciptakan lingkungan yang aman, nyaman, dan guyub.
+        </p>
+    </div>
+
+    <!-- Vision Card -->
+    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4 bg-primary text-white position-relative">
+        <div class="position-absolute top-0 end-0 p-3 opacity-25">
+            <i class="bi bi-stars display-1"></i>
         </div>
-        <div class="col-lg-6">
-            <div class="bg-light rounded-4 p-5 text-center shadow-sm">
-                <i class="bi bi-buildings text-primary display-1"></i>
-                <p class="mt-3 text-muted">Ilustrasi Komplek / Foto Kegiatan</p>
+        <div class="card-body p-4 p-lg-5 position-relative z-1">
+            <h6 class="text-white-50 fw-bold uppercase ls-1 mb-2">VISI KAMI</h6>
+            <h3 class="fw-bold mb-3">Terwujudnya masyarakat Bukit Tiara yang religius, harmonis, aman, dan sejahtera.</h3>
+            <p class="mb-0 opacity-75">Berlandaskan semangat gotong royong dan kekeluargaan yang erat antar sesama warga.</p>
+        </div>
+    </div>
+
+    <!-- Mission List -->
+    <div class="card border-0 shadow-sm rounded-4 mb-5">
+        <div class="card-body p-4">
+            <h5 class="fw-bold mb-4 d-flex align-items-center gap-2">
+                <i class="bi bi-bullseye text-danger"></i> Misi Utama
+            </h5>
+            <div class="d-flex flex-column gap-3">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary-subtle text-primary rounded-circle p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; min-width: 24px;">
+                        <i class="bi bi-check small fw-bold"></i>
+                    </div>
+                    <p class="mb-0 text-muted small">Meningkatkan kerukunan dan kerjasama antar warga melalui kegiatan rutin.</p>
+                </div>
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary-subtle text-primary rounded-circle p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; min-width: 24px;">
+                        <i class="bi bi-check small fw-bold"></i>
+                    </div>
+                    <p class="mb-0 text-muted small">Menjaga keamanan dan ketertiban lingkungan secara swadaya dan berkelanjutan.</p>
+                </div>
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary-subtle text-primary rounded-circle p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; min-width: 24px;">
+                        <i class="bi bi-check small fw-bold"></i>
+                    </div>
+                    <p class="mb-0 text-muted small">Mengembangkan potensi warga melalui kegiatan sosial dan pemberdayaan ekonomi.</p>
+                </div>
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary-subtle text-primary rounded-circle p-1 d-flex align-items-center justify-content-center" style="width: 24px; height: 24px; min-width: 24px;">
+                        <i class="bi bi-check small fw-bold"></i>
+                    </div>
+                    <p class="mb-0 text-muted small">Menjalin komunikasi yang baik dan konstruktif dengan pemerintah setempat.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row g-4 mt-4">
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-primary bg-opacity-10 text-primary rounded-circle mb-3" style="width: 50px; height: 50px;">
-                        <i class="bi bi-bullseye fs-4"></i>
+    <!-- History/Context -->
+    <div class="row align-items-center">
+        <div class="col-12">
+            <div class="bg-white border rounded-4 p-4 shadow-sm">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="bg-warning-subtle text-warning rounded-3 p-2">
+                        <i class="bi bi-clock-history fs-4"></i>
                     </div>
-                    <h4>Visi</h4>
-                    <p class="text-muted mb-0">Terwujudnya masyarakat Bukit Tiara yang religius, harmonis, aman, dan sejahtera berlandaskan semangat gotong royong.</p>
+                    <h5 class="fw-bold mb-0">Sejarah Singkat</h5>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
-                    <div class="d-inline-flex align-items-center justify-content-center bg-success bg-opacity-10 text-success rounded-circle mb-3" style="width: 50px; height: 50px;">
-                        <i class="bi bi-list-check fs-4"></i>
-                    </div>
-                    <h4>Misi</h4>
-                    <ul class="text-muted ps-3 mb-0">
-                        <li>Meningkatkan kerukunan dan kerjasama antar warga.</li>
-                        <li>Menjaga keamanan dan ketertiban lingkungan secara swadaya.</li>
-                        <li>Mengembangkan potensi warga melalui kegiatan sosial dan pemberdayaan.</li>
-                        <li>Menjalin komunikasi yang baik dengan pemerintah setempat.</li>
-                    </ul>
-                </div>
+                <p class="text-muted small mb-0" style="line-height: 1.8;">
+                    Forum Komunikasi Koordinasi Masyarakat Bukit Tiara (FKKMBT) didirikan sebagai respon atas kebutuhan warga akan sebuah wadah komunikasi yang efektif. Seiring berkembangnya perumahan Bukit Tiara, tantangan dalam mengelola keamanan, kebersihan, dan sosial kemasyarakatan semakin kompleks. Oleh karena itu, para tokoh masyarakat berinisiatif membentuk forum ini untuk menyatukan visi dan aksi demi kenyamanan bersama.
+                </p>
             </div>
         </div>
     </div>
