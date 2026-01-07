@@ -116,10 +116,10 @@
 <body class="bg-light">
 
     <!-- App Bar -->
-    <div class="app-bar d-lg-none" style="background: transparent; box-shadow: none;">
+    <div class="app-bar d-lg-none shadow-none">
         <div class="d-flex align-items-center gap-3">
             <a href="<?= base_url('user/dashboard') ?>" class="text-white"><i class="bi bi-chevron-left fs-4"></i></a>
-            <span class="fw-bold">Manajemen Profil</span>
+            <span class="fw-bold text-white">Manajemen Profil</span>
         </div>
     </div>
 
@@ -179,9 +179,10 @@
                     <label class="section-label mb-2" style="font-size: 10px;">ALAMAT LENGKAP</label>
                     <i class="bi bi-geo-alt text-danger" style="top: 45px;"></i>
                     <?php 
-                        $cleaned_alamat = trim(strip_tags(html_entity_decode($warga['alamat'])));
+                        $raw_alamat = isset($warga['alamat']) ? $warga['alamat'] : "";
+                        $cleaned_alamat = trim(strip_tags(html_entity_decode($raw_alamat)));
                         // If it still looks like an HTML error (contains style attributes or border info), force empty it
-                        if (strpos($warga['alamat'], 'border:1px solid') !== false) {
+                        if (strpos($raw_alamat, 'border:1px solid') !== false) {
                             $cleaned_alamat = "";
                         }
                     ?>

@@ -3,6 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Dashboard_model extends CI_Model {
 
+    public function __construct() {
+        parent::__construct();
+        $this->_check_schema();
+    }
+
+    private function _check_schema() {
+        if (!$this->db->field_exists('alamat', 'warga')) {
+            $this->db->query("ALTER TABLE warga ADD COLUMN alamat TEXT AFTER no_rumah");
+        }
+    }
+
 
 
     // --- ADMIN DASHBOARD QUERIES ---
