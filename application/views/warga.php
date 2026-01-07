@@ -29,9 +29,8 @@
         </div>
     </div>
 
-    <!-- Search & Filter Area -->
-    <div class="row g-4 mb-4">
-        <!-- Search Bar -->
+    <!-- Search Bar -->
+    <div class="row mb-4">
         <div class="col-12">
             <form action="" method="GET" class="card border-0 shadow-sm rounded-4 overflow-hidden">
                 <div class="card-body p-2 d-flex align-items-center">
@@ -41,67 +40,46 @@
                 </div>
             </form>
         </div>
+    </div>
 
-        <!-- Genteng Grid (Filter Blok) -->
-        <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-                <h6 class="fw-bold mb-3"><i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>Pilih Blok (Genteng)</h6>
-                
-                <div class="accordion" id="blokAccordion">
-                    <div class="d-grid gap-2">
-                        <a href="<?= base_url('warga') ?>" class="btn <?= empty($selected_blok) ? 'btn-success text-white' : 'btn-outline-success' ?> rounded-3 py-2 fw-bold">
-                            Tampilkan Semua Blok
-                        </a>
-                    </div>
-                    
-                    <div class="row g-2 mt-3">
-                        <?php foreach(range('A','T') as $letter): 
-                            $isActiveGroup = (substr($selected_blok ?? '', 0, 1) == $letter);
-                        ?>
-                        <div class="col-6 col-md-4 col-lg-3">
-                            <div class="accordion-item border-0">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed p-2 rounded-3 shadow-sm d-block text-center <?= $isActiveGroup ? 'bg-primary text-white' : 'bg-light text-dark' ?>" 
-                                            type="button" 
-                                            data-bs-toggle="collapse" 
-                                            data-bs-target="#collapse<?= $letter ?>">
-                                        <span class="d-block fw-bold fs-5">Blok <?= $letter ?></span>
-                                        <small style="font-size: 10px;" class="opacity-75">Lihat Unit</small>
-                                    </button>
-                                </h2>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <!-- Accordion Bodies (placed outside grid to expand full width) -->
-                    <?php foreach(range('A','T') as $letter): 
-                         $isActiveGroup = (substr($selected_blok ?? '', 0, 1) == $letter);
-                    ?>
-                    <div id="collapse<?= $letter ?>" class="accordion-collapse collapse <?= $isActiveGroup ? 'show' : '' ?>" data-bs-parent="#blokAccordion">
-                        <div class="card card-body bg-light border-0 mt-2 rounded-4">
-                            <h6 class="small fw-bold text-muted mb-2">Pilih Unit Blok <?= $letter ?>:</h6>
-                            <div class="row g-2">
-                                <?php for($i=1; $i<=10; $i++): $val = $letter . $i; // Generate logic for sub-blocks ?> 
-                                <div class="col-3 col-md-2">
-                                    <a href="?blok=<?= $letter ?>" class="btn w-100 active-genteng shadow-sm rounded-3 p-1 d-flex flex-column align-items-center justify-content-center" style="height: 60px;">
-                                        <!-- Note: Using Letter filter generally as database specific row logic is unknown. 
-                                             If user wants strict sub-block, we'd need ?blok=A1 etc. and strict DB matching.
-                                             For now, defaulting to filtering by Letter when clicked. -->
-                                        <i class="bi bi-house-door-fill fs-5 mb-1 text-secondary"></i>
-                                        <span class="lh-1 fw-bold small"><?= $letter ?><?= $i ?></span>
-                                    </a>
-                                </div>
-                                <?php endfor; ?>
-                            </div>
-                            <div class="mt-2 text-center">
-                                <a href="?blok=<?= $letter ?>" class="btn btn-sm btn-primary rounded-pill px-4">Lihat Semua Blok <?= $letter ?></a>
-                            </div>
-                        </div>
-                    </div>
-                    <?php endforeach; ?>
-                </div>
+    <!-- House Icon Grid (Filter Blok) -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+        <h6 class="fw-bold mb-4 text-center"><i class="bi bi-houses-fill me-2 text-primary"></i>Pilih Blok (Rumah)</h6>
+        
+        <?php 
+           // Define block ranges based on available data or A-T structure
+           // Assuming DB has Blocks A-T, and each block has rows 1-5 or similar.
+           $blocks = range('A', 'T');
+        ?>
+        
+        <div class="row g-3 justify-content-center">
+            <div class="col-12 mb-2">
+                 <a href="<?= base_url('warga') ?>" class="btn w-100 <?= empty($selected_blok) ? 'btn-success text-white' : 'btn-outline-secondary' ?> rounded-pill fw-bold">
+                    Tampilkan Semua Warga
+                </a>
             </div>
+
+            <?php foreach($blocks as $letter): ?>
+                <?php 
+                 // We will create 5 sub-blocks (Genteng/Rumah) for each Letter as per user request to mimic legacy
+                 // User said: "di database ada A1 sampe A5". So we generate A1..A5 buttons.
+                 for($i=1; $i<=5; $i++): 
+                    $blokCode = $letter . $i;
+                    $isActive = ($selected_blok == $blokCode);
+                ?>
+                <div class="col-4 col-sm-3 col-md-2 p-1">
+                    <a href="?blok=<?= $blokCode ?>" class="btn w-100 p-0 border-0 position-relative house-btn <?= $isActive ? 'active' : '' ?>">
+                         <!-- House Icon Shape -->
+                         <div class="house-icon shadow-sm">
+                             <div class="roof"></div>
+                             <div class="body d-flex flex-column align-items-center justify-content-center">
+                                 <span class="fw-bold fs-5 house-text"><?= $blokCode ?></span>
+                             </div>
+                         </div>
+                    </a>
+                </div>
+                <?php endfor; ?>
+            <?php endforeach; ?>
         </div>
     </div>
 
@@ -142,10 +120,40 @@
     </div>
 
     <style>
-        .accordion-button::after { display: none; }
         .hover-scale { transition: transform 0.2s; }
         .hover-scale:hover { transform: scale(1.02); }
-        .active-genteng { background: white; border: 1px solid #e2e8f0; color: #334155; }
-        .active-genteng:hover { background: #f1f5f9; }
+        
+        /* House Icon CSS */
+        .house-btn { text-decoration: none; }
+        .house-icon {
+            display: flex; flex-direction: column; align-items: center;
+            transition: transform 0.2s;
+        }
+        .house-btn:hover .house-icon { transform: translateY(-5px); }
+        
+        .roof {
+            width: 0; 
+            height: 0; 
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 20px solid #cbd5e1; /* Default roof color */
+            position: relative;
+            z-index: 1;
+        }
+        .body {
+            width: 40px;
+            height: 35px;
+            background-color: #f1f5f9; /* Default body color */
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+            color: #64748b;
+        }
+        
+        /* Active State */
+        .house-btn.active .roof { border-bottom-color: #15803d; /* Green roof */ }
+        .house-btn.active .body { background-color: #dcfce7; color: #15803d; font-weight: 800; }
+        
+        .house-text { font-size: 12px !important; letter-spacing: -0.5px; }
+
     </style>
 </div>

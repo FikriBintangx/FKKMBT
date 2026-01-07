@@ -127,44 +127,44 @@
             <div class="col-6 col-md-4" data-aos="fade-up">
                 <a href="<?= base_url('tentang') ?>" class="text-decoration-none">
                     <div class="stat-card">
-                        <div class="feature-icon-circle text-primary bg-primary-subtle">
+                        <div class="feature-icon-circle text-white bg-primary shadow-sm">
                             <i class="bi bi-info-circle-fill"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Tentang Kami</h6>
-                        <small class="text-muted" style="font-size: 11px;">Visi & Misi FKKMBT</small>
+                        <small class="text-secondary" style="font-size: 11px;">Visi & Misi FKKMBT</small>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
                 <a href="<?= base_url('kegiatan') ?>" class="text-decoration-none">
                     <div class="stat-card">
-                        <div class="feature-icon-circle text-danger bg-danger-subtle">
+                        <div class="feature-icon-circle text-white bg-danger shadow-sm">
                             <i class="bi bi-calendar-event-fill"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Kegiatan</h6>
-                        <small class="text-muted" style="font-size: 11px;">Agenda Warga</small>
+                        <small class="text-secondary" style="font-size: 11px;">Agenda Warga</small>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
                 <a href="<?= base_url('warga') ?>" class="text-decoration-none">
                     <div class="stat-card">
-                        <div class="feature-icon-circle text-success bg-success-subtle">
+                        <div class="feature-icon-circle text-white bg-success shadow-sm">
                             <i class="bi bi-people-fill"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Direktori</h6>
-                        <small class="text-muted" style="font-size: 11px;">Data Warga</small>
+                        <small class="text-secondary" style="font-size: 11px;">Data Warga</small>
                     </div>
                 </a>
             </div>
             <div class="col-6 col-md-4" data-aos="fade-up" data-aos-delay="300">
                 <a href="<?= base_url('iuran') ?>" class="text-decoration-none">
                     <div class="stat-card">
-                        <div class="feature-icon-circle text-warning bg-warning-subtle">
+                        <div class="feature-icon-circle text-white bg-warning shadow-sm">
                             <i class="bi bi-wallet-fill"></i>
                         </div>
                         <h6 class="fw-bold text-dark mb-1">Info Iuran</h6>
-                        <small class="text-muted" style="font-size: 11px;">Transparansi Dana</small>
+                        <small class="text-secondary" style="font-size: 11px;">Transparansi Dana</small>
                     </div>
                 </a>
             </div>
