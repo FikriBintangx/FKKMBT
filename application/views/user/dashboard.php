@@ -60,7 +60,7 @@
         $display_name = explode('@', $this->session->userdata('username'))[0];
         ?>
         <h3 class="fw-bold mb-1">Halo, <?= $sapaan ?> <?= ucwords($display_name) ?>!</h3>
-        <p class="small opacity-75 mb-0"><i class="bi bi-geo-alt-fill me-1"></i>Blok <?= $warga['id_blok'] ?> No. <?= $warga['no_rumah'] ?></p>
+        <p class="small opacity-75 mb-0"><i class="bi bi-geo-alt-fill me-1"></i>Blok <?= $warga['blok'] ?> No. <?= $warga['no_rumah'] ?></p>
     </div>
 
     <!-- Balance / Pocket Card -->

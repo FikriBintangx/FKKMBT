@@ -54,7 +54,7 @@
             <i class="bi bi-person-fill"></i>
         </div>
         <h4 class="fw-bold mb-1"><?= $warga['nama_lengkap'] ?></h4>
-        <p class="small opacity-75 mb-0">Blok <?= $warga['id_blok'] ?> No. <?= $warga['no_rumah'] ?></p>
+        <p class="small opacity-75 mb-0">Blok <?= $warga['blok'] ?> No. <?= $warga['no_rumah'] ?></p>
     </div>
 
     <main class="py-5 mt-4">
