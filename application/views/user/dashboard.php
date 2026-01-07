@@ -95,43 +95,43 @@
             <h6 class="section-title">Layanan Warga</h6>
             <div class="quick-grid">
                 <a href="<?= base_url('user/lapor') ?>" class="quick-item">
-                    <div class="quick-icon bg-gradient-danger">
+                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #dc2626; border: 1px solid #fee2e2;">
                         <i class="bi bi-megaphone"></i>
                     </div>
                     <span class="quick-label">Lapor<br>Warga</span>
                 </a>
                 <a href="<?= base_url('user/surat') ?>" class="quick-item">
-                    <div class="quick-icon bg-gradient-primary">
+                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #0284c7; border: 1px solid #e0f2fe;">
                         <i class="bi bi-file-earmark-text"></i>
                     </div>
                     <span class="quick-label">E-Surat<br>Digital</span>
                 </a>
                 <a href="<?= base_url('user/lapak') ?>" class="quick-item">
-                    <div class="quick-icon bg-gradient-warning">
+                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #d97706; border: 1px solid #fef3c7;">
                         <i class="bi bi-shop"></i>
                     </div>
                     <span class="quick-label">Lapak<br>Warga</span>
                 </a>
                 <a href="<?= base_url('user/panic') ?>" class="quick-item">
-                    <div class="quick-icon pulse" style="background: #ef4444;">
+                    <div class="quick-icon pulse shadow-sm" style="background: #fef2f2; color: #ef4444; border: 1px solid #fee2e2;">
                         <i class="bi bi-broadcast"></i>
                     </div>
                     <span class="quick-label text-danger">Tombol<br>SOS</span>
                 </a>
                 <a href="<?= base_url('user/voting') ?>" class="quick-item">
-                    <div class="quick-icon" style="background: #8b5cf6;">
+                    <div class="quick-icon shadow-sm" style="background: #f5f3ff; color: #8b5cf6; border: 1px solid #ede9fe;">
                         <i class="bi bi-box-seam"></i>
                     </div>
                     <span class="quick-label">E-Voting</span>
                 </a>
                 <a href="<?= base_url('user/forum') ?>" class="quick-item">
-                    <div class="quick-icon" style="background: #10b981;">
+                    <div class="quick-icon shadow-sm" style="background: #ecfdf5; color: #10b981; border: 1px solid #d1fae5;">
                         <i class="bi bi-chat-left-dots"></i>
                     </div>
                     <span class="quick-label">Forum</span>
                 </a>
                 <a href="<?= base_url('user/chatbot') ?>" class="quick-item">
-                    <div class="quick-icon" style="background: #6366f1;">
+                    <div class="quick-icon shadow-sm" style="background: #eef2ff; color: #6366f1; border: 1px solid #e0e7ff;">
                         <i class="bi bi-robot"></i>
                     </div>
                     <span class="quick-label">Tanya AI</span>
