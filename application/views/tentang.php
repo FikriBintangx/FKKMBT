@@ -1,9 +1,13 @@
 <div class="container py-4">
-    <div class="text-center mb-5 mt-3">
-        <span class="badge bg-primary-subtle text-primary rounded-pill mb-2 px-3 fw-bold">PROFIL KOMUNITAS</span>
-        <h2 class="fw-bold display-6">Membangun Harmoni<br>di Bukit Tiara</h2>
-        <p class="text-muted mx-auto" style="max-width: 600px;">
-            FKKMBT adalah wadah pemersatu warga untuk menciptakan lingkungan yang aman, nyaman, dan guyub.
+    <!-- Green Header Section -->
+    <div class="text-center mb-5 mt-3 rounded-4 p-4 text-white shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%);">
+        <div class="position-absolute top-0 end-0 p-3 opacity-10">
+            <i class="bi bi-info-circle-fill display-1"></i>
+        </div>
+        <span class="badge bg-white text-success rounded-pill mb-2 px-3 fw-bold">PROFIL KOMUNITAS</span>
+        <h2 class="fw-bold display-6 mb-2">Tentang Kami</h2>
+        <p class="mb-0 opacity-75" style="max-width: 600px; margin: 0 auto;">
+            Mengenal lebih dekat visi, misi, dan sejarah FKKMBT.
         </p>
     </div>
 
