@@ -70,7 +70,7 @@
         }
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
