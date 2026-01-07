@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Dashboard Warga - FKKMBT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -11,155 +11,144 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
+    <style>
+        .hero-section {
+            background: var(--primary-gradient);
+            padding: 40px 20px 80px;
+            border-radius: 0 0 40px 40px;
+            color: white;
+            margin-bottom: -60px;
+        }
+        .balance-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            margin: 0 10px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+        .section-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 1.25rem; color: #1e293b; }
+        .text-truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
 </head>
 <body class="bg-light">
 
     <!-- Mobile App Bar -->
-    <div class="app-bar d-lg-none">
+    <div class="app-bar d-lg-none" style="background: transparent; box-shadow: none;">
         <div class="d-flex align-items-center gap-2">
-            <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" alt="Logo" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
-            <span class="fw-bold">FKKMBT</span>
+            <div class="rounded-circle overflow-hidden border border-white border-2" style="width: 36px; height: 36px;">
+                <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <span class="fw-bold" style="letter-spacing: 0.5px;">BUKIT TIARA</span>
         </div>
-        <div class="d-flex gap-2">
-            <a href="<?= base_url('user/notifikasi') ?>" class="text-white position-relative">
+        <div class="d-flex gap-3">
+            <a href="<?= base_url('user/dashboard/notifikasi') ?>" class="text-white position-relative">
                 <i class="bi bi-bell-fill fs-5"></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light" style="font-size: 0.5rem; padding: 0.2rem 0.35rem;">3</span>
+                <span class="notif-badge">3</span>
+            </a>
+            <a href="<?= base_url('user/profil') ?>" class="text-white">
+                <i class="bi bi-person-circle fs-5"></i>
             </a>
         </div>
     </div>
 
-    <!-- Desktop Navbar (Hidden on Mobile) -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top d-none d-lg-block" style="background: linear-gradient(135deg, #2d6a5f 0%, #1f5449 100%);">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-3" href="<?= base_url('user/dashboard') ?>">
-                <span class="fw-bold fs-4">FKKMBT Warga</span>
-            </a>
-            <div class="collapse navbar-collapse" id="navUser">
-                <ul class="navbar-nav ms-auto align-items-center gap-2">
-                    <li class="nav-item"><a class="nav-link active" href="<?= base_url('user/dashboard') ?>">Dashboard</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/iuran') ?>">Iuran Saya</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/lapor') ?>">Laporan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?= base_url('user/surat') ?>">E-Surat</a></li>
-                    <li class="nav-item"><a class="nav-link text-warning fw-bold" href="<?= base_url('user/lapak') ?>"><i class="bi bi-shop me-1"></i>Lapak</a></li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm" href="<?= base_url('auth/logout') ?>">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Hero Greeting -->
+    <div class="hero-section">
+        <?php 
+        $sapaan = (isset($warga['jenis_kelamin']) && $warga['jenis_kelamin'] == 'P') ? 'Ibu' : 'Bapak';
+        $display_name = explode('@', $this->session->userdata('username'))[0];
+        ?>
+        <h3 class="fw-bold mb-1">Halo, <?= $sapaan ?> <?= ucwords($display_name) ?>!</h3>
+        <p class="small opacity-75 mb-0"><i class="bi bi-geo-alt-fill me-1"></i>Blok <?= $warga['id_blok'] ?> No. <?= $warga['no_rumah'] ?></p>
+    </div>
 
-    <!-- Main Content -->
+    <!-- Balance / Pocket Card -->
+    <div class="balance-card mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <small class="text-muted fw-bold d-block mb-1 text-uppercase" style="font-size: 10px; letter-spacing: 1px;">Saldo Kas Warga</small>
+                <h3 class="fw-bold text-dark mb-0">Rp <?= number_format($total_kas, 0, ',', '.') ?></h3>
+            </div>
+            <a href="<?= base_url('user/iuran') ?>" class="btn btn-primary btn-sm rounded-pill px-3 py-2 fw-bold" style="font-size: 12px;">
+                <i class="bi bi-plus-circle me-1"></i> Bayar Iuran
+            </a>
+        </div>
+        <hr class="opacity-5 my-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle <?= ($unpaid > 0) ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' ?> d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                    <i class="bi <?= ($unpaid > 0) ? 'bi-exclamation-triangle-fill' : 'bi-shield-check' ?>" style="font-size: 14px;"></i>
+                </div>
+                <div>
+                    <div class="fw-bold" style="font-size: 11px;"><?= ($unpaid > 0) ? 'Ada Tagihan' : 'Status Iuran Aman' ?></div>
+                    <div class="text-muted" style="font-size: 10px;"><?= ($unpaid > 0) ? $unpaid.' Tagihan tertunda' : 'Sudah lunas bulan ini' ?></div>
+                </div>
+            </div>
+            <i class="bi bi-chevron-right text-muted small"></i>
+        </div>
+    </div>
+
     <main class="container py-3">
-
-        <!-- Welcome Section -->
-        <section class="mb-4">
-            <?php 
-            $sapaan = (isset($warga['jenis_kelamin']) && $warga['jenis_kelamin'] == 'P') ? 'Kak' : 'Mas';
-            $display_name = explode('@', $this->session->userdata('username'))[0];
-            ?>
-            <h2 class="mb-1">Halo, <?= $sapaan ?> <?= $display_name ?>! 👋</h2>
-            <p class="text-muted small mb-0">Semoga harimu menyenangkan di Bukit Tiara.</p>
+        <!-- Quick Services -->
+        <section class="mb-4 mt-2">
+            <h6 class="section-title">Layanan Warga</h6>
+            <div class="quick-grid">
+                <a href="<?= base_url('user/lapor') ?>" class="quick-item">
+                    <div class="quick-icon bg-gradient-danger">
+                        <i class="bi bi-megaphone"></i>
+                    </div>
+                    <span class="quick-label">Lapor<br>Warga</span>
+                </a>
+                <a href="<?= base_url('user/surat') ?>" class="quick-item">
+                    <div class="quick-icon bg-gradient-primary">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                    <span class="quick-label">E-Surat<br>Digital</span>
+                </a>
+                <a href="<?= base_url('user/lapak') ?>" class="quick-item">
+                    <div class="quick-icon bg-gradient-warning">
+                        <i class="bi bi-shop"></i>
+                    </div>
+                    <span class="quick-label">Lapak<br>Warga</span>
+                </a>
+                <a href="<?= base_url('user/panic') ?>" class="quick-item">
+                    <div class="quick-icon pulse" style="background: #ef4444;">
+                        <i class="bi bi-broadcast"></i>
+                    </div>
+                    <span class="quick-label text-danger">Tombol<br>SOS</span>
+                </a>
+                <a href="<?= base_url('user/voting') ?>" class="quick-item">
+                    <div class="quick-icon" style="background: #8b5cf6;">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <span class="quick-label">E-Voting</span>
+                </a>
+                <a href="<?= base_url('user/forum') ?>" class="quick-item">
+                    <div class="quick-icon" style="background: #10b981;">
+                        <i class="bi bi-chat-left-dots"></i>
+                    </div>
+                    <span class="quick-label">Forum</span>
+                </a>
+                <a href="<?= base_url('user/chatbot') ?>" class="quick-item">
+                    <div class="quick-icon" style="background: #6366f1;">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <span class="quick-label">Tanya AI</span>
+                </a>
+                <a href="<?= base_url('user/profil') ?>" class="quick-item">
+                    <div class="quick-icon bg-light text-dark shadow-none border">
+                        <i class="bi bi-gear-fill text-secondary"></i>
+                    </div>
+                    <span class="quick-label">Profil</span>
+                </a>
+            </div>
         </section>
 
-        <!-- Quick Access Grid -->
-        <section class="quick-grid">
-            <a href="<?= base_url('user/iuran') ?>" class="quick-item">
-                <div class="quick-icon" style="background: var(--secondary-gradient);">
-                    <i class="bi bi-wallet2"></i>
-                </div>
-                <span class="quick-label">Bayar<br>Iuran</span>
-            </a>
-            <a href="<?= base_url('user/lapor') ?>" class="quick-item">
-                <div class="quick-icon" style="background: var(--danger-gradient);">
-                    <i class="bi bi-megaphone"></i>
-                </div>
-                <span class="quick-label">Lapor<br>Warga</span>
-            </a>
-            <a href="<?= base_url('user/surat') ?>" class="quick-item">
-                <div class="quick-icon" style="background: var(--primary-gradient);">
-                    <i class="bi bi-file-earmark-text"></i>
-                </div>
-                <span class="quick-label">Surat<br>Digital</span>
-            </a>
-            <a href="<?= base_url('user/lapak') ?>" class="quick-item">
-                <div class="quick-icon" style="background: var(--warning-gradient);">
-                    <i class="bi bi-shop"></i>
-                </div>
-                <span class="quick-label">Lapak<br>Warga</span>
-            </a>
-            <a href="<?= base_url('user/voting') ?>" class="quick-item">
-                <div class="quick-icon" style="background: #8b5cf6;">
-                    <i class="bi bi-box-seam"></i>
-                </div>
-                <span class="quick-label">E-Voting<br>Warga</span>
-            </a>
-            <a href="<?= base_url('user/forum') ?>" class="quick-item">
-                <div class="quick-icon" style="background: #10b981;">
-                    <i class="bi bi-chat-dots"></i>
-                </div>
-                <span class="quick-label">Forum<br>Warga</span>
-            </a>
-            <a href="<?= base_url('user/panic') ?>" class="quick-item">
-                <div class="quick-icon" style="background: #ef4444;">
-                    <i class="bi bi-broadcast"></i>
-                </div>
-                <span class="quick-label">Tombol<br>SOS</span>
-            </a>
-            <a href="<?= base_url('user/chatbot') ?>" class="quick-item">
-                <div class="quick-icon" style="background: #6366f1;">
-                    <i class="bi bi-robot"></i>
-                </div>
-                <span class="quick-label">Tanya<br>AI</span>
-            </a>
-        </section>
-
-        <!-- Dynamic Info Cards -->
-        <div class="row g-3 mb-4">
-            <div class="col-12">
-                <div class="card bg-white">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h5 class="mb-0">Status Iuran</h5>
-                            <span class="badge bg-<?= ($unpaid > 0) ? 'danger' : 'success' ?>-subtle text-<?= ($unpaid > 0) ? 'danger' : 'success' ?>">
-                                <?= ($unpaid > 0) ? 'Ada Tagihan' : 'Lunas' ?>
-                            </span>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="rounded-circle bg-light d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
-                                <i class="bi <?= $icon_class ?> fs-4 <?= $status_class ?>"></i>
-                            </div>
-                            <div>
-                                <h4 class="mb-0"><?= $status_iuran ?></h4>
-                                <small class="text-muted"><?= $status_desc ?></small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-6">
-                <div class="card h-100">
-                    <div class="card-body text-center py-3">
-                        <div class="text-muted small mb-1">Kas Warga</div>
-                        <div class="fw-bold text-dark">Rp <?= number_format($total_kas, 0, ',', '.') ?></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card h-100">
-                    <div class="card-body text-center py-3">
-                        <div class="text-muted small mb-1">Agenda</div>
-                        <div class="fw-bold text-dark"><?= $kegiatan_count ?> Kegiatan</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Announcements / News Section -->
+        <!-- News Flash Slider -->
         <section class="mb-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <h4 class="mb-0">Berita & Kegiatan</h4>
+                <h6 class="section-title mb-0">Warta Bukit Tiara</h6>
                 <a href="<?= base_url('kegiatan') ?>" class="text-primary text-decoration-none small fw-bold">Lihat Semua</a>
             </div>
             
@@ -168,11 +157,18 @@
                     <?php foreach($news as $row): ?>
                     <div class="snap-item">
                         <div class="card h-100 shadow-sm border-0 overflow-hidden">
-                            <img src="<?= (!empty($row['foto'])) ? base_url('assets/images/kegiatan/' . $row['foto']) : 'https://via.placeholder.com/400x200' ?>" class="card-img-top" alt="..." style="height: 120px; object-fit: cover;">
+                            <div class="position-relative">
+                                <img src="<?= (!empty($row['foto'])) ? base_url('assets/images/kegiatan/' . $row['foto']) : 'https://via.placeholder.com/400x200' ?>" class="card-img-top" style="height: 140px; object-fit: cover;">
+                                <div class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-white text-dark glass py-1 px-2" style="font-size: 9px;"><?= date('d M', strtotime($row['created_at'])) ?></span>
+                                </div>
+                            </div>
                             <div class="card-body p-3">
-                                <small class="text-primary fw-bold"><?= date('d M Y', strtotime($row['created_at'])) ?></small>
-                                <h6 class="card-title fw-bold mt-1 mb-2 text-truncate-2"><?= $row['judul'] ?></h6>
-                                <a href="<?= base_url('kegiatan/detail/'.$row['id']) ?>" class="btn btn-light btn-sm w-100">Baca</a>
+                                <h6 class="card-title fw-bold mb-2 text-truncate-2" style="font-size: 13px; line-height: 1.4;"><?= $row['judul'] ?></h6>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted" style="font-size: 11px;"><?= $row['nama_organisasi'] ?></small>
+                                    <a href="<?= base_url('kegiatan/detail/'.$row['id']) ?>" class="text-primary fw-bold text-decoration-none" style="font-size: 11px;">Baca <i class="bi bi-chevron-right ms-1"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -181,7 +177,7 @@
                     <div class="snap-item w-100">
                         <div class="card bg-light border-0">
                             <div class="card-body text-center py-4">
-                                <p class="text-muted mb-0">Belum ada berita terbaru.</p>
+                                <p class="text-muted small mb-0">Belum ada berita terbaru.</p>
                             </div>
                         </div>
                     </div>
@@ -189,29 +185,32 @@
             </div>
         </section>
 
-        <!-- Agenda Section -->
-        <section class="mb-5">
-            <h4 class="mb-3">Agenda Terdekat</h4>
+        <!-- Upcoming Events List -->
+        <section class="mb-5 pb-5">
+            <h6 class="section-title">Agenda Terdekat</h6>
             <?php if(!empty($agenda)): ?>
                 <?php foreach($agenda as $ag): ?>
-                <div class="card mb-2">
-                    <div class="card-body d-flex align-items-center gap-3">
-                        <div class="text-center p-2 rounded bg-primary-subtle text-primary" style="min-width: 50px;">
-                            <div class="small fw-bold lh-1"><?= strtoupper(date('M', strtotime($ag['tanggal']))) ?></div>
-                            <div class="fs-4 fw-bold"><?= date('d', strtotime($ag['tanggal'])) ?></div>
+                <div class="card mb-3 shadow-none border bg-white">
+                    <div class="card-body d-flex align-items-center gap-3 p-3">
+                        <div class="text-center p-2 rounded-4 bg-primary text-white" style="min-width: 55px; box-shadow: 0 8px 15px rgba(45, 106, 95, 0.2);">
+                            <div class="small fw-bold opacity-75" style="font-size: 9px;"><?= strtoupper(date('M', strtotime($ag['tanggal']))) ?></div>
+                            <div class="fs-4 fw-bold lh-1"><?= date('d', strtotime($ag['tanggal'])) ?></div>
                         </div>
-                        <div>
-                            <h6 class="mb-1 text-dark fw-bold"><?= $ag['judul'] ?></h6>
-                            <div class="small text-muted">
-                                <i class="bi bi-geo-alt me-1"></i>Halaman Warga
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 text-dark fw-bold" style="font-size: 14px;"><?= $ag['judul'] ?></h6>
+                            <div class="d-flex align-items-center gap-2 text-muted" style="font-size: 11px;">
+                                <span><i class="bi bi-clock me-1"></i>08:00 WIB</span>
+                                <span>•</span>
+                                <span><i class="bi bi-geo-alt me-1"></i>Balai Warga</span>
                             </div>
                         </div>
+                        <i class="bi bi-chevron-right text-muted small ms-2"></i>
                     </div>
                 </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <div class="text-center py-3">
-                    <p class="text-muted">Tidak ada agenda mendatang.</p>
+                <div class="text-center py-4 bg-white rounded-4 border border-dashed">
+                    <p class="text-muted small mb-0">Tidak ada agenda mendatang.</p>
                 </div>
             <?php endif; ?>
         </section>
@@ -222,13 +221,5 @@
     <?php $this->load->view('templates/mobile_nav'); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        .text-truncate-2 {
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-    </style>
 </body>
 </html>

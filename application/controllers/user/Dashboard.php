@@ -19,8 +19,6 @@ class Dashboard extends CI_Controller {
         // 1. Warga Data
         $warga = $this->Dashboard_model->get_warga_by_user_id($user_id);
         if (!$warga) {
-            // Handle edge case: User login but no Warga data linked
-            // For now, just pass empty or redirect to profile fill
             $data['warga'] = []; 
             $data['unpaid'] = 0;
         } else {
@@ -43,4 +41,18 @@ class Dashboard extends CI_Controller {
 
 		$this->load->view('user/dashboard', $data);
 	}
+
+    public function notifikasi() {
+        $user_id = $this->session->userdata('user_id');
+        $data['warga'] = $this->Dashboard_model->get_warga_by_user_id($user_id);
+        $data['page_title'] = 'Notifikasi';
+        
+        $data['notifications'] = [
+            ['title' => 'Tagihan Baru', 'desc' => 'Iuran Keamanan bulan Januari telah terbit.', 'time' => '1 jam yang lalu', 'icon' => 'bi-wallet2', 'bg' => 'bg-primary'],
+            ['title' => 'Kegiatan Warga', 'desc' => 'Kerja bakti akan dilaksanakan hari Minggu besok.', 'time' => '3 jam yang lalu', 'icon' => 'bi-people', 'bg' => 'bg-success'],
+            ['title' => 'Surat Selesai', 'desc' => 'Permohonan surat pengantar domisili Anda telah disetujui.', 'time' => '1 hari yang lalu', 'icon' => 'bi-file-earmark-check', 'bg' => 'bg-info']
+        ];
+
+        $this->load->view('user/notifikasi', $data);
+    }
 }
