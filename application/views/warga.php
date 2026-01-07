@@ -3,7 +3,7 @@
         <span class="badge bg-success-subtle text-success rounded-pill mb-2 px-3 fw-bold">DATABASE</span>
         <h2 class="fw-bold display-6">Direktori Warga<br>Bukit Tiara</h2>
         <p class="text-muted mx-auto" style="max-width: 600px;">
-            Cari lokasi blok dan informasi warga untuk keperluan silaturahmi atau pengiriman.
+            Cari lokasi blok dan informasi warga untuk keperluan silaturahmi.
         </p>
     </div>
 
@@ -29,141 +29,123 @@
         </div>
     </div>
 
-    <!-- Search & Filter Card -->
-    <div class="card border-0 shadow-lg rounded-4 overflow-hidden mb-4">
-        <div class="card-body p-4">
-            <h6 class="fw-bold mb-3"><i class="bi bi-search me-2 text-primary"></i>Pencarian Cepat</h6>
-            
-            <div class="row g-3">
-                <div class="col-12">
-                     <select class="form-select form-select-lg bg-light border-0 rounded-4 fs-6" id="filterBlok">
-                        <option value="all" selected>🏠 Tampilkan Semua Blok</option>
-                        <option value="A">Blok A</option>
-                        <option value="B">Blok B</option>
-                        <option value="C">Blok C</option>
-                        <option value="D">Blok D</option>
-                        <option value="E">Blok E</option>
-                    </select>
+    <!-- Search & Filter Area -->
+    <div class="row g-4 mb-4">
+        <!-- Search Bar -->
+        <div class="col-12">
+            <form action="" method="GET" class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-body p-2 d-flex align-items-center">
+                    <input type="hidden" name="blok" value="<?= $this->input->get('blok') ?>">
+                    <input type="text" name="search" class="form-control border-0 shadow-none ps-3" placeholder="Ketik nama warga atau nomor rumah..." value="<?= $this->input->get('search') ?>">
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">Cari</button>
                 </div>
-                <div class="col-12">
-                    <div class="position-relative">
-                        <input type="text" class="form-control form-control-lg bg-light border-0 rounded-4 fs-6 ps-5" id="searchWarga" placeholder="Ketik nama atau nomor rumah...">
-                        <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+            </form>
+        </div>
+
+        <!-- Genteng Grid (Filter Blok) -->
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+                <h6 class="fw-bold mb-3"><i class="bi bi-grid-3x3-gap-fill me-2 text-primary"></i>Pilih Blok (Genteng)</h6>
+                
+                <div class="accordion" id="blokAccordion">
+                    <div class="d-grid gap-2">
+                        <a href="<?= base_url('warga') ?>" class="btn <?= empty($selected_blok) ? 'btn-success text-white' : 'btn-outline-success' ?> rounded-3 py-2 fw-bold">
+                            Tampilkan Semua Blok
+                        </a>
                     </div>
+                    
+                    <div class="row g-2 mt-3">
+                        <?php foreach(range('A','T') as $letter): 
+                            $isActiveGroup = (substr($selected_blok ?? '', 0, 1) == $letter);
+                        ?>
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="accordion-item border-0">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed p-2 rounded-3 shadow-sm d-block text-center <?= $isActiveGroup ? 'bg-primary text-white' : 'bg-light text-dark' ?>" 
+                                            type="button" 
+                                            data-bs-toggle="collapse" 
+                                            data-bs-target="#collapse<?= $letter ?>">
+                                        <span class="d-block fw-bold fs-5">Blok <?= $letter ?></span>
+                                        <small style="font-size: 10px;" class="opacity-75">Lihat Unit</small>
+                                    </button>
+                                </h2>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                    <!-- Accordion Bodies (placed outside grid to expand full width) -->
+                    <?php foreach(range('A','T') as $letter): 
+                         $isActiveGroup = (substr($selected_blok ?? '', 0, 1) == $letter);
+                    ?>
+                    <div id="collapse<?= $letter ?>" class="accordion-collapse collapse <?= $isActiveGroup ? 'show' : '' ?>" data-bs-parent="#blokAccordion">
+                        <div class="card card-body bg-light border-0 mt-2 rounded-4">
+                            <h6 class="small fw-bold text-muted mb-2">Pilih Unit Blok <?= $letter ?>:</h6>
+                            <div class="row g-2">
+                                <?php for($i=1; $i<=10; $i++): $val = $letter . $i; // Generate logic for sub-blocks ?> 
+                                <div class="col-3 col-md-2">
+                                    <a href="?blok=<?= $letter ?>" class="btn w-100 active-genteng shadow-sm rounded-3 p-1 d-flex flex-column align-items-center justify-content-center" style="height: 60px;">
+                                        <!-- Note: Using Letter filter generally as database specific row logic is unknown. 
+                                             If user wants strict sub-block, we'd need ?blok=A1 etc. and strict DB matching.
+                                             For now, defaulting to filtering by Letter when clicked. -->
+                                        <i class="bi bi-house-door-fill fs-5 mb-1 text-secondary"></i>
+                                        <span class="lh-1 fw-bold small"><?= $letter ?><?= $i ?></span>
+                                    </a>
+                                </div>
+                                <?php endfor; ?>
+                            </div>
+                            <div class="mt-2 text-center">
+                                <a href="?blok=<?= $letter ?>" class="btn btn-sm btn-primary rounded-pill px-4">Lihat Semua Blok <?= $letter ?></a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Privacy Notice -->
-    <div class="alert alert-light border shadow-sm rounded-4 d-flex align-items-center gap-3 p-3 mb-4" role="alert">
-        <div class="bg-primary text-white rounded-circle p-2 flex-shrink-0 d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
-             <i class="bi bi-shield-lock-fill small"></i>
-        </div>
-        <div>
-             <small class="text-muted d-block" style="line-height: 1.3;">
-                <strong>Info Privasi:</strong> Detail kontak lengkap hanya dapat diakses oleh sesama warga yang sudah <a href="<?= base_url('auth/login') ?>" class="fw-bold text-decoration-none">login</a>.
-             </small>
-        </div>
+    <!-- Results List -->
+    <div class="d-flex flex-column gap-3">
+        <?php if(!empty($warga_list)): ?>
+            <?php foreach($warga_list as $row): ?>
+            <div class="card border-0 shadow-sm rounded-4 w-100 hover-scale cursor-pointer">
+                <div class="card-body p-3 d-flex align-items-center gap-3">
+                    <div class="bg-primary text-white rounded-3 d-flex flex-column align-items-center justify-content-center p-2 shadow-sm" style="width: 50px; height: 50px;">
+                        <small style="font-size: 8px; font-weight: 700;">BLOK</small>
+                        <span class="fs-4 fw-bold lh-1"><?= $row['blok'] ?></span>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h6 class="fw-bold text-dark mb-1"><?= $row['nama_lengkap'] ?></h6>
+                        <div class="d-flex align-items-center gap-2">
+                            <span class="badge bg-light text-dark border rounded-pill" style="font-size: 10px;">No. <?= $row['no_rumah'] ?></span>
+                            <?php if(!empty($row['status_huni'])): ?>
+                                <span class="badge bg-success-subtle text-success rounded-pill" style="font-size: 10px;"><?= $row['status_huni'] ?></span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/<?= $row['no_hp'] ?>" class="btn btn-success rounded-circle shadow-sm" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <div class="text-center py-5">
+                <div class="bg-light rounded-circle d-inline-flex p-4 mb-3 text-muted">
+                    <i class="bi bi-search fs-1 opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-dark">Warga Tidak Ditemukan</h6>
+                <p class="text-muted small">Coba kata kunci atau blok lain.</p>
+            </div>
+        <?php endif; ?>
     </div>
 
-    <!-- List Warga (Card Style) -->
-    <div id="wargaList" class="d-flex flex-column gap-3">
-        <!-- Item 1 -->
-        <div class="card border-0 shadow-sm rounded-4 w-100 warga-item" data-blok="A" data-info="a 01 ahmad fauzi">
-            <div class="card-body p-3 d-flex align-items-center gap-3">
-                <div class="bg-primary text-white rounded-3 d-flex flex-column align-items-center justify-content-center p-2" style="width: 50px; height: 50px;">
-                    <small style="font-size: 8px; font-weight: 700;">BLOK</small>
-                    <span class="fs-4 fw-bold lh-1">A</span>
-                    <small style="font-size: 8px; font-weight: 700;">NO. 01</small>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold text-dark mb-1">Bpk. Ahmad Fauzi</h6>
-                    <span class="badge bg-success-subtle text-success rounded-pill" style="font-size: 10px;">Warga Tetap</span>
-                </div>
-                <button class="btn btn-light rounded-circle text-muted"><i class="bi bi-chevron-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Item 2 -->
-        <div class="card border-0 shadow-sm rounded-4 w-100 warga-item" data-blok="B" data-info="b 12 dewi sartika">
-            <div class="card-body p-3 d-flex align-items-center gap-3">
-                <div class="bg-warning text-dark rounded-3 d-flex flex-column align-items-center justify-content-center p-2" style="width: 50px; height: 50px;">
-                    <small style="font-size: 8px; font-weight: 700;">BLOK</small>
-                    <span class="fs-4 fw-bold lh-1">B</span>
-                    <small style="font-size: 8px; font-weight: 700;">NO. 12</small>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold text-dark mb-1">Ibu Dewi Sartika</h6>
-                    <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill" style="font-size: 10px;">Kontrak</span>
-                </div>
-                <button class="btn btn-light rounded-circle text-muted"><i class="bi bi-chevron-right"></i></button>
-            </div>
-        </div>
-
-        <!-- Item 3 -->
-        <div class="card border-0 shadow-sm rounded-4 w-100 warga-item" data-blok="C" data-info="c 05 joko widodo">
-            <div class="card-body p-3 d-flex align-items-center gap-3">
-                <div class="bg-info text-white rounded-3 d-flex flex-column align-items-center justify-content-center p-2" style="width: 50px; height: 50px;">
-                    <small style="font-size: 8px; font-weight: 700;">BLOK</small>
-                    <span class="fs-4 fw-bold lh-1">C</span>
-                    <small style="font-size: 8px; font-weight: 700;">NO. 05</small>
-                </div>
-                <div class="flex-grow-1">
-                    <h6 class="fw-bold text-dark mb-1">Bpk. Joko Widodo</h6>
-                    <span class="badge bg-success-subtle text-success rounded-pill" style="font-size: 10px;">Warga Tetap</span>
-                </div>
-                <button class="btn btn-light rounded-circle text-muted"><i class="bi bi-chevron-right"></i></button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- No Results -->
-    <div id="noResults" class="text-center py-5 d-none">
-        <div class="bg-light rounded-circle d-inline-flex p-4 mb-3 text-muted">
-            <i class="bi bi-search fs-1 opacity-50"></i>
-        </div>
-        <h6 class="fw-bold text-dark">Warga Tidak Ditemukan</h6>
-        <p class="text-muted small">Coba kata kunci atau blok lain.</p>
-    </div>
-
+    <style>
+        .accordion-button::after { display: none; }
+        .hover-scale { transition: transform 0.2s; }
+        .hover-scale:hover { transform: scale(1.02); }
+        .active-genteng { background: white; border: 1px solid #e2e8f0; color: #334155; }
+        .active-genteng:hover { background: #f1f5f9; }
+    </style>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const filterBlok = document.getElementById('filterBlok');
-    const searchWarga = document.getElementById('searchWarga');
-    const listItems = document.querySelectorAll('.warga-item');
-    const noResults = document.getElementById('noResults');
-
-    function filterList() {
-        const blokValue = filterBlok.value;
-        const searchValue = searchWarga.value.toLowerCase();
-        let visibleCount = 0;
-
-        listItems.forEach(item => {
-            const itemBlok = item.getAttribute('data-blok');
-            const itemInfo = item.getAttribute('data-info'); 
-
-            const matchBlok = (blokValue === 'all' || itemBlok === blokValue);
-            const matchSearch = itemInfo.includes(searchValue);
-
-            if (matchBlok && matchSearch) {
-                item.classList.remove('d-none');
-                visibleCount++;
-            } else {
-                item.classList.add('d-none');
-            }
-        });
-
-        if (visibleCount === 0) {
-            noResults.classList.remove('d-none');
-        } else {
-            noResults.classList.add('d-none');
-        }
-    }
-
-    filterBlok.addEventListener('change', filterList);
-    searchWarga.addEventListener('keyup', filterList);
-});
-</script>

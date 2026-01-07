@@ -104,53 +104,52 @@
             <h6 class="section-title">Layanan Warga</h6>
             <div class="quick-grid">
                 <a href="<?= base_url('user/lapor') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #dc2626; border: 1px solid #fee2e2;">
-                        <i class="bi bi-megaphone"></i>
+                    <div class="quick-icon shadow-sm bg-danger text-white border-0">
+                        <i class="bi bi-megaphone-fill"></i>
                     </div>
                     <span class="quick-label">Lapor<br>Warga</span>
                 </a>
                 <a href="<?= base_url('user/surat') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #0284c7; border: 1px solid #e0f2fe;">
-                        <i class="bi bi-file-earmark-text"></i>
+                    <div class="quick-icon shadow-sm bg-primary text-white border-0">
+                        <i class="bi bi-file-earmark-text-fill"></i>
                     </div>
                     <span class="quick-label">E-Surat<br>Digital</span>
                 </a>
                 <a href="<?= base_url('user/lapak') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #f8fafc; color: #d97706; border: 1px solid #fef3c7;">
+                    <div class="quick-icon shadow-sm bg-warning text-dark border-0">
                         <i class="bi bi-shop"></i>
                     </div>
                     <span class="quick-label">Lapak<br>Warga</span>
                 </a>
                 <a href="<?= base_url('user/panic') ?>" class="quick-item">
-                    <div class="quick-icon pulse shadow-sm" style="background: #fef2f2; color: #ef4444; border: 1px solid #fee2e2;">
+                    <div class="quick-icon pulse shadow-sm bg-danger text-white border-0">
                         <i class="bi bi-broadcast"></i>
                     </div>
-                    <span class="quick-label text-danger">Tombol<br>SOS</span>
+                    <span class="quick-label text-danger fw-bold">Tombol<br>SOS</span>
                 </a>
                 <a href="<?= base_url('user/voting') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #f5f3ff; color: #8b5cf6; border: 1px solid #ede9fe;">
-                        <i class="bi bi-box-seam"></i>
+                    <div class="quick-icon shadow-sm text-white border-0" style="background-color: #8b5cf6;">
+                        <i class="bi bi-box-seam-fill"></i>
                     </div>
                     <span class="quick-label">E-Voting</span>
                 </a>
                 <a href="<?= base_url('user/forum') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #ecfdf5; color: #10b981; border: 1px solid #d1fae5;">
-                        <i class="bi bi-chat-left-dots"></i>
+                    <div class="quick-icon shadow-sm bg-success text-white border-0">
+                        <i class="bi bi-chat-left-dots-fill"></i>
                     </div>
                     <span class="quick-label">Forum</span>
                 </a>
                 <a href="<?= base_url('user/chatbot') ?>" class="quick-item">
-                    <div class="quick-icon shadow-sm" style="background: #eef2ff; color: #6366f1; border: 1px solid #e0e7ff;">
+                    <div class="quick-icon shadow-sm text-white border-0" style="background-color: #6366f1;">
                         <i class="bi bi-robot"></i>
                     </div>
                     <span class="quick-label">Tanya AI</span>
                 </a>
-                <!-- New CCTV Menu (Coming Soon) -->
-                 <a href="#" class="quick-item feature-coming-soon" onclick="return false;">
-                    <div class="quick-icon shadow-sm" style="background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0;">
-                         <i class="bi bi-camera-video"></i>
+                <a href="#" class="quick-item feature-coming-soon" onclick="return false;">
+                    <div class="quick-icon shadow-sm bg-secondary text-white border-0 opacity-50">
+                         <i class="bi bi-camera-video-fill"></i>
                     </div>
-                    <span class="quick-label">CCTV<br>Area</span>
+                    <span class="quick-label text-muted">CCTV<br>Area</span>
                 </a>
             </div>
         </section>

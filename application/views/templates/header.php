@@ -9,25 +9,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css?v='.time()) ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>"> <!-- Ensure mobile.css is loaded -->
+    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>"> 
     <style>
-        /* Mobile-First Navbar Styling */
+        /* Mobile-First Navbar Styling - Dark Green Theme */
         body { padding-top: 70px; }
         .navbar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            padding: 10px 0;
+            background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%); /* Hijau Tua */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-        .navbar-brand img { width: 40px; height: 40px; }
+        .navbar-brand img { width: 42px; height: 42px; border: 2px solid rgba(255,255,255,0.2); }
         .navbar-brand span { 
             font-family: 'Inter', sans-serif; 
             font-weight: 800; 
-            letter-spacing: -0.5px;
-            color: #1e293b;
+            letter-spacing: 0.5px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .navbar-toggler { border: none; padding: 0; color: #1e293b; }
+        .navbar-toggler { border: none; padding: 0; color: #ffffff !important; opacity: 1; }
         .navbar-toggler:focus { box-shadow: none; }
+        .navbar-toggler-icon { filter: brightness(0) invert(1); } /* Force white icon */
         
         /* Mobile Menu Overlay */
         @media (max-width: 991.98px) {
@@ -54,7 +56,7 @@
                 color: #334155 !important;
                 display: flex; justify-content: space-between; align-items: center;
             }
-            .nav-link.active { color: var(--primary-color) !important; }
+            .nav-link.active { color: #1e5631 !important; }
             .nav-link::after {
                 font-family: "bootstrap-icons";
                 content: "\f285"; /* chevron-right */
@@ -63,6 +65,7 @@
             .btn-login-mobile {
                 width: 100%; margin-top: 20px; padding: 15px;
                 border-radius: 12px; font-weight: 700;
+                background: #1e5631; color: white; border: none;
             }
         }
     </style>
@@ -77,7 +80,7 @@
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMenu">
-                <i class="bi bi-list fs-1"></i>
+                <i class="bi bi-list fs-1 text-white"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="mobileMenu">
@@ -103,11 +106,11 @@
                 </ul>
 
                 <?php if($this->session->userdata('user_id')): ?>
-                <a href="<?= ($this->session->userdata('role') == 'admin') ? base_url('admin/dashboard') : base_url('user/dashboard') ?>" class="btn btn-primary btn-login-mobile d-lg-none">
+                <a href="<?= ($this->session->userdata('role') == 'admin') ? base_url('admin/dashboard') : base_url('user/dashboard') ?>" class="btn btn-login-mobile d-lg-none">
                     Dashboard Saya <i class="bi bi-arrow-right ms-2"></i>
                 </a>
                 <?php else: ?>
-                <a href="<?= base_url('auth/login') ?>" class="btn btn-dark btn-login-mobile d-lg-none">
+                <a href="<?= base_url('auth/login') ?>" class="btn btn-login-mobile d-lg-none">
                     Masuk Akun <i class="bi bi-box-arrow-in-right ms-2"></i>
                 </a>
                 <?php endif; ?>
@@ -115,9 +118,9 @@
                 <!-- Desktop Buttons -->
                 <div class="d-none d-lg-flex gap-2 ms-3">
                     <?php if($this->session->userdata('user_id')): ?>
-                        <a href="<?= ($this->session->userdata('role') == 'admin') ? base_url('admin/dashboard') : base_url('user/dashboard') ?>" class="btn btn-primary rounded-pill px-4 fw-bold small">Dashboard</a>
+                        <a href="<?= ($this->session->userdata('role') == 'admin') ? base_url('admin/dashboard') : base_url('user/dashboard') ?>" class="btn btn-outline-light rounded-pill px-4 fw-bold small">Dashboard</a>
                     <?php else: ?>
-                        <a href="<?= base_url('auth/login') ?>" class="btn btn-dark rounded-pill px-4 fw-bold small">Masuk</a>
+                        <a href="<?= base_url('auth/login') ?>" class="btn btn-outline-light rounded-pill px-4 fw-bold small">Masuk</a>
                     <?php endif; ?>
                 </div>
             </div>

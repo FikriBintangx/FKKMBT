@@ -1,46 +1,46 @@
     <!-- Footer -->
-    <footer class="mt-auto pt-5 pb-3 bg-dark text-white" style="margin-top: 100px !important;">
+    <footer class="mt-auto pt-5 pb-3 text-white" style="margin-top: 100px !important; background: linear-gradient(135deg, #1e5631 0%, #0d3820 100%);">
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="d-flex align-items-center gap-2 mb-3">
-                        <div class="bg-white text-dark rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; font-weight: bold;">F</div>
+                        <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" class="rounded-circle border border-white" style="width: 40px; height: 40px;">
                         <strong class="fs-5">FKKMBT</strong>
                     </div>
-                    <p class="text-white-50 small">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
+                    <p class="text-white-50 small" style="line-height: 1.6;">Forum Komunikasi Koordinasi Masyarakat Bukit Tiara - Membangun komunitas yang harmonis, sejahtera, dan saling mendukung.</p>
                 </div>
                 
                 <div class="col-md-2">
-                    <h6 class="text-white mb-3">Menu Cepat</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('tentang') ?>" class="text-white-50 text-decoration-none">Tentang Kami</a></li>
-                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white-50 text-decoration-none">Kegiatan</a></li>
-                        <li><a href="<?= base_url('struktur') ?>" class="text-white-50 text-decoration-none">Organisasi</a></li>
+                    <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Menu Cepat</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="<?= base_url('tentang') ?>" class="text-white-50 text-decoration-none hover-white">Tentang Kami</a></li>
+                        <li><a href="<?= base_url('kegiatan') ?>" class="text-white-50 text-decoration-none hover-white">Kegiatan</a></li>
+                        <li><a href="<?= base_url('struktur') ?>" class="text-white-50 text-decoration-none hover-white">Organisasi</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-3">
-                    <h6 class="text-white mb-3">Organisasi</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white-50 text-decoration-none">Struktur FKKMBT</a></li>
-                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white-50 text-decoration-none">Struktur FKKMMBT</a></li>
+                    <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Organisasi</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2">
+                        <li><a href="<?= base_url('struktur?tab=fkkmbt') ?>" class="text-white-50 text-decoration-none hover-white">Struktur FKKMBT</a></li>
+                        <li><a href="<?= base_url('struktur?tab=fkkmmbt') ?>" class="text-white-50 text-decoration-none hover-white">Struktur FKKMMBT</a></li>
                     </ul>
                 </div>
                 
                 <div class="col-md-3">
-                    <h6 class="text-white mb-3">Kontak</h6>
+                    <h6 class="text-white mb-3 fw-bold text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Kontak</h6>
                     <p class="text-white-50 small mb-2">
-                        <i class="bi bi-geo-alt me-2"></i>
-                        Perumahan Bukit Tiara, Kecamatan Cikupa, Kabupaten Tangerang, Banten 15710
+                        <i class="bi bi-geo-alt me-2 text-success"></i>
+                        Perumahan Bukit Tiara, Cikupa, Tangerang
                     </p>
                     <p class="text-white-50 small mb-2">
-                        <i class="bi bi-telephone me-2"></i>
-                        087786720942
+                        <i class="bi bi-whatsapp me-2 text-success"></i>
+                        0877-8672-0942
                     </p>
                 </div>
             </div>
             
-            <hr class="my-4 border-secondary">
+            <hr class="my-4 border-secondary opacity-25">
             
             <div class="text-center text-white-50 small">
                 <p class="mb-0">&copy; 2025 FKKMBT. Developed by Ceva_Star.</p>
@@ -48,44 +48,40 @@
         </div>
     </footer>
 
-    <!-- Panic Button & Modal -->
+    <!-- Panic Button & Modal - Same as before -->
     <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
         <div class="text-end" style="pointer-events: auto;">
-            <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 60px; height: 60px;" data-bs-toggle="modal" data-bs-target="#panicModal">
+            <button class="btn btn-danger rounded-circle shadow-lg d-flex align-items-center justify-content-center shake-animation" style="width: 60px; height: 60px; border: 4px solid rgba(255,255,255,0.3);" data-bs-toggle="modal" data-bs-target="#panicModal">
                 <i class="bi bi-exclamation-triangle-fill fs-3"></i>
             </button>
         </div>
     </div>
 
     <div class="modal fade" id="panicModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
-                <div class="modal-header bg-danger text-white border-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-shield-exclamation me-2"></i>DARURAT / EMERGENCY</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-bottom">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px 20px 0 0;">
+                <div class="modal-header border-0 pb-0 justify-content-center">
+                    <div style="width: 40px; height: 4px; background: #e2e8f0; border-radius: 10px;"></div>
                 </div>
-                <div class="modal-body p-4">
-                    <p class="text-muted text-center mb-4">Tekan tombol di bawah untuk menghubungi nomor darurat.</p>
+                <div class="modal-body p-4 text-center">
+                    <div class="bg-danger-subtle text-danger rounded-circle d-inline-flex p-3 mb-3">
+                        <i class="bi bi-shield-exclamation fs-1"></i>
+                    </div>
+                    <h5 class="fw-bold mb-2">DARURAT</h5>
+                    <p class="text-muted small mb-4">Segera hubungi bantuan jika Anda dalam keadaan darurat.</p>
+                    
                     <div class="d-grid gap-3">
-                        <a href="tel:112" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-telephone-fill me-2"></i>Panggilan Darurat Umum</span>
-                            <span class="fw-bold">112</span>
+                        <a href="tel:112" class="btn btn-light btn-lg d-flex align-items-center justify-content-between p-3 border">
+                            <span class="d-flex align-items-center gap-3">
+                                <i class="bi bi-telephone-fill text-danger"></i> Darurat Umum
+                            </span>
+                            <span class="fw-bold text-dark">112</span>
                         </a>
-                        <a href="tel:110" class="btn btn-outline-warning text-dark btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-shield-fill me-2"></i>Polisi</span>
-                            <span class="fw-bold">110</span>
-                        </a>
-                        <a href="tel:113" class="btn btn-outline-danger btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-fire me-2"></i>Pemadam Kebakaran</span>
-                            <span class="fw-bold">113</span>
-                        </a>
-                        <a href="tel:118" class="btn btn-outline-success btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-hospital-fill me-2"></i>Ambulans</span>
-                            <span class="fw-bold">118</span>
-                        </a>
-                         <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between">
-                            <span><i class="bi bi-person-badge-fill me-2"></i>Satpam / Security</span>
-                            <span class="fw-bold">Hubungi Pos</span>
+                         <a href="tel:081234567890" class="btn btn-dark btn-lg d-flex align-items-center justify-content-between p-3">
+                            <span class="d-flex align-items-center gap-3">
+                                <i class="bi bi-person-badge-fill"></i> Satpam / Security
+                            </span>
+                            <span class="fw-bold">Call Pos</span>
                         </a>
                     </div>
                 </div>
@@ -94,6 +90,7 @@
     </div>
 
     <style>
+        .hover-white:hover { color: white !important; }
         .shake-animation {
             animation: shake 5s cubic-bezier(.36,.07,.19,.97) both infinite;
             transform: translate3d(0, 0, 0);
@@ -105,6 +102,9 @@
             4%, 6% { transform: translate3d(4px, 0, 0); }
             10%, 100% { transform: translate3d(0, 0, 0); }
         }
+        .modal-dialog-bottom { margin: 0; display: flex; align-items: flex-end; min-height: 100%; }
+        .modal.fade .modal-dialog-bottom { transform: translate(0, 100%); }
+        .modal.show .modal-dialog-bottom { transform: none; transition: transform 0.3s ease-out; }
     </style>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
