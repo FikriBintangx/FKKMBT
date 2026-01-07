@@ -24,6 +24,8 @@ class Profil extends CI_Controller {
         $data_warga = [
             'nama_lengkap' => $this->input->post('nama_lengkap'),
             'no_hp' => $this->input->post('no_hp'),
+            'blok' => $this->input->post('blok'),
+            'no_rumah' => $this->input->post('no_rumah'),
             'alamat' => $this->input->post('alamat')
         ];
         

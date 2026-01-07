@@ -158,9 +158,34 @@
                     <input type="text" name="no_hp" class="form-control" placeholder="No. WhatsApp" value="<?= $warga['no_hp'] ?>" required>
                 </div>
 
+                <div class="row g-2">
+                    <div class="col-6">
+                        <label class="section-label mb-2" style="font-size: 10px;">BLOK</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-houses text-info"></i>
+                            <input type="text" name="blok" class="form-control" placeholder="A1" value="<?= $warga['blok'] ?>" required>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <label class="section-label mb-2" style="font-size: 10px;">NO. RUMAH</label>
+                        <div class="input-icon-wrapper">
+                            <i class="bi bi-hash text-warning"></i>
+                            <input type="text" name="no_rumah" class="form-control" placeholder="10" value="<?= $warga['no_rumah'] ?>" required>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="input-icon-wrapper mb-0">
-                    <i class="bi bi-geo-alt text-danger" style="top: 25px;"></i>
-                    <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Lengkap"><?= trim(strip_tags(html_entity_decode($warga['alamat']))) ?></textarea>
+                    <label class="section-label mb-2" style="font-size: 10px;">ALAMAT LENGKAP</label>
+                    <i class="bi bi-geo-alt text-danger" style="top: 45px;"></i>
+                    <?php 
+                        $cleaned_alamat = trim(strip_tags(html_entity_decode($warga['alamat'])));
+                        // If it still looks like an HTML error (contains style attributes or border info), force empty it
+                        if (strpos($warga['alamat'], 'border:1px solid') !== false) {
+                            $cleaned_alamat = "";
+                        }
+                    ?>
+                    <textarea name="alamat" class="form-control" rows="3" placeholder="Jl. Bukit Tiara..."><?= $cleaned_alamat ?></textarea>
                 </div>
             </div>
 
