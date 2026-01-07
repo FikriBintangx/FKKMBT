@@ -172,25 +172,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white py-5">
-        <div class="container text-center">
-            <div class="d-flex align-items-center justify-content-center gap-2 mb-3">
-                <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" width="40" class="rounded-circle">
-                <span class="fw-bold fs-5 text-dark">FKKMBT</span>
-            </div>
-            <p class="text-muted small mb-4 px-4">
-                Forum Komunikasi Koordinasi Masyarakat Bukit Tiara.<br>
-                Mewujudkan lingkungan yang aman, nyaman, dan harmonis.
-            </p>
-            <div class="d-flex justify-content-center gap-3 mb-4">
-                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="btn btn-light rounded-circle"><i class="bi bi-whatsapp"></i></a>
-            </div>
-            <hr class="border-light-subtle w-50 mx-auto">
-            <small class="text-muted">© 2025 FKKMBT. All Rights Reserved.</small>
-        </div>
-    </footer>
+    <!-- Footer -->
+    <?php $this->load->view('templates/footer'); ?>
 
     <!-- Panic Button & Modal -->
     <div class="fixed-bottom p-4" style="z-index: 1050; pointer-events: none;">
