@@ -160,7 +160,7 @@
 
                 <div class="input-icon-wrapper mb-0">
                     <i class="bi bi-geo-alt text-danger" style="top: 25px;"></i>
-                    <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Lengkap"><?= strip_tags($warga['alamat']) ?></textarea>
+                    <textarea name="alamat" class="form-control" rows="3" placeholder="Alamat Lengkap"><?= trim(strip_tags(html_entity_decode($warga['alamat']))) ?></textarea>
                 </div>
             </div>
 

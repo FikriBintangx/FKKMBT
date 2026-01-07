@@ -35,12 +35,12 @@
 <body class="bg-light">
 
     <!-- Mobile App Bar -->
-    <div class="app-bar d-lg-none" style="background: transparent; box-shadow: none;">
+    <div class="app-bar d-lg-none shadow-none">
         <div class="d-flex align-items-center gap-2">
-            <div class="rounded-circle overflow-hidden border border-white border-2" style="width: 36px; height: 36px;">
+            <div class="rounded-circle overflow-hidden border border-white" style="width: 32px; height: 32px;">
                 <img src="<?= base_url('assets/images/LOGO/LOGOFKKMBT.jpg') ?>" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
-            <span class="fw-bold" style="letter-spacing: 0.5px;">BUKIT TIARA</span>
+            <span class="fw-bold text-white" style="letter-spacing: 0.5px; font-size: 14px;">BUKIT TIARA</span>
         </div>
         <div class="d-flex gap-3">
             <a href="<?= base_url('user/dashboard/notifikasi') ?>" class="text-white position-relative">
