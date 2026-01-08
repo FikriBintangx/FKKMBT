@@ -58,9 +58,18 @@
                             </span>
                         </div>
                     </div>
-                    <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm" onclick="showUploadModal(<?= $iuran['id'] ?>, '<?= $iuran['nama_iuran'] ?>', <?= $iuran['nominal'] ?>)">
-                        <i class="bi bi-upload me-2"></i>Upload Bukti Bayar
-                    </button>
+                    <div class="row g-2">
+                        <div class="col-6">
+                             <button class="btn btn-outline-primary w-100 rounded-pill py-2 fw-bold shadow-sm" onclick="showPaymentModal()">
+                                <i class="bi bi-credit-card me-1"></i>Bayar
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-primary w-100 rounded-pill py-2 fw-bold shadow-sm" onclick="showUploadModal(<?= $iuran['id'] ?>, '<?= $iuran['nama_iuran'] ?>', <?= $iuran['nominal'] ?>)">
+                                <i class="bi bi-upload me-1"></i>Upload
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -127,6 +136,51 @@
     <div class="mb-5 pb-5"></div> 
 </main>
 
+<!-- Payment Info Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-bottom-sheet">
+        <div class="modal-content border-0 shadow-lg rounded-top-4">
+            <div class="modal-header border-0 pb-0 justify-content-center position-relative">
+                <div class="bg-secondary opacity-25 rounded-pill position-absolute top-0 mt-2" style="width: 40px; height: 4px;"></div>
+                <h6 class="modal-title fw-bold mt-3">Metode Pembayaran</h6>
+                <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <p class="text-muted small">Silakan transfer ke salah satu rekening berikut:</p>
+                </div>
+                
+                <div class="card border-0 bg-light rounded-4 mb-3 p-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png" width="60" class="img-fluid">
+                        <div>
+                            <h6 class="fw-bold mb-0">1234-5678-90</h6>
+                            <small class="text-muted">A.N FKKMBT BUKIT TIARA</small>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary ms-auto" onclick="copyToClipboard('1234567890')"><i class="bi bi-clipboard"></i></button>
+                    </div>
+                </div>
+
+                <div class="card border-0 bg-light rounded-4 mb-3 p-3">
+                    <div class="d-flex align-items-center gap-3">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png" width="60" class="img-fluid">
+                        <div>
+                            <h6 class="fw-bold mb-0">0000-1111-2222</h6>
+                            <small class="text-muted">A.N BENDAHARA FKKMBT</small>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary ms-auto" onclick="copyToClipboard('000011112222')"><i class="bi bi-clipboard"></i></button>
+                    </div>
+                </div>
+
+                <div class="alert alert-info border-0 d-flex gap-2 align-items-center small">
+                     <i class="bi bi-info-circle-fill"></i>
+                     <div>Setelah transfer, mohon <b>Upload Bukti</b> di form sebelumnya.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Upload Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-bottom-sheet">
@@ -166,12 +220,21 @@
 </div>
 
 <script>
+function showPaymentModal() {
+    new bootstrap.Modal(document.getElementById('paymentModal')).show();
+}
+
 function showUploadModal(id, nama, nominal) {
     document.getElementById('upload_iuran_id').value = id;
     document.getElementById('upload_nama_iuran').textContent = nama;
     document.getElementById('upload_nominal').textContent = 'Rp ' + nominal.toLocaleString('id-ID');
     
     new bootstrap.Modal(document.getElementById('uploadModal')).show();
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+    alert('Nomor rekening disalin!');
 }
 </script>
 
