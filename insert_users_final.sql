@@ -28,7 +28,7 @@ INSERT INTO `users` (`username`, `password`, `role`) VALUES
 ('aceva', '$2y$10$nBJSb70nMl2.Z1C1IZpFU.baV5ZehWg6e4mtydVHo0zzK8UKSs0bi', 'warga');
 
 INSERT INTO `warga` (`user_id`, `nama_lengkap`, `blok`, `no_rumah`, `no_hp`, `jenis_kelamin`) VALUES
-(LAST_INSERT_ID(), 'Aceva Arie Sadewa', 'J', '4', '081234567890', 'L');
+(LAST_INSERT_ID(), 'Aceva Arie Sadewa', 'J', '4', '087786720942', 'L');
 
 -- =============================================
 -- SELESAI

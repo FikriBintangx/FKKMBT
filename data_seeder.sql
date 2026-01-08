@@ -18,7 +18,7 @@ INSERT INTO `organisasi` (`nama_organisasi`, `deskripsi`) VALUES
 -- 2. INSERT STRUKTUR ORGANISASI FKKMBT
 -- =============================================
 INSERT INTO `struktur_organisasi` (`nama`, `jabatan`, `level`, `tipe_organisasi`, `jenis_kelamin`, `kontak`) VALUES
-('Budi Santoso', 'Ketua RT 001', 1, 'FKKMBT', 'L', '081234567890'),
+('Haji Kusnantoro', 'Ketua FKKMBT', 1, 'FKKMBT', 'L', '087885873957'),
 ('Siti Nurhaliza', 'Sekretaris', 2, 'FKKMBT', 'P', '081234567891'),
 ('Ahmad Dahlan', 'Bendahara', 2, 'FKKMBT', 'L', '081234567892'),
 ('Dewi Lestari', 'Seksi Kebersihan', 3, 'FKKMBT', 'P', '081234567893'),
@@ -29,7 +29,7 @@ INSERT INTO `struktur_organisasi` (`nama`, `jabatan`, `level`, `tipe_organisasi`
 -- 3. INSERT STRUKTUR ORGANISASI FKKMMBT (Muda-Mudi)
 -- =============================================
 INSERT INTO `struktur_organisasi` (`nama`, `jabatan`, `level`, `tipe_organisasi`, `jenis_kelamin`, `kontak`) VALUES
-('Andi Pratama', 'Ketua Muda-Mudi', 1, 'FKKMMBT', 'L', '081234567896'),
+('Aceva Arie Sadewa', 'Ketua FKKMMBT', 1, 'FKKMMBT', 'L', '087786720942'),
 ('Rina Wulandari', 'Wakil Ketua', 2, 'FKKMMBT', 'P', '081234567897'),
 ('Dimas Aditya', 'Sekretaris', 2, 'FKKMMBT', 'L', '081234567898'),
 ('Fitri Handayani', 'Bendahara', 2, 'FKKMMBT', 'P', '081234567899'),
