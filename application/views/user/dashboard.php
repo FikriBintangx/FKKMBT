@@ -127,6 +127,14 @@
                     <small class="fw-bold small-font">FKKMMBT</small>
                 </a>
             </div>
+             <div class="col-3 text-center mt-3">
+                <a href="<?= base_url('user/cctv') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
+                    <div class="bg-dark bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                         <i class="bi bi-camera-video-fill text-dark fs-4"></i>
+                    </div>
+                    <small class="fw-bold small-font">CCTV</small>
+                </a>
+            </div>
         </div>
     </div>
 
