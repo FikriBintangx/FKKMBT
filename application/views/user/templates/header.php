@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css') ?>">
     
     <style>
+        :root {
+            --primary-dark: #064e3b; /* Hijau Tua Banget */
+            --primary-medium: #047857; /* Hijau Standar */
+            --primary-light: #10b981; /* Hijau Terang */
+        }
         * {
             margin: 0;
             padding: 0;
@@ -28,14 +33,10 @@
             background-color: #f8f9fa;
         }
         body {
-            padding-bottom: 80px !important; /* Space for bottom nav */
+            padding-bottom: 90px !important; /* Space for bottom nav */
         }
-        .container {
-            padding-top: 0 !important;
-        }
-        main.container {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
+        .header-section {
+            background: linear-gradient(135deg, #022c22 0%, #14532d 100%) !important; /* DARK GREEN GRADIENT */
         }
     </style>
 </head>

@@ -13,16 +13,50 @@
 </div>
 
 <main class="container py-4">
-    <div class="alert alert-info">
-        <i class="bi bi-info-circle me-2"></i>
-        <strong>Coming Soon!</strong> Fitur Laporan Warga sedang dalam pengembangan.
+    <!-- Form Laporan -->
+    <div class="card border-0 shadow-sm rounded-4 mb-4">
+        <div class="card-body p-4">
+            <h5 class="fw-bold mb-4">Buat Laporan Baru</h5>
+            <form action="<?= base_url('user/lapor/submit') ?>" method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Judul Laporan</label>
+                    <input type="text" class="form-control" name="judul" placeholder="Contoh: Lampu jalan mati" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Kategori</label>
+                    <select class="form-select" name="kategori" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="Keamanan">Keamanan</option>
+                        <option value="Kebersihan">Kebersihan</option>
+                        <option value="Fasilitas">Fasilitas Umum</option>
+                        <option value="Lainnya">Lainnya</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted">Deskripsi Detail</label>
+                    <textarea class="form-control" name="deskripsi" rows="4" placeholder="Jelaskan detail masalah..." required></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted">Foto Bukti (Opsional)</label>
+                    <input type="file" class="form-control" name="foto" accept="image/*">
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 py-3 fw-bold rounded-pill">
+                    <i class="bi bi-send-fill me-2"></i>Kirim Laporan
+                </button>
+            </form>
+        </div>
     </div>
-    
+
+    <!-- Riwayat (Placeholder) -->
+    <h6 class="fw-bold mb-3 px-1">Riwayat Laporan</h6>
     <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-4 text-center">
-            <i class="bi bi-megaphone fs-1 text-muted mb-3 d-block"></i>
-            <h5 class="fw-bold mb-2">Laporan Warga</h5>
-            <p class="text-muted">Fitur ini akan segera hadir untuk menyampaikan keluhan dan saran.</p>
+        <div class="card-body text-center py-5">
+            <img src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png" width="80" class="mb-3 opacity-50">
+            <p class="text-muted small mb-0">Belum ada laporan yang dikirim</p>
         </div>
     </div>
 </main>

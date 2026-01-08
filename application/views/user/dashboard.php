@@ -1,7 +1,7 @@
 <?php $this->load->view('user/templates/header'); ?>
 
 <!-- Modern Header Section -->
-<div class="header-section" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 30px 20px 80px; color: white; border-radius: 0 0 30px 30px; position: relative; z-index: 1;">
+<div class="header-section" style="background: linear-gradient(135deg, #022c22 0%, #14532d 100%); padding: 30px 20px 80px; color: white; border-radius: 0 0 30px 30px; position: relative; z-index: 1;">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div class="d-flex align-items-center gap-3">
              <div class="bg-white rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width: 45px; height: 45px;">
@@ -77,7 +77,7 @@
             </div>
 
             <div class="col-3 text-center">
-                <a href="#" class="text-decoration-none text-dark d-block card-hover-effect" onclick="alert('Fitur Lapak Warga Segera Hadir!')">
+                <a href="<?= base_url('user/lapak') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
                     <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-shop text-warning fs-4"></i>
                     </div>
@@ -96,7 +96,7 @@
             
             <!-- Row 2 -->
              <div class="col-3 text-center mt-3">
-                <a href="#" class="text-decoration-none text-dark d-block card-hover-effect feature-coming-soon">
+                <a href="<?= base_url('user/kas') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
                     <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-briefcase-fill text-info fs-4"></i>
                     </div>
@@ -104,7 +104,7 @@
                 </a>
             </div>
              <div class="col-3 text-center mt-3">
-                <a href="#" class="text-decoration-none text-dark d-block card-hover-effect feature-coming-soon">
+                <a href="<?= base_url('user/forum') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
                     <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-chat-dots-fill text-success fs-4"></i>
                     </div>
@@ -112,7 +112,7 @@
                 </a>
             </div>
              <div class="col-3 text-center mt-3">
-                <a href="#" class="text-decoration-none text-dark d-block card-hover-effect feature-coming-soon">
+                <a href="<?= base_url('user/cctv') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
                     <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-camera-video-fill text-secondary fs-4"></i>
                     </div>
@@ -120,7 +120,7 @@
                 </a>
             </div>
              <div class="col-3 text-center mt-3">
-                <a href="#" class="text-decoration-none text-dark d-block card-hover-effect feature-coming-soon">
+                <a href="<?= base_url('user/lainnya') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
                     <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-grid-fill text-dark fs-4"></i>
                     </div>

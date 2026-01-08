@@ -1,28 +1,42 @@
     <!-- Bottom Navigation (Mobile) -->
-    <nav class="bottom-nav d-lg-none shadow-lg border-top border-light-subtle" style="border-radius: 20px 20px 0 0;">
-        <div class="d-flex justify-content-around py-2">
-            <a href="<?= base_url('user/dashboard') ?>" class="nav-item text-center text-decoration-none <?= $this->uri->segment(2) == 'dashboard' ? 'text-success fw-bold' : 'text-secondary' ?>">
-                <i class="bi <?= $this->uri->segment(2) == 'dashboard' ? 'bi-house-door-fill fs-3' : 'bi-house-door fs-4' ?> d-block mb-0"></i>
-                <small style="font-size: 10px;">Home</small>
+    <nav class="fixed-bottom bg-white shadow-lg border-top" style="border-radius: 20px 20px 0 0; z-index: 1050; padding-bottom: env(safe-area-inset-bottom);">
+        <div class="d-flex justify-content-around align-items-end" style="height: 70px;">
+            
+            <!-- Home -->
+            <a href="<?= base_url('user/dashboard') ?>" class="text-decoration-none w-100 text-center mb-2 pb-1 group">
+                <i class="bi <?= $this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'bi-house-door-fill text-success fs-4' : 'bi-house-door text-secondary fs-4' ?>"></i>
+                <small class="d-block fw-bold" style="font-size: 10px; <?= $this->uri->segment(2) == 'dashboard' || $this->uri->segment(2) == '' ? 'color: #14532d;' : 'color: #6c757d;' ?>">Home</small>
             </a>
-            <a href="<?= base_url('user/iuran') ?>" class="nav-item text-center text-decoration-none <?= $this->uri->segment(2) == 'iuran' ? 'text-success fw-bold' : 'text-secondary' ?>">
-                <i class="bi <?= $this->uri->segment(2) == 'iuran' ? 'bi-wallet2 fs-3' : 'bi-wallet2 fs-4' ?> d-block mb-0"></i>
-                <small style="font-size: 10px;">Iuran</small>
+
+            <!-- Iuran -->
+            <a href="<?= base_url('user/iuran') ?>" class="text-decoration-none w-100 text-center mb-2 pb-1">
+                <i class="bi <?= $this->uri->segment(2) == 'iuran' ? 'bi-wallet-fill text-success fs-4' : 'bi-wallet2 text-secondary fs-4' ?>"></i>
+                <small class="d-block fw-bold" style="font-size: 10px; <?= $this->uri->segment(2) == 'iuran' ? 'color: #14532d;' : 'color: #6c757d;' ?>">Iuran</small>
             </a>
-            <a href="<?= base_url('user/lapor') ?>" class="nav-item text-center text-decoration-none px-3">
-                 <div class="bg-success rounded-circle shadow d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; margin-top: -25px;">
-                    <i class="bi bi-megaphone-fill text-white fs-4"></i>
-                 </div>
-                 <small style="font-size: 10px;" class="text-success fw-bold mt-1 d-block">Lapor</small>
+
+            <!-- Lapor (Center Floating) -->
+            <div class="position-relative w-100 text-center">
+                <a href="<?= base_url('user/lapor') ?>" class="text-decoration-none d-inline-block position-relative" style="top: -30px;">
+                    <div class="rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+                         style="width: 60px; height: 60px; background: linear-gradient(135deg, #022c22 0%, #14532d 100%); border: 4px solid #fff;">
+                        <i class="bi bi-megaphone-fill text-white fs-3"></i>
+                    </div>
+                    <small class="d-block fw-bold mt-1 text-success" style="font-size: 10px;">Lapor</small>
+                </a>
+            </div>
+
+            <!-- Surat -->
+            <a href="<?= base_url('user/surat') ?>" class="text-decoration-none w-100 text-center mb-2 pb-1">
+                <i class="bi <?= $this->uri->segment(2) == 'surat' ? 'bi-envelope-paper-fill text-success fs-4' : 'bi-envelope text-secondary fs-4' ?>"></i>
+                <small class="d-block fw-bold" style="font-size: 10px; <?= $this->uri->segment(2) == 'surat' ? 'color: #14532d;' : 'color: #6c757d;' ?>">Surat</small>
             </a>
-            <a href="<?= base_url('user/surat') ?>" class="nav-item text-center text-decoration-none <?= $this->uri->segment(2) == 'surat' ? 'text-success fw-bold' : 'text-secondary' ?>">
-                <i class="bi <?= $this->uri->segment(2) == 'surat' ? 'bi-envelope-paper-fill fs-3' : 'bi-envelope fs-4' ?> d-block mb-0"></i>
-                <small style="font-size: 10px;">Surat</small>
+
+            <!-- Profil -->
+            <a href="<?= base_url('user/profil') ?>" class="text-decoration-none w-100 text-center mb-2 pb-1">
+                <i class="bi <?= $this->uri->segment(2) == 'profil' ? 'bi-person-fill text-success fs-4' : 'bi-person text-secondary fs-4' ?>"></i>
+                <small class="d-block fw-bold" style="font-size: 10px; <?= $this->uri->segment(2) == 'profil' ? 'color: #14532d;' : 'color: #6c757d;' ?>">Profil</small>
             </a>
-            <a href="<?= base_url('user/profil') ?>" class="nav-item text-center text-decoration-none <?= $this->uri->segment(2) == 'profil' ? 'text-success fw-bold' : 'text-secondary' ?>">
-                <i class="bi <?= $this->uri->segment(2) == 'profil' ? 'bi-person-circle fs-3' : 'bi-person fs-4' ?> d-block mb-0"></i>
-                <small style="font-size: 10px;">Profil</small>
-            </a>
+
         </div>
     </nav>
 
