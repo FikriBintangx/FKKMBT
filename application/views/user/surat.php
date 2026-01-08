@@ -67,59 +67,122 @@
         </div>
     </div>
 
-    <!-- Riwayat Pengajuan Lists (Dummy) -->
+    <!-- Riwayat Pengajuan Lists -->
     <h6 class="fw-bold mb-3 px-1 text-secondary small text-uppercase ls-1">Riwayat Pengajuan Terakhir</h6>
-    <div class="d-flex flex-column gap-3">
-        <!-- Item 1 (Selesai) -->
-        <div class="card border-0 shadow-sm rounded-4 card-hover-effect">
-            <div class="card-body p-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="bi bi-file-earmark-check-fill text-success"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-0 small text-dark">Surat Pengantar SKCK</h6>
-                            <small class="text-muted" style="font-size: 10px;">05 Jan 2024</small>
-                        </div>
-                    </div>
-                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill" style="font-size: 9px;">Selesai</span>
-                </div>
+    
+    <?php if(empty($riwayat)): ?>
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body text-center py-5">
+                <i class="bi bi-envelope-open fs-1 text-muted opacity-25 mb-3"></i>
+                <p class="text-muted small mb-0">Belum ada surat yang diajukan</p>
             </div>
         </div>
+    <?php else: ?>
+        <div class="d-flex flex-column gap-3">
+            <?php foreach($riwayat as $r): ?>
+                <?php
+                    $status_badge = '';
+                    $icon_status = '';
+                    if($r['status'] == 'Pending') {
+                        $status_badge = 'bg-warning bg-opacity-10 text-warning';
+                        $icon_status = 'bi-hourglass-split text-warning';
+                    } elseif($r['status'] == 'Selesai') {
+                        $status_badge = 'bg-success bg-opacity-10 text-success';
+                        $icon_status = 'bi-check-circle-fill text-success';
+                    } elseif($r['status'] == 'Diproses') {
+                        $status_badge = 'bg-info bg-opacity-10 text-info';
+                        $icon_status = 'bi-arrow-repeat text-info';
+                    } else {
+                        $status_badge = 'bg-danger bg-opacity-10 text-danger';
+                        $icon_status = 'bi-x-circle-fill text-danger';
+                    }
+                ?>
+                <div class="card border-0 shadow-sm rounded-4 card-hover-effect">
+                    <div class="card-body p-3">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="<?= str_replace('text-', 'bg-', $status_badge) ?> rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+                                    <i class="bi bi-file-earmark-text"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 small text-dark"><?= $r['jenis_surat'] ?></h6>
+                                    <small class="text-muted" style="font-size: 10px;"><?= date('d M Y, H:i', strtotime($r['created_at'])) ?></small>
+                                </div>
+                            </div>
+                            <span class="badge <?= $status_badge ?> rounded-pill" style="font-size: 9px;"><?= $r['status'] ?></span>
+                        </div>
+                         <div class="mt-2 pt-2 border-top">
+                            <small class="text-muted fst-italic" style="font-size: 11px;">Keperluan: <?= $r['keperluan'] ?></small>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
-        <!-- Item 2 (Proses) -->
-        <div class="card border-0 shadow-sm rounded-4 card-hover-effect">
-            <div class="card-body p-3">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center gap-3">
-                        <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                            <i class="bi bi-hourglass-split text-warning"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-0 small text-dark">Izin Keramaian (Hajatan)</h6>
-                            <small class="text-muted" style="font-size: 10px;">Hari ini, 09:30</small>
-                        </div>
-                    </div>
-                    <span class="badge bg-warning bg-opacity-10 text-warning rounded-pill" style="font-size: 9px;">Diproses</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="mb-5 pb-5"></div>
 
 </main>
 
+<!-- Modal Form Pengajuan -->
+<div class="modal fade" id="formModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-bottom-sheet">
+        <div class="modal-content border-0 shadow-lg rounded-top-4">
+            <div class="modal-header border-0 pb-0 justify-content-center position-relative">
+                <div class="bg-secondary opacity-25 rounded-pill position-absolute top-0 mt-2" style="width: 40px; height: 4px;"></div>
+                <h6 class="modal-title fw-bold mt-3" id="modalTitle">Form Pengajuan</h6>
+                <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="<?= base_url('user/surat/submit') ?>" method="POST">
+                <div class="modal-body p-4">
+                    <input type="hidden" name="jenis_surat" id="inputJenisSurat">
+                    
+                    <div class="text-center mb-4">
+                        <div class="bg-primary bg-opacity-10 rounded-circle mx-auto d-flex align-items-center justify-content-center mb-2" style="width: 60px; height: 60px;">
+                             <i class="bi bi-pencil-square text-primary fs-2"></i>
+                        </div>
+                        <p class="text-muted small">Silakan lengkapi data permohonan surat di bawah ini.</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Keperluan Surat / Keterangan</label>
+                        <textarea name="keperluan" class="form-control rounded-4 bg-light border-0 p-3" rows="4" placeholder="Contoh: Untuk persyaratan administrasi pernikahan, melamar pekerjaan, dll..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill py-3 fw-bold shadow-sm">
+                        Ajukan Sekarang
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <script>
 function showForm(type) {
-    // Placeholder function for future implementation
     let title = '';
+    let jenis = '';
     switch(type) {
-        case 'sp': title = 'Surat Pengantar'; break;
-        case 'domisili': title = 'Keterangan Domisili'; break;
-        case 'keramaian': title = 'Izin Keramaian'; break;
-        case 'kematian': title = 'Keterangan Kematian'; break;
+        case 'sp': 
+            title = 'Ajukan Surat Pengantar'; 
+            jenis = 'Surat Pengantar';
+            break;
+        case 'domisili': 
+            title = 'Ajukan Ket. Domisili'; 
+            jenis = 'Keterangan Domisili';
+            break;
+        case 'keramaian': 
+            title = 'Ajukan Izin Keramaian'; 
+            jenis = 'Izin Keramaian';
+            break;
+        case 'kematian': 
+            title = 'Lapor Kematian'; 
+            jenis = 'Keterangan Kematian';
+            break;
     }
-    alert('Formulir ' + title + ' akan segera hadir!');
+    document.getElementById('modalTitle').textContent = title;
+    document.getElementById('inputJenisSurat').value = jenis;
+    new bootstrap.Modal(document.getElementById('formModal')).show();
 }
 </script>
 
