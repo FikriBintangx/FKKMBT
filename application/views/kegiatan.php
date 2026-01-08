@@ -6,7 +6,7 @@
         </div>
         <span class="badge bg-white text-success rounded-pill mb-2 px-3 fw-bold">AGENDA & DOKUMENTASI</span>
         <h2 class="fw-bold display-6 mb-2">Kegiatan Warga</h2>
-        <p class="mb-0 opacity-75" style="max-width: 600px; margin: 0 auto;">
+        <p class="mb-0 fw-medium" style="max-width: 600px; margin: 0 auto; color: #ffffff !important;">
             Jadwal kegiatan rutin dan dokumentasi acara kebersamaan.
         </p>
     </div>
