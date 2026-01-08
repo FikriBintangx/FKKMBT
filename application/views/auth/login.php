@@ -181,28 +181,63 @@
         }
         .toggle-password:hover { color: var(--text-main); }
 
-        /* Mobile Responsiveness */
+        /* Mobile Responsiveness - Redesigned */
         @media (max-width: 576px) {
             body {
-                padding: 15px;
-                align-items: flex-start; /* Allow scrolling more easily if needed */
-                padding-top: 40px;
+                padding: 0;
+                align-items: stretch;
+                background: var(--card-color); /* Full screen card color on mobile */
             }
-            .portal-card {
-                padding: 25px 20px;
-                border-radius: 20px;
-            }
+            
             .back-link {
-                position: relative;
-                top: auto; left: auto;
-                width: 100%;
-                justify-content: center;
-                margin-bottom: 20px;
-                color: rgba(255,255,255,0.9);
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                background: rgba(30, 63, 53, 0.9);
+                padding: 8px 16px;
+                border-radius: 50px;
+                z-index: 10;
+                color: white !important;
+                font-size: 14px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             }
-            .portal-header { margin-bottom: 20px; }
-            .logo-box { width: 50px; height: 50px; font-size: 24px; }
-            .portal-title { font-size: 24px; }
+            .back-link:hover { background: rgba(30, 63, 53, 1); }
+            
+            .portal-card {
+                max-width: 100%;
+                padding: 80px 24px 40px; /* More top padding for back button */
+                border-radius: 0; /* Full screen on mobile */
+                box-shadow: none;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .logo-box {
+                width: 72px;
+                height: 72px;
+                font-size: 36px;
+            }
+            
+            .portal-title {
+                font-size: 26px;
+            }
+            
+            .portal-subtitle {
+                font-size: 13px;
+            }
+            
+            .form-input {
+                padding: 14px 16px;
+                font-size: 16px; /* Prevent iOS zoom */
+            }
+            
+            .btn-submit {
+                padding: 16px;
+                font-size: 17px;
+                border-radius: 14px;
+            }
         }
     </style>
 </head>
