@@ -52,7 +52,20 @@
                             <small class="text-muted" style="font-size: 10px;">Blok <?= $f['blok'] ?> No. <?= $f['no_rumah'] ?> • <?= date('d M H:i', strtotime($f['created_at'])) ?></small>
                         </div>
                     </div>
-                    <i class="bi bi-three-dots-vertical text-muted"></i>
+                    <?php if($f['warga_id'] == $this->session->userdata('warga_id')): ?>
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-link text-muted p-0" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow rounded-4 p-1">
+                                <li>
+                                    <a class="dropdown-item text-danger small rounded-3" href="<?= base_url('user/forum/delete/'.$f['id']) ?>" onclick="return confirm('Yakin ingin menghapus postingan ini?')">
+                                        <i class="bi bi-trash me-2"></i>Hapus
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
                 </div>
                 <p class="small mb-2 text-dark" style="font-size: 13px; line-height: 1.5;"><?= nl2br(htmlspecialchars($f['konten'])) ?></p>
                 <div class="d-flex gap-3 border-top pt-2 mt-2">

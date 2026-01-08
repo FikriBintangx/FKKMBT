@@ -19,4 +19,11 @@ class Forum_model extends CI_Model {
         $this->db->where('forum_id', $forum_id);
         return $this->db->count_all_results('forum_komentar');
     }
+
+    public function delete_forum($id, $warga_id) {
+        // Hanya hapus jika id dan warga_id cocok (milik sendiri)
+        $this->db->where('id', $id);
+        $this->db->where('warga_id', $warga_id);
+        return $this->db->delete('forum');
+    }
 }

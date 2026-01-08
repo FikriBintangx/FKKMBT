@@ -32,4 +32,14 @@ class Forum extends CI_Controller {
         }
         redirect('user/forum');
     }
+
+    public function delete($id) {
+        $warga_id = $this->session->userdata('warga_id');
+        if ($this->Forum_model->delete_forum($id, $warga_id)) {
+            $this->session->set_flashdata('success', 'Postingan berhasil dihapus.');
+        } else {
+            $this->session->set_flashdata('error', 'Gagal menghapus postingan (Mungkin bukan milik Anda).');
+        }
+        redirect('user/forum');
+    }
 }
