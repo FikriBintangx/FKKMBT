@@ -104,7 +104,7 @@
         <div class="container">
             <div class="d-flex justify-content-between align-items-center position-relative" style="z-index: 2;">
                 <div>
-                    <h1 class="fw-bold mb-1">Dashboard Ikhtisar</h1>
+                    <h1 class="fw-bold mb-1">Dashboard FKKMBT</h1>
                     <p class="opacity-90 m-0 fw-light">Selamat datang kembali, Admin! Semangat mengurus warga 💪</p>
                 </div>
                 <div class="d-none d-md-block">
