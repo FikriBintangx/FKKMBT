@@ -32,10 +32,10 @@
             <div class="col-6 col-lg-2 col-md-3 mb-4 mb-lg-0">
                 <h6 class="fw-bold text-warning mb-4 text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Akses Cepat</h6>
                 <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                    <li><a href="<?= base_url() ?>" class="text-white text-decoration-none hover-link">Beranda</a></li>
-                    <li><a href="<?= base_url('tentang') ?>" class="text-white text-decoration-none hover-link">Tentang Kami</a></li>
-                    <li><a href="<?= base_url('kegiatan') ?>" class="text-white text-decoration-none hover-link">Kegiatan</a></li>
-                    <li><a href="<?= base_url('warga') ?>" class="text-white text-decoration-none hover-link">Direktori</a></li>
+                    <li><a href="<?= base_url() ?>" class="text-white text-decoration-none hover-link opacity-90">Beranda</a></li>
+                    <li><a href="<?= base_url('tentang') ?>" class="text-white text-decoration-none hover-link opacity-90">Tentang Kami</a></li>
+                    <li><a href="<?= base_url('kegiatan') ?>" class="text-white text-decoration-none hover-link opacity-90">Kegiatan</a></li>
+                    <li><a href="<?= base_url('warga') ?>" class="text-white text-decoration-none hover-link opacity-90">Direktori</a></li>
                 </ul>
             </div>
 
@@ -43,10 +43,10 @@
             <div class="col-6 col-lg-2 col-md-3 mb-4 mb-lg-0">
                 <h6 class="fw-bold text-warning mb-4 text-uppercase" style="font-size: 0.8rem; letter-spacing: 1px;">Layanan</h6>
                 <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-                    <li><a href="<?= base_url('auth/login') ?>" class="text-white text-decoration-none hover-link">Portal Warga</a></li>
-                    <li><a href="<?= base_url('iuran') ?>" class="text-white text-decoration-none hover-link">Info Iuran</a></li>
-                    <li><a href="<?= base_url('struktur') ?>" class="text-white text-decoration-none hover-link">Pengurus</a></li>
-                    <li><a href="#" class="text-white text-decoration-none hover-link">Bantuan</a></li>
+                    <li><a href="<?= base_url('auth/login') ?>" class="text-white text-decoration-none hover-link opacity-90">Portal Warga</a></li>
+                    <li><a href="<?= base_url('iuran') ?>" class="text-white text-decoration-none hover-link opacity-90">Info Iuran</a></li>
+                    <li><a href="<?= base_url('struktur') ?>" class="text-white text-decoration-none hover-link opacity-90">Pengurus</a></li>
+                    <li><a href="#" class="text-white text-decoration-none hover-link opacity-90">Bantuan</a></li>
                 </ul>
             </div>
 
@@ -56,15 +56,15 @@
                 <ul class="list-unstyled d-flex flex-column gap-3">
                     <li class="d-flex gap-3">
                         <i class="bi bi-geo-alt-fill text-white opacity-50 mt-1"></i>
-                        <span class="text-white opacity-75 small" style="line-height: 1.6;">Perumahan Bukit Tiara,<br>Cikupa, Tangerang, Banten</span>
+                        <span class="text-white opacity-90 small" style="line-height: 1.6;">Perumahan Bukit Tiara,<br>Cikupa, Tangerang, Banten</span>
                     </li>
                     <li class="d-flex gap-3">
                         <i class="bi bi-telephone-fill text-white opacity-50"></i>
-                        <span class="text-white opacity-75 small">0877-8672-0942 (Humas)</span>
+                        <span class="text-white opacity-90 small">0877-8672-0942 (Humas)</span>
                     </li>
                     <li class="d-flex gap-3">
                         <i class="bi bi-envelope-fill text-white opacity-50"></i>
-                        <span class="text-white opacity-75 small">info@fkkmbt.or.id</span>
+                        <span class="text-white opacity-90 small">info@fkkmbt.or.id</span>
                     </li>
                 </ul>
             </div>
@@ -86,9 +86,6 @@
             </div>
         </div>
     </div>
-    
-    <!-- Mobile Bottom Nav Spacer -->
-    <div class="d-lg-none" style="height: 80px;"></div>
 </footer>
 
 <!-- Floating Action Buttons Container (Panic & Up) -->
