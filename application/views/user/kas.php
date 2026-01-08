@@ -71,12 +71,12 @@
                                 <div>
                                     <h6 class="fw-bold mb-1 text-dark small"><?= $t['nama_iuran'] ?></h6>
                                     <p class="mb-0 text-muted" style="font-size: 11px;">
-                                        Dari: <?= explode(' ', $t['nama_lengkap'])[0] ?> • <?= date('d M Y', strtotime($t['tanggal_bayar'])) ?>
+                                        Dari: <?= explode(' ', $t['nama_lengkap'])[0] ?> • <?= date('d M Y', strtotime($t['tgl_bayar'])) ?>
                                     </p>
                                 </div>
                             </div>
                             <div class="text-end">
-                                <span class="fw-bold text-success d-block small">+Rp <?= number_format($t['jumlah_bayar'], 0, ',', '.') ?></span>
+                                <span class="fw-bold text-success d-block small">+Rp <?= number_format($t['nominal'], 0, ',', '.') ?></span>
                                 <span class="badge bg-light text-secondary border rounded-pill" style="font-size: 9px;">Lunas</span>
                             </div>
                         </div>

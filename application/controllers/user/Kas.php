@@ -14,26 +14,28 @@ class Kas extends CI_Controller {
     public function index() {
         $data['page_title'] = 'Laporan Kas Warga';
         
-        // Ambil data total pemasukan dari iuran yang sudah lunas
-        $total_pemasukan = $this->db->select_sum('jumlah_bayar')
-                                    ->where('status', 'Lunas')
-                                    ->get('pembayaran_iuran')
-                                    ->row()
-                                    ->jumlah_bayar; // Menggunakan jumlah_bayar alias nominal yg dibayar
+        // 1. Hitung Total Pemasukan (Status: disetujui)
+        // Karena nominal ada di tabel iuran_master, kita harus JOIN
+        $this->db->select_sum('i.nominal');
+        $this->db->from('pembayaran_iuran p');
+        $this->db->join('iuran_master i', 'i.id = p.iuran_id');
+        $this->db->where('p.status', 'disetujui');
+        
+        $query = $this->db->get();
+        $total_pemasukan = $query->row()->nominal;
                                     
         // Karena belum ada tabel pengeluaran, kita set pengeluaran dummy atau 0
-        // Untuk simulasi agar terlihat func, saya set 0 dulu
         $data['pemasukan'] = $total_pemasukan ? $total_pemasukan : 0;
         $data['pengeluaran'] = 0; 
         $data['saldo'] = $data['pemasukan'] - $data['pengeluaran'];
 
-        // Ambil riwayat pemasukan terakhir (5 transaksi terakhir)
-        $this->db->select('p.*, w.nama_lengkap, i.nama_iuran');
+        // 2. Ambil Riwayat Transaksi
+        $this->db->select('p.*, w.nama_lengkap, i.nama_iuran, i.nominal'); // Select i.nominal
         $this->db->from('pembayaran_iuran p');
-        $this->db->join('warga w', 'w.id_warga = p.id_warga');
-        $this->db->join('iuran_master i', 'i.id_iuran = p.id_iuran');
-        $this->db->where('p.status', 'Lunas');
-        $this->db->order_by('p.tanggal_bayar', 'DESC');
+        $this->db->join('warga w', 'w.id = p.warga_id'); // Note: cek id_warga vs warga_id di tabel warga
+        $this->db->join('iuran_master i', 'i.id = p.iuran_id');
+        $this->db->where('p.status', 'disetujui');
+        $this->db->order_by('p.tgl_bayar', 'DESC'); // tgl_bayar bukan tanggal_bayar
         $this->db->limit(10);
         $data['transaksi'] = $this->db->get()->result_array();
 
