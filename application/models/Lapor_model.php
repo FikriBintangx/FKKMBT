@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Lapor_model extends CI_Model {
     
     public function __construct() {
-        parent::__construct();
+        // parent::__construct(); // Removed to fix error
         $this->check_table();
     }
 
