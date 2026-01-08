@@ -1,9 +1,25 @@
 <?php $page_title = 'Iuran Saya'; ?>
 <?php $this->load->view('user/templates/header'); ?>
 
-<main class="container" style="padding-top: 0 !important; margin-top: 0 !important;">
+<!-- Green Header -->
+<div style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); padding: 20px; color: white;">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <a href="<?= base_url('user/dashboard') ?>" class="text-white text-decoration-none">
+                <i class="bi bi-arrow-left me-2"></i>
+            </a>
+            <h4 class="fw-bold mb-1 mt-2">Iuran Saya</h4>
+            <p class="mb-0 small opacity-75">Bayar iuran dan lihat riwayat pembayaran</p>
+        </div>
+        <a href="<?= base_url('auth/logout') ?>" class="btn btn-light btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i>Logout
+        </a>
+    </div>
+</div>
+
+<main class="container py-4">
     <!-- Page Header -->
-    <div class="mb-4">
+    <div class="mb-4" style="display: none;">
         <h2 class="fw-bold mb-1">Iuran Saya</h2>
         <p class="text-muted mb-0">Bayar iuran dan lihat riwayat pembayaran</p>
     </div>

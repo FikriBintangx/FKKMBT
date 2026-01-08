@@ -1,9 +1,25 @@
 <?php $page_title = 'Profil Saya'; ?>
 <?php $this->load->view('user/templates/header'); ?>
 
-<main class="container" style="padding-top: 0 !important; margin-top: 0 !important;">
+<!-- Green Header -->
+<div style="background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); padding: 20px; color: white;">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div>
+            <a href="<?= base_url('user/dashboard') ?>" class="text-white text-decoration-none">
+                <i class="bi bi-arrow-left me-2"></i>
+            </a>
+            <h4 class="fw-bold mb-1 mt-2">Manajemen Profil</h4>
+            <p class="mb-0 small opacity-75">Kelola informasi profil dan keamanan akun</p>
+        </div>
+        <a href="<?= base_url('auth/logout') ?>" class="btn btn-light btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i>Logout
+        </a>
+    </div>
+</div>
+
+<main class="container py-4">
     <!-- Page Header -->
-    <div class="mb-4">
+    <div class="mb-4" style="display: none;">
         <h2 class="fw-bold mb-1">Profil Saya</h2>
         <p class="text-muted mb-0">Kelola informasi profil dan keamanan akun</p>
     </div>
@@ -43,7 +59,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label text-muted small">Email</label>
-                    <input type="text" class="form-control" value="<?= $user->email ?? '-' ?>" readonly>
+                    <input type="text" class="form-control" value="<?= isset($user->email) ? $user->email : '-' ?>" readonly>
                 </div>
                 <div class="col-md-6">
                     <label class="form-label text-muted small">No. HP</label>
