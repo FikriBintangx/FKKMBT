@@ -2,22 +2,24 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Kelola Iuran - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin-mobile.css') ?>">
 </head>
 <body class="bg-light">
     <?php $this->load->view('admin/templates/navbar'); ?>
 
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row align-items-start">
+            <div class="mb-3 mb-md-0">
                 <h3 class="fw-bold m-0">Keuangan & Iuran</h3>
                 <p class="text-muted m-0">Verifikasi pembayaran warga dan kelola tagihan</p>
             </div>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addMaster">
+            <button class="btn btn-primary w-100 w-md-auto" data-bs-toggle="modal" data-bs-target="#addMaster">
                 <i class="bi bi-plus-lg me-2"></i> Buat Tagihan
             </button>
         </div>
@@ -46,8 +48,8 @@
                         <div class="d-flex flex-column gap-3">
                             <?php foreach($pending_data as $row): ?>
                             <div class="p-3 bg-white border rounded-3 hover-shadow transition-all d-flex align-items-center justify-content-between flex-wrap gap-3">
-                                <div class="d-flex align-items-center gap-3">
-                                    <div class="bg-light rounded-circle d-flex align-items-center justify-content-center text-muted fw-bold" style="width:45px;height:45px;">
+                                <div class="d-flex align-items-center gap-3 w-100 w-md-auto">
+                                    <div class="bg-light rounded-circle d-flex align-items-center justify-content-center text-muted fw-bold flex-shrink-0" style="width:45px;height:45px;">
                                         <?= substr($row['nama_lengkap'], 0, 1) ?>
                                     </div>
                                     <div>
@@ -55,7 +57,7 @@
                                         <div class="small text-muted">Blok <?= $row['blok'] ?>/<?= $row['no_rumah'] ?> &bull; <span class="text-primary"><?= $row['nama_iuran'] ?></span></div>
                                     </div>
                                 </div>
-                                <div class="d-flex align-items-center gap-3">
+                                <div class="d-flex align-items-center gap-3 w-100 w-md-auto justify-content-between mt-2 mt-md-0">
                                     <div class="text-end">
                                         <div class="fw-bold text-success fs-5">Rp <?= number_format($row['nominal'],0,',','.') ?></div>
                                         <small class="text-muted"><?= date('d M Y', strtotime($row['tgl_bayar'])) ?></small>
