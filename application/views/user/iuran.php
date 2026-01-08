@@ -1,240 +1,165 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Keuangan - FKKMBT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
-    <style>
-        .finance-hero {
-            background: var(--primary-gradient);
-            padding: 20px 20px 60px;
-            border-radius: 0 0 32px 32px;
-            color: white;
-            position: relative;
-        }
-        .bill-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
-            border: 1px solid rgba(0,0,0,0.02);
-            position: relative;
-            overflow: hidden;
-        }
-        .bill-card:active { transform: scale(0.98); }
-        .bill-card::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0; bottom: 0;
-            width: 6px;
-            background: var(--danger-color);
-        }
-        .history-item {
-            background: white;
-            padding: 16px;
-            border-radius: 16px;
-            margin-bottom: 12px;
-            border: 1px solid #f1f5f9;
-        }
-        .icon-box {
-            width: 42px; height: 42px;
-            border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px;
-        }
-        .badge-pill {
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-    </style>
-</head>
-<body class="bg-light">
+<?php $page_title = 'Iuran Saya'; ?>
+<?php $this->load->view('user/templates/header'); ?>
 
-    <!-- App Bar -->
-    <div class="app-bar d-lg-none shadow-none">
-        <div class="d-flex align-items-center gap-3">
-            <a href="<?= base_url('user/dashboard') ?>" class="text-white"><i class="bi bi-chevron-left fs-4"></i></a>
-            <span class="fw-bold text-white">Dompet Warga</span>
-        </div>
+<main class="container py-4">
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">Iuran Saya</h2>
+        <p class="text-muted mb-0">Bayar iuran dan lihat riwayat pembayaran</p>
     </div>
 
-    <!-- Hero Section -->
-    <div class="finance-hero">
-        <div class="text-center">
-            <span class="opacity-75 small text-uppercase fw-bold ls-1">Total Tagihan Anda</span>
-            <?php $total_unpaid = array_sum(array_column($tagihan, 'nominal')); ?>
-            <h1 class="display-4 fw-bold mb-0">Rp <?= number_format($total_unpaid, 0, ',', '.') ?></h1>
-            <p class="small opacity-75 mt-2 mb-0">Segera selesaikan pembayaran agar layanan tidak terganggu.</p>
-        </div>
+    <!-- Alert Messages -->
+    <?php if ($this->session->flashdata('success_msg')): ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle-fill me-2"></i><?= $this->session->flashdata('success_msg') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
+    <?php endif; ?>
 
-    <main class="container" style="margin-top: -40px; position: relative; z-index: 10;">
-        
-        <!-- Navigation Tabs (Visual only) -->
-        <div class="d-flex justify-content-center gap-2 mb-4">
-            <button class="btn btn-light bg-white shadow-sm rounded-pill px-4 fw-bold text-primary">Tagihan</button>
-            <button class="btn btn-link text-white text-decoration-none opacity-75 fw-bold" onclick="document.getElementById('historySection').scrollIntoView({behavior: 'smooth'})">Riwayat</button>
-        </div>
+    <?php if ($this->session->flashdata('error_msg')): ?>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i><?= $this->session->flashdata('error_msg') ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    <?php endif; ?>
 
-        <!-- Tagihan Section -->
-        <section class="mb-4">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <h6 class="fw-bold text-dark text-uppercase small ls-1 mb-0">Menunggu Pembayaran</h6>
-                <span class="badge bg-danger rounded-pill"><?= count($tagihan) ?> Item</span>
-            </div>
-
-            <?php if(empty($tagihan)): ?>
-                <div class="text-center py-5 bg-white rounded-4 shadow-sm">
-                    <div class="mb-3">
-                        <div class="mx-auto bg-success-subtle rounded-circle d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                            <i class="bi bi-check-lg fs-1 text-success"></i>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold text-dark">Luar Biasa!</h5>
-                    <p class="text-muted small mb-0 px-4">Tidak ada tagihan tertunggak. Terima kasih telah menjadi warga yang taat.</p>
-                </div>
-            <?php else: ?>
-                <?php foreach($tagihan as $t): ?>
-                    <div class="bill-card mb-3">
+    <!-- Iuran Aktif -->
+    <div class="mb-4">
+        <h5 class="fw-bold mb-3">Iuran Aktif</h5>
+        <div class="row g-3">
+            <?php foreach($iuran_aktif as $iuran): ?>
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body p-4">
                         <div class="d-flex justify-content-between align-items-start mb-3">
-                            <div class="d-flex gap-3">
-                                <div class="icon-box bg-danger-subtle text-danger">
-                                    <i class="bi bi-receipt"></i>
-                                </div>
-                                <div>
-                                    <h6 class="fw-bold text-dark mb-1"><?= $t['nama_iuran'] ?></h6>
-                                    <small class="text-muted d-block">Iuran Wajib Bulanan</small>
-                                </div>
+                            <div>
+                                <h6 class="fw-bold mb-1"><?= $iuran['nama_iuran'] ?></h6>
+                                <small class="text-muted"><?= $iuran['keterangan'] ?></small>
                             </div>
-                            <div class="text-end">
-                                <h6 class="fw-bold text-danger mb-0">Rp <?= number_format($t['nominal'], 0, ',', '.') ?></h6>
+                            <div class="bg-success-subtle text-success rounded-pill px-3 py-1">
+                                <small class="fw-bold">Rp <?= number_format($iuran['nominal'], 0, ',', '.') ?></small>
                             </div>
                         </div>
-                        <button class="btn btn-dark w-100 rounded-pill py-2 fw-bold" onclick="openPayment('<?= $t['id'] ?>', '<?= $t['nama_iuran'] ?>', '<?= $t['nominal'] ?>')">
-                            Bayar Sekarang <i class="bi bi-arrow-right-short ms-1"></i>
+                        <div class="mb-3">
+                            <small class="text-muted">
+                                <i class="bi bi-calendar-event me-1"></i>
+                                Jatuh Tempo: <?= date('d M Y', strtotime($iuran['jatuh_tempo'])) ?>
+                            </small>
+                        </div>
+                        <button class="btn btn-primary w-100" onclick="showUploadModal(<?= $iuran['id'] ?>, '<?= $iuran['nama_iuran'] ?>', <?= $iuran['nominal'] ?>)">
+                            <i class="bi bi-upload me-2"></i>Upload Bukti Bayar
                         </button>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </section>
-
-        <!-- History Section -->
-        <section id="historySection" class="mb-5 pb-5">
-            <h6 class="fw-bold text-dark text-uppercase small ls-1 mb-3">Riwayat Transaksi</h6>
-            
-            <?php if(empty($riwayat)): ?>
-                <p class="text-center text-muted small py-4">Belum ada riwayat transaksi.</p>
-            <?php else: ?>
-                <?php foreach($riwayat as $r): ?>
-                    <div class="history-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex gap-3 align-items-center">
-                            <?php 
-                                $status_color = 'warning';
-                                $icon = 'bi-clock-history';
-                                if($r['status'] == 'disetujui') { $status_color = 'success'; $icon = 'bi-check-circle-fill'; }
-                                if($r['status'] == 'ditolak') { $status_color = 'danger'; $icon = 'bi-x-circle-fill'; }
-                            ?>
-                            <div class="icon-box bg-<?= $status_color ?>-subtle text-<?= $status_color ?>">
-                                <i class="bi <?= $icon ?>"></i>
-                            </div>
-                            <div>
-                                <h6 class="fw-bold text-dark mb-0" style="font-size: 14px;"><?= $r['nama_iuran'] ?></h6>
-                                <small class="text-muted" style="font-size: 11px;"><?= date('d M Y • H:i', strtotime($r['tgl_bayar'])) ?></small>
-                            </div>
-                        </div>
-                        <div class="text-end">
-                            <h6 class="fw-bold text-<?= $status_color ?> mb-1" style="font-size: 14px;">Rp <?= number_format($r['nominal'], 0, ',', '.') ?></h6>
-                            <span class="badge bg-<?= $status_color ?>-subtle text-<?= $status_color ?> rounded-pill" style="font-size: 9px; padding: 2px 8px;"><?= strtoupper($r['status']) ?></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </section>
-
-    </main>
-
-    <!-- Payment Modal (Bottom Sheet Style) -->
-    <div class="modal fade" id="payModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-bottom modal-dialog-scrollable">
-            <form action="<?= base_url('user/iuran/bayar') ?>" method="POST" enctype="multipart/form-data" class="modal-content rounded-top-5 border-0">
-                <div class="modal-header border-0 pb-0 justify-content-center">
-                    <div style="width: 50px; height: 5px; background: #e2e8f0; border-radius: 10px;"></div>
                 </div>
-                <div class="modal-body pt-4 px-4 pb-0">
-                    <div class="text-center mb-4">
-                        <div class="text-muted small fw-bold text-uppercase ls-1">Konfirmasi Pembayaran</div>
-                        <h2 class="fw-bold text-dark mt-1" id="payAmount">Rp 0</h2>
-                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill mt-2" id="payTitle">...</span>
-                    </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 
-                    <div class="card bg-light border-0 rounded-4 p-3 mb-4">
-                        <div class="d-flex gap-3 align-items-center">
-                            <div class="bg-white p-2 rounded-3 shadow-sm">
-                                <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png" style="height: 20px;">
-                            </div>
-                            <div>
-                                <small class="text-muted d-block" style="font-size: 10px;">REKENING TUJUAN</small>
-                                <span class="fw-bold">1234 567 890 (FKKMBT)</span>
-                            </div>
-                            <button type="button" class="btn btn-white btn-sm ms-auto shadow-sm rounded-circle"><i class="bi bi-copy"></i></button>
-                        </div>
-                    </div>
+    <!-- Riwayat Pembayaran -->
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-body p-4">
+            <h5 class="fw-bold mb-3">Riwayat Pembayaran</h5>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="bg-light">
+                        <tr>
+                            <th class="border-0">Tanggal</th>
+                            <th class="border-0">Jenis Iuran</th>
+                            <th class="border-0">Nominal</th>
+                            <th class="border-0">Status</th>
+                            <th class="border-0">Catatan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if(!empty($riwayat_bayar)): ?>
+                            <?php foreach($riwayat_bayar as $row): ?>
+                            <tr>
+                                <td><?= date('d M Y', strtotime($row['tgl_bayar'])) ?></td>
+                                <td><?= $row['nama_iuran'] ?></td>
+                                <td>Rp <?= number_format($row['nominal'], 0, ',', '.') ?></td>
+                                <td>
+                                    <?php if($row['status'] == 'pending'): ?>
+                                        <span class="badge bg-warning">Menunggu Verifikasi</span>
+                                    <?php elseif($row['status'] == 'disetujui'): ?>
+                                        <span class="badge bg-success">Disetujui</span>
+                                    <?php else: ?>
+                                        <span class="badge bg-danger">Ditolak</span>
+                                    <?php endif; ?>
+                                </td>
+                                <td>
+                                    <?php if($row['status'] == 'ditolak' && !empty($row['catatan_admin'])): ?>
+                                        <small class="text-danger"><?= $row['catatan_admin'] ?></small>
+                                    <?php else: ?>
+                                        <small class="text-muted">-</small>
+                                    <?php endif; ?>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center py-5 text-muted">
+                                    <i class="bi bi-inbox fs-1 d-block mb-2"></i>
+                                    Belum ada riwayat pembayaran
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
 
-                    <input type="hidden" name="iuran_id" id="payId">
+<!-- Upload Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title fw-bold">Upload Bukti Pembayaran</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form action="<?= base_url('user/iuran/upload') ?>" method="POST" enctype="multipart/form-data">
+                <input type="hidden" name="iuran_id" id="upload_iuran_id">
+                <div class="modal-body p-4">
+                    <div class="alert alert-info mb-3">
+                        <strong id="upload_nama_iuran"></strong><br>
+                        <small>Nominal: <span id="upload_nominal"></span></small>
+                    </div>
                     
                     <div class="mb-3">
-                        <label class="form-label small fw-bold text-muted">UPLOAD BUKTI TRANSFER</label>
-                        <input type="file" name="bukti" class="form-control form-control-lg fs-6" accept="image/*" required style="border-radius: 16px;">
-                        <small class="text-muted" style="font-size: 10px;">Format: JPG, PNG. Maks 2MB</small>
+                        <label class="form-label fw-semibold">Bukti Transfer *</label>
+                        <input type="file" name="bukti_transfer" class="form-control" accept="image/*,application/pdf" required>
+                        <small class="text-muted">Format: JPG, PNG, atau PDF. Maksimal 2MB</small>
+                    </div>
+                    
+                    <div class="alert alert-warning">
+                        <small>
+                            <i class="bi bi-info-circle me-1"></i>
+                            <strong>Petunjuk:</strong><br>
+                            1. Pastikan foto/scan bukti transfer jelas dan terbaca<br>
+                            2. Nominal transfer harus sesuai dengan jumlah iuran<br>
+                            3. Pembayaran akan diverifikasi oleh admin
+                        </small>
                     </div>
                 </div>
-                <div class="modal-footer border-0 p-4">
-                    <button type="submit" class="btn btn-primary w-100 py-3 rounded-4 fw-bold shadow-lg">Kirim Konfirmasi</button>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary">Upload Bukti</button>
                 </div>
             </form>
         </div>
     </div>
+</div>
 
-    <style>
-        .modal-dialog-bottom {
-            margin: 0;
-            display: flex;
-            align-items: flex-end;
-            min-height: 100%;
-        }
-        .modal.fade .modal-dialog-bottom {
-            transform: translate(0, 100%);
-        }
-        .modal.show .modal-dialog-bottom {
-            transform: none;
-            transition: transform 0.3s ease-out;
-        }
-        .modal-content.rounded-top-5 {
-            border-radius: 32px 32px 0 0 !important;
-        }
-    </style>
+<script>
+function showUploadModal(id, nama, nominal) {
+    document.getElementById('upload_iuran_id').value = id;
+    document.getElementById('upload_nama_iuran').textContent = nama;
+    document.getElementById('upload_nominal').textContent = 'Rp ' + nominal.toLocaleString('id-ID');
+    
+    new bootstrap.Modal(document.getElementById('uploadModal')).show();
+}
+</script>
 
-    <!-- Native Bottom Nav -->
-    <?php $this->load->view('templates/mobile_nav'); ?>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function openPayment(id, title, amount) {
-            document.getElementById('payId').value = id;
-            document.getElementById('payTitle').innerText = title;
-            document.getElementById('payAmount').innerText = 'Rp ' + parseInt(amount).toLocaleString('id-ID');
-            new bootstrap.Modal(document.getElementById('payModal')).show();
-        }
-    </script>
-</body>
-</html>
+<?php $this->load->view('user/templates/footer'); ?>
