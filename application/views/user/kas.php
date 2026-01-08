@@ -10,7 +10,7 @@
             <h5 class="fw-bold mb-0">Kas Warga</h5>
             <p class="mb-0 small opacity-75">Transparansi keuangan lingkungan</p>
         </div>
-        <button class="btn btn-white-glass btn-sm border-0 bg-white bg-opacity-20 text-white rounded-pill px-3">
+        <button class="btn btn-sm border-0 text-white rounded-pill px-3 shadow-none" style="background: rgba(255,255,255,0.2);">
             <i class="bi bi-calendar-check me-1"></i> Bulan Ini
         </button>
     </div>

@@ -52,7 +52,12 @@
     </div>
 
     <!-- Riwayat (Placeholder) -->
-    <h6 class="fw-bold mb-3 px-1">Riwayat Laporan</h6>
+    <div class="d-flex justify-content-between align-items-center mb-3 px-1">
+        <h6 class="fw-bold mb-0">Riwayat Laporan</h6>
+        <button class="btn btn-sm btn-outline-secondary rounded-pill fw-bold" onclick="window.print()">
+            <i class="bi bi-printer me-1"></i> Cetak
+        </button>
+    </div>
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body text-center py-5">
             <img src="https://cdn-icons-png.flaticon.com/512/7486/7486747.png" width="80" class="mb-3 opacity-50">

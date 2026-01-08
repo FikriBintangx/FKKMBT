@@ -12,7 +12,7 @@
                 <h5 class="fw-bold mb-0">Halo, <?= explode(' ', $warga['nama_lengkap'])[0] ?>! 👋</h5>
             </div>
         </div>
-        <a href="<?= base_url('user/notifikasi') ?>" class="btn btn-white-glass position-relative rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);">
+        <a href="<?= base_url('user/notifikasi') ?>" class="btn position-relative rounded-circle p-2 d-flex align-items-center justify-content-center border-0 shadow-none" style="width: 40px; height: 40px; background: rgba(255,255,255,0.2); backdrop-filter: blur(5px);">
             <i class="bi bi-bell-fill text-white"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-white" style="font-size: 8px;">3</span>
         </a>
@@ -60,7 +60,7 @@
             <!-- Menu Items -->
             <div class="col-3 text-center">
                 <a href="<?= base_url('user/lapor') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-danger bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                         <i class="bi bi-megaphone-fill text-danger fs-4"></i>
                     </div>
                     <small class="fw-bold small-font">Lapor</small>
@@ -69,7 +69,7 @@
             
             <div class="col-3 text-center">
                 <a href="<?= base_url('user/surat') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-primary bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-file-earmark-text-fill text-primary fs-4"></i>
                     </div>
                     <small class="fw-bold small-font">Surat</small>
@@ -78,7 +78,7 @@
 
             <div class="col-3 text-center">
                 <a href="<?= base_url('user/lapak') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-warning bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-shop text-warning fs-4"></i>
                     </div>
                     <small class="fw-bold small-font">Lapak</small>
@@ -87,7 +87,7 @@
 
             <div class="col-3 text-center">
                 <a href="<?= base_url('user/sos') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-danger rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-danger rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px; box-shadow: 0 4px 10px rgba(220,53,69,0.3)!important;">
                          <i class="bi bi-broadcast text-white fs-4"></i>
                     </div>
                     <small class="fw-bold text-danger small-font">SOS</small>
@@ -97,7 +97,7 @@
             <!-- Row 2 -->
              <div class="col-3 text-center mt-3">
                 <a href="<?= base_url('user/kas') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-info bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-briefcase-fill text-info fs-4"></i>
                     </div>
                     <small class="fw-bold small-font">Kas</small>
@@ -105,26 +105,26 @@
             </div>
              <div class="col-3 text-center mt-3">
                 <a href="<?= base_url('user/forum') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                    <div class="bg-success bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
                          <i class="bi bi-chat-dots-fill text-success fs-4"></i>
                     </div>
                     <small class="fw-bold small-font">Forum</small>
                 </a>
             </div>
              <div class="col-3 text-center mt-3">
-                <a href="<?= base_url('user/cctv') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
-                         <i class="bi bi-camera-video-fill text-secondary fs-4"></i>
+                <a href="<?= base_url('user/struktur/fkkmbt') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
+                    <div class="bg-secondary bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                         <i class="bi bi-diagram-3-fill text-dark fs-4"></i>
                     </div>
-                    <small class="fw-bold small-font">CCTV</small>
+                    <small class="fw-bold small-font">FKKMBT</small>
                 </a>
             </div>
              <div class="col-3 text-center mt-3">
-                <a href="<?= base_url('user/lainnya') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
-                    <div class="bg-white rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
-                         <i class="bi bi-grid-fill text-dark fs-4"></i>
+                <a href="<?= base_url('user/struktur/fkkmmbt') ?>" class="text-decoration-none text-dark d-block card-hover-effect">
+                    <div class="bg-secondary bg-opacity-10 rounded-4 shadow-sm p-3 mb-2 d-flex align-items-center justify-content-center mx-auto aspect-ratio-1" style="width: 60px; height: 60px;">
+                         <i class="bi bi-people-fill text-secondary fs-4"></i>
                     </div>
-                    <small class="fw-bold small-font">Lainnya</small>
+                    <small class="fw-bold small-font">FKKMMBT</small>
                 </a>
             </div>
         </div>

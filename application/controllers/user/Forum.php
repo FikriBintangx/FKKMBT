@@ -8,10 +8,28 @@ class Forum extends CI_Controller {
         if (!$this->session->userdata('user_id') || $this->session->userdata('role') != 'warga') {
             redirect('auth/login');
         }
+        $this->load->model('Forum_model');
     }
     
     public function index() {
         $data['page_title'] = 'Forum Warga';
+        $data['forums'] = $this->Forum_model->get_all_forum();
         $this->load->view('user/forum', $data);
+    }
+
+    public function submit() {
+        $konten = $this->input->post('konten');
+        if (!empty($konten)) {
+            $data = [
+                'warga_id' => $this->session->userdata('warga_id'), // Pastikan session warga_id ada
+                'konten' => $konten,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
+            $this->Forum_model->create_forum($data);
+            $this->session->set_flashdata('success', 'Postingan berhasil dikirim!');
+        } else {
+            $this->session->set_flashdata('error', 'Konten tidak boleh kosong.');
+        }
+        redirect('user/forum');
     }
 }

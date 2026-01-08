@@ -11,7 +11,7 @@
             <h5 class="fw-bold mb-0">Manajemen Profil</h5>
             <p class="mb-0 small opacity-75">Kelola informasi profil dan akun</p>
         </div>
-        <a href="<?= base_url('auth/logout') ?>" class="btn btn-white-glass btn-sm border-0 bg-white bg-opacity-20 text-white rounded-pill px-3">
+        <a href="<?= base_url('auth/logout') ?>" class="btn btn-sm border-0 text-white rounded-pill px-3 shadow-none" style="background: rgba(255,255,255,0.2);">
             <i class="bi bi-box-arrow-right me-1"></i>Logout
         </a>
     </div>
