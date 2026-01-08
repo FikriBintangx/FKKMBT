@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - FKKMBT</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
@@ -18,6 +19,14 @@
             margin-bottom: -60px;
             position: relative;
             overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header {
+                padding: 30px 0 60px;
+                border-radius: 0 0 30px 30px;
+                margin-bottom: -40px;
+            }
         }
 
         .dashboard-header::before {

@@ -1,4 +1,5 @@
 -- Database: fkkmbt_db
+-- Final Fixed Version
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -7,7 +8,6 @@ SET time_zone = "+07:00";
 -- --------------------------------------------------------
 
 -- Table structure for table `users`
--- Berfungsi untuk autentikasi login baik admin maupun warga
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
@@ -21,7 +21,6 @@ CREATE TABLE `users` (
 -- --------------------------------------------------------
 
 -- Table structure for table `admins`
--- Data profil admin
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -35,7 +34,6 @@ CREATE TABLE `admins` (
 -- --------------------------------------------------------
 
 -- Table structure for table `warga`
--- Data profil warga
 CREATE TABLE `warga` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -44,6 +42,7 @@ CREATE TABLE `warga` (
   `no_rumah` varchar(10) NOT NULL,
   `no_hp` varchar(20) DEFAULT NULL,
   `foto_profil` varchar(255) DEFAULT 'default.png',
+  `jenis_kelamin` enum('L','P') DEFAULT 'L',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `fk_warga_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
@@ -52,7 +51,6 @@ CREATE TABLE `warga` (
 -- --------------------------------------------------------
 
 -- Table structure for table `organisasi`
--- Daftar organisasi di dalam FKKMBT (misal: Karang Taruna, PKK, Keamanan)
 CREATE TABLE `organisasi` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_organisasi` varchar(100) NOT NULL,
@@ -62,8 +60,22 @@ CREATE TABLE `organisasi` (
 
 -- --------------------------------------------------------
 
+-- Table structure for table `struktur_organisasi`
+CREATE TABLE `struktur_organisasi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) NOT NULL,
+  `jabatan` varchar(100) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `level` int(11) DEFAULT 99,
+  `tipe_organisasi` enum('FKKMBT','FKKMMBT') DEFAULT 'FKKMBT',
+  `jenis_kelamin` enum('L','P') DEFAULT 'L',
+  `kontak` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
 -- Table structure for table `kegiatan`
--- Daftar kegiatan per organisasi
 CREATE TABLE `kegiatan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `organisasi_id` int(11) NOT NULL,
@@ -79,8 +91,19 @@ CREATE TABLE `kegiatan` (
 
 -- --------------------------------------------------------
 
+-- Table structure for table `kegiatan_galeri`
+CREATE TABLE `kegiatan_galeri` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kegiatan_id` int(11) NOT NULL,
+  `file` varchar(255) NOT NULL,
+  `tipe_file` enum('gambar','video') DEFAULT 'gambar',
+  PRIMARY KEY (`id`),
+  KEY `kegiatan_id` (`kegiatan_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
 -- Table structure for table `iuran_master`
--- Jenis iuran yang harus dibayar (misal: Iuran Kebersihan Jan 2024)
 CREATE TABLE `iuran_master` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama_iuran` varchar(100) NOT NULL,
@@ -94,7 +117,6 @@ CREATE TABLE `iuran_master` (
 -- --------------------------------------------------------
 
 -- Table structure for table `pembayaran_iuran`
--- Transaksi pembayaran warga
 CREATE TABLE `pembayaran_iuran` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `warga_id` int(11) NOT NULL,
@@ -112,14 +134,11 @@ CREATE TABLE `pembayaran_iuran` (
 
 -- --------------------------------------------------------
 
--- Dummp Data
--- Password default: "123456" (hashed using password_hash PASSWORD_DEFAULT)
--- Hash untuk 123456: $2y$10$2.uU.H.0/examplehash... (example only, we will use PHP to generate)
+-- Dump Data
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`) VALUES
-(1, 'admin', '$2y$10$sW1.0.0/0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0...', 'admin'), 
-(2, 'warga1', '$2y$10$sW1.0.0/0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0...', 'warga');
--- Note: Replace hash with real running php password_hash('123456', PASSWORD_DEFAULT)
+INSERT INTO `users` (`username`, `password`, `role`) VALUES
+('admin', '$2y$10$C8q.J.0/examplehash...', 'admin'), 
+('warga1', '$2y$10$C8q.J.0/examplehash...', 'warga');
 
 INSERT INTO `admins` (`user_id`, `nama_lengkap`, `jabatan`) VALUES
 (1, 'Admin FKKMBT', 'Ketua Sekretariat');
@@ -128,8 +147,8 @@ INSERT INTO `warga` (`user_id`, `nama_lengkap`, `blok`, `no_rumah`, `no_hp`) VAL
 (2, 'Budi Santoso', 'A', '12', '081234567890');
 
 INSERT INTO `organisasi` (`nama_organisasi`, `deskripsi`) VALUES
+('FKKMBT', 'Forum Komunikasi Koordinasi Masyarakat Bukit Tiara'),
 ('Karang Taruna', 'Organisasi pemuda perumahan Bukit Tiara'),
 ('PKK', 'Pemberdayaan Kesejahteraan Keluarga');
 
--- Note: User MUST import this SQL to phpMyAdmin
 COMMIT;

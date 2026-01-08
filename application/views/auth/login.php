@@ -180,6 +180,30 @@
             font-size: 1.2rem;
         }
         .toggle-password:hover { color: var(--text-main); }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 576px) {
+            body {
+                padding: 15px;
+                align-items: flex-start; /* Allow scrolling more easily if needed */
+                padding-top: 40px;
+            }
+            .portal-card {
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            .back-link {
+                position: relative;
+                top: auto; left: auto;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 20px;
+                color: rgba(255,255,255,0.9);
+            }
+            .portal-header { margin-bottom: 20px; }
+            .logo-box { width: 50px; height: 50px; font-size: 24px; }
+            .portal-title { font-size: 24px; }
+        }
     </style>
 </head>
 <body>
