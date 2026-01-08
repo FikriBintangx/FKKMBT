@@ -17,10 +17,25 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css') ?>">
     
     <style>
-        body {
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
             font-family: 'Inter', sans-serif;
             background-color: #f8f9fa;
-            padding-bottom: 80px; /* Space for bottom nav */
+        }
+        body {
+            padding-bottom: 80px !important; /* Space for bottom nav */
+        }
+        .container {
+            padding-top: 0 !important;
+        }
+        main.container {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
         }
     </style>
 </head>
