@@ -36,7 +36,7 @@ class Surat_model extends CI_Model {
     public function get_all_requests() {
         $this->db->select('pengajuan_surat.*, warga.nama_lengkap, warga.blok, warga.no_rumah');
         $this->db->from('pengajuan_surat');
-        $this->db->join('warga', 'warga.id_warga = pengajuan_surat.warga_id');
+        $this->db->join('warga', 'warga.id = pengajuan_surat.warga_id');
         $this->db->order_by('pengajuan_surat.created_at', 'DESC');
         return $this->db->get()->result_array();
     }

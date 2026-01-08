@@ -39,7 +39,7 @@ class Lapor_model extends CI_Model {
     public function get_all_laporan() {
         $this->db->select('laporan_warga.*, warga.nama_lengkap, warga.blok, warga.no_rumah');
         $this->db->from('laporan_warga');
-        $this->db->join('warga', 'warga.id_warga = laporan_warga.warga_id');
+        $this->db->join('warga', 'warga.id = laporan_warga.warga_id');
         $this->db->order_by('laporan_warga.created_at', 'DESC');
         return $this->db->get()->result_array();
     }
