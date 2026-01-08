@@ -10,12 +10,17 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
     <style>
+        body {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+        }
         .hero-section {
             background: var(--primary-gradient);
-            padding: 40px 20px 80px;
+            padding: 20px 20px 60px;
             border-radius: 0 0 40px 40px;
             color: white;
-            margin-bottom: -60px;
+            margin-bottom: -40px;
+            margin-top: 0;
         }
         .balance-card {
             background: white;
