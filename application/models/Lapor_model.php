@@ -34,4 +34,22 @@ class Lapor_model extends CI_Model {
         $this->db->order_by('created_at', 'DESC');
         return $this->db->get('laporan_warga')->result_array();
     }
+
+    // Fungsi Khusus Admin
+    public function get_all_laporan() {
+        $this->db->select('laporan_warga.*, warga.nama_lengkap, warga.blok, warga.no_rumah');
+        $this->db->from('laporan_warga');
+        $this->db->join('warga', 'warga.id_warga = laporan_warga.warga_id');
+        $this->db->order_by('laporan_warga.created_at', 'DESC');
+        return $this->db->get()->result_array();
+    }
+
+    public function update_status($id, $status, $tanggapan = null) {
+        $data = ['status' => $status];
+        if($tanggapan) {
+            $data['tanggapan'] = $tanggapan;
+        }
+        $this->db->where('id', $id);
+        return $this->db->update('laporan_warga', $data);
+    }
 }

@@ -39,12 +39,21 @@
                                 </td>
                                 <td><?= $r['jenis_surat'] ?></td>
                                 <td><?= substr($r['keperluan'],0,50) ?>...</td>
-                                <td><?= date('d M Y', strtotime($r['tgl_request'])) ?></td>
-                                <td><span class="badge bg-<?= $r['status']=='PENDING'?'warning':($r['status']=='APPROVED'?'success':'danger') ?>"><?= $r['status'] ?></span></td>
+                                <td><?= date('d M Y', strtotime($r['created_at'])) ?></td>
+                                <td>
+                                    <?php 
+                                    $s = strtolower($r['status']);
+                                    $badge = 'secondary';
+                                    if($s == 'pending') $badge = 'warning';
+                                    else if($s == 'selesai' || $s == 'approved') $badge = 'success';
+                                    else if($s == 'ditolak' || $s == 'rejected') $badge = 'danger';
+                                    ?>
+                                    <span class="badge bg-<?= $badge ?>"><?= ucfirst($r['status']) ?></span>
+                                </td>
                                 <td class="pe-4 text-end">
-                                    <?php if($r['status']=='PENDING'): ?>
-                                        <a href="<?= base_url('admin/surat/approve/'.$r['id']) ?>" class="btn btn-sm btn-success me-1">Setujui</a>
-                                        <a href="<?= base_url('admin/surat/reject/'.$r['id']) ?>" class="btn btn-sm btn-outline-danger">Tolak</a>
+                                    <?php if(strtolower($r['status'])=='pending'): ?>
+                                        <a href="<?= base_url('admin/surat/approve/'.$r['id']) ?>" class="btn btn-sm btn-success me-1" onclick="return confirm('Setujui surat ini?')">Setujui</a>
+                                        <a href="<?= base_url('admin/surat/reject/'.$r['id']) ?>" class="btn btn-sm btn-outline-danger" onclick="return confirm('Tolak surat ini?')">Tolak</a>
                                     <?php else: ?>
                                         <span class="text-muted small">Selesai</span>
                                     <?php endif; ?>

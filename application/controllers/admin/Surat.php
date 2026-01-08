@@ -18,13 +18,13 @@ class Surat extends CI_Controller {
 
     public function approve($id) {
         // In real world, generate PDF here
-        $this->Surat_model->update_status($id, 'APPROVED', 'Surat disetujui oleh Admin.');
+        $this->Surat_model->update_status($id, 'Selesai', 'Surat disetujui oleh Admin.');
         $this->session->set_flashdata('success_msg', 'Permohonan disetujui.');
         redirect('admin/surat');
     }
 
     public function reject($id) {
-        $this->Surat_model->update_status($id, 'REJECTED', 'Permohonan ditolak.');
+        $this->Surat_model->update_status($id, 'Ditolak', 'Permohonan ditolak.');
         $this->session->set_flashdata('success_msg', 'Permohonan ditolak.');
         redirect('admin/surat');
     }

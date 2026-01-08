@@ -31,4 +31,22 @@ class Surat_model extends CI_Model {
         $this->db->order_by('created_at', 'DESC');
         return $this->db->get('pengajuan_surat')->result_array();
     }
+
+    // Fungsi Khusus Admin
+    public function get_all_requests() {
+        $this->db->select('pengajuan_surat.*, warga.nama_lengkap, warga.blok, warga.no_rumah');
+        $this->db->from('pengajuan_surat');
+        $this->db->join('warga', 'warga.id_warga = pengajuan_surat.warga_id');
+        $this->db->order_by('pengajuan_surat.created_at', 'DESC');
+        return $this->db->get()->result_array();
+    }
+
+    public function update_status($id, $status, $keterangan = null) {
+        $data = ['status' => $status];
+        if($keterangan) {
+            $data['keterangan'] = $keterangan;
+        }
+        $this->db->where('id', $id);
+        return $this->db->update('pengajuan_surat', $data);
+    }
 }

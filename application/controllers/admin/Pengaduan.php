@@ -8,12 +8,12 @@ class Pengaduan extends CI_Controller {
         if (!$this->session->userdata('user_id') || $this->session->userdata('role') !== 'admin') {
             redirect('auth/login');
         }
-        $this->load->model('Pengaduan_model');
+        $this->load->model('Lapor_model');
     }
 
     public function index() {
-        $status = $this->input->get('status');
-        $data['laporan'] = $this->Pengaduan_model->get_all($status);
+        // Fetch all reports using Lapor_model
+        $data['laporan'] = $this->Lapor_model->get_all_laporan();
         $this->load->view('admin/pengaduan', $data);
     }
 
@@ -23,7 +23,8 @@ class Pengaduan extends CI_Controller {
             $status = $this->input->post('status');
             $tanggapan = $this->input->post('tanggapan');
 
-            if ($this->Pengaduan_model->update_status($id, $status, $tanggapan)) {
+            // Use Lapor_model logic
+            if ($this->Lapor_model->update_status($id, $status, $tanggapan)) {
                 $this->session->set_flashdata('success_msg', 'Status laporan berhasil diperbarui.');
             } else {
                 $this->session->set_flashdata('error_msg', 'Gagal memperbarui status.');

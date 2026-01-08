@@ -67,21 +67,24 @@
                                         <small class="text-muted">Blok <?= $row['blok'] ?>/<?= $row['no_rumah'] ?></small>
                                     </td>
                                     <td style="max-width: 300px;">
-                                        <div class="fw-bold text-dark mb-1"><?= $row['judul'] ?></div>
-                                        <p class="small text-secondary m-0 text-truncate"><?= $row['isi'] ?></p>
-                                        <?php if($row['tanggapan_admin']): ?>
-                                            <small class="text-success fst-italic mt-1 d-block"><i class="bi bi-reply me-1"></i><?= substr($row['tanggapan_admin'],0,30) ?>...</small>
+                                        <div class="fw-bold text-dark mb-1">
+                                            <span class="badge bg-secondary me-1"><?= $row['kategori'] ?></span>
+                                            <?= $row['judul'] ?>
+                                        </div>
+                                        <p class="small text-secondary m-0 text-truncate"><?= $row['deskripsi'] ?></p>
+                                        <?php if($row['tanggapan']): ?>
+                                            <small class="text-success fst-italic mt-1 d-block"><i class="bi bi-reply me-1"></i><?= substr($row['tanggapan'],0,30) ?>...</small>
                                         <?php endif; ?>
                                     </td>
                                     <td>
                                         <?php if($row['foto']): ?>
-                                            <img src="<?= base_url('assets/images/pengaduan/'.$row['foto']) ?>" class="lapor-img bg-light border" onclick="showImageModal(this.src)">
+                                            <img src="<?= base_url('assets/uploads/laporan/'.$row['foto']) ?>" class="lapor-img bg-light border" onclick="showImageModal(this.src)">
                                         <?php else: ?>
                                             <span class="text-muted small">-</span>
                                         <?php endif; ?>
                                     </td>
                                     <td>
-                                        <span class="status-badge status-<?= $row['status'] ?>"><?= $row['status'] ?></span>
+                                        <span class="status-badge status-<?= strtolower($row['status']) ?>"><?= $row['status'] ?></span>
                                     </td>
                                     <td class="text-end pe-4">
                                         <button class="btn btn-outline-primary btn-sm rounded-pill px-3" onclick='openRespond(<?= json_encode($row) ?>)'>
@@ -121,10 +124,10 @@
                     <div class="mb-3">
                         <label class="form-label small fw-bold">UPDATE STATUS</label>
                         <select name="status" id="resp_status" class="form-select form-select-lg">
-                            <option value="pending">Pending</option>
-                            <option value="proses">Sedang Diproses</option>
-                            <option value="selesai">Selesai</option>
-                            <option value="ditolak">Ditolak</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Proses">Sedang Diproses</option>
+                            <option value="Selesai">Selesai</option>
+                            <option value="Ditolak">Ditolak</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -156,9 +159,9 @@
         function openRespond(data) {
             document.getElementById('resp_id').value = data.id;
             document.getElementById('resp_judul').innerText = data.judul;
-            document.getElementById('resp_isi').innerText = data.isi;
+            document.getElementById('resp_isi').innerText = data.deskripsi;
             document.getElementById('resp_status').value = data.status;
-            document.getElementById('resp_tanggapan').value = data.tanggapan_admin || '';
+            document.getElementById('resp_tanggapan').value = data.tanggapan || '';
             
             new bootstrap.Modal(document.getElementById('respondModal')).show();
         }
