@@ -2,11 +2,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Kelola Kegiatan - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin-mobile.css') ?>">
     <style>
         .upload-area {
             border: 2px dashed #cbd5e1; border-radius: 12px; padding: 20px;
@@ -31,28 +33,31 @@
     <?php $this->load->view('admin/templates/navbar'); ?>
 
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold m-0">Kelola Kegiatan Warga</h3>
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row align-items-start gap-3">
             <div>
-                <button class="btn btn-outline-success me-2" onclick="toggleCalendar()"><i class="bi bi-calendar3 me-2"></i>Toggle Kalender</button>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+                 <h3 class="fw-bold m-0 text-success"><i class="bi bi-calendar2-week-fill me-2"></i>Agenda Kegiatan</h3>
+                 <p class="text-muted m-0">Jadwal dan dokumentasi kegiatan warga</p>
+            </div>
+            <div class="d-flex gap-2 w-100 w-md-auto">
+                <button class="btn btn-outline-success d-none d-md-block" onclick="toggleCalendar()"><i class="bi bi-calendar3 me-2"></i>Kalender</button>
+                <button class="btn btn-primary flex-fill rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addModal">
                     <i class="bi bi-plus-lg me-2"></i> Tambah Kegiatan
                 </button>
             </div>
         </div>
 
         <?php if ($this->session->flashdata('success_msg')): ?>
-        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mb-4 border-0 shadow-sm rounded-4" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i><?= $this->session->flashdata('success_msg') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
         <?php endif; ?>
 
-        <!-- ADMIN INTERACTIVE CALENDAR -->
-        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden" id="calendarSection">
+        <!-- ADMIN INTERACTIVE CALENDAR (Desktop Only) -->
+        <div class="card border-0 shadow-sm rounded-4 mb-4 overflow-hidden d-none d-md-block" id="calendarSection">
             <div class="card-header bg-white border-0 py-3 px-4 d-flex justify-content-between">
-                <h6 class="fw-bold m-0 text-success"><i class="bi bi-calendar-check me-2"></i>Kalender Kegiatan</h6>
-                <small class="text-muted">Klik tanggal kosong untuk tambah kegiatan baru</small>
+                <h6 class="fw-bold m-0 text-success">Kalender <?= date('F Y') ?></h6>
+                <small class="text-muted">Klik tanggal untuk input cepat</small>
             </div>
             <div class="card-body p-0">
                 <?php
@@ -99,7 +104,8 @@
             </div>
         </div>
 
-        <div class="card border-0 shadow-sm rounded-4">
+        <!-- LIST VIEW (Mobile Optimized) -->
+        <div class="card border-0 shadow-sm rounded-4 d-none d-md-block">
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover align-middle mb-0">
@@ -116,9 +122,6 @@
                             <?php if(!empty($kegiatan_list)): ?>
                                 <?php foreach($kegiatan_list as $row): ?>
                                     <?php 
-                                        // Get Media via CI Model Logic embedded or simple query for view
-                                        // Since we passed $kegiatan_list only, we'll fetch media via simple helper or logic here for preview
-                                        // Or better, let's use the foto column in k table as thumbnail
                                         $thumbnail = $row['foto'];
                                         $isVideo = (strpos($thumbnail, '.mp4') !== false || strpos($thumbnail, '.mov') !== false);
                                     ?>
@@ -169,12 +172,59 @@
                 </div>
             </div>
         </div>
+
+        <!-- MOBILE CARDS -->
+        <div class="d-md-none d-flex flex-column gap-3">
+             <?php if(!empty($kegiatan_list)): ?>
+                <?php foreach($kegiatan_list as $row): ?>
+                     <?php 
+                        $thumbnail = $row['foto'];
+                        $isVideo = (strpos($thumbnail, '.mp4') !== false || strpos($thumbnail, '.mov') !== false);
+                    ?>
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-body p-3">
+                        <div class="d-flex gap-3 mb-3">
+                            <div class="bg-light border rounded-3 text-center p-2" style="width: 60px; height: 60px;">
+                                <span class="d-block fw-bold text-dark h5 mb-0"><?= date('d', strtotime($row['tanggal'])) ?></span>
+                                <span class="d-block text-muted small" style="font-size: 10px;"><?= date('M', strtotime($row['tanggal'])) ?></span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <span class="badge bg-primary-subtle text-primary rounded-pill mb-1"><?= $row['nama_organisasi'] ?></span>
+                                <h6 class="fw-bold mb-1 text-dark text-truncate"><?= $row['judul'] ?></h6>
+                                <p class="small text-muted mb-0" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;"><?= $row['deskripsi'] ?></p>
+                            </div>
+                        </div>
+                        
+                        <?php if($thumbnail): ?>
+                        <div class="mb-3">
+                            <?php if($isVideo): ?>
+                                 <div class="bg-dark text-white rounded-3 d-flex align-items-center justify-content-center" style="height: 120px;">
+                                    <i class="bi bi-play-circle-fill fs-1"></i>
+                                </div>
+                            <?php else: ?>
+                                <img src="<?= base_url('assets/images/kegiatan/'.$thumbnail) ?>" class="w-100 rounded-3 object-fit-cover shadow-sm" style="height: 120px;">
+                            <?php endif; ?>
+                        </div>
+                        <?php endif; ?>
+
+                        <div class="d-flex gap-2">
+                             <button class="btn btn-outline-primary btn-sm flex-fill rounded-pill" onclick='openEdit(<?= json_encode($row) ?>)'>Edit</button>
+                             <a href="<?= base_url('admin/kegiatan/delete/'.$row['id']) ?>" class="btn btn-outline-danger btn-sm flex-fill rounded-pill" onclick="return confirm('Hapus kegiatan ini?')">Hapus</a>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                 <div class="text-center py-5 text-muted">Belum ada data.</div>
+            <?php endif; ?>
+        </div>
+
     </div>
 
     <!-- MODAL ADD -->
     <div class="modal fade" id="addModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <form class="modal-content rounded-4" action="<?= base_url('admin/kegiatan/add') ?>" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <form class="modal-content rounded-4 border-0 shadow-lg" action="<?= base_url('admin/kegiatan/add') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold">Tambah Kegiatan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -208,15 +258,15 @@
                         <div class="col-md-8"><label class="form-label small fw-bold text-muted">DESKRIPSI</label><textarea name="deskripsi" class="form-control" rows="2" required></textarea></div>
                     </div>
                 </div>
-                <div class="modal-footer border-0 pt-0"><button type="submit" class="btn btn-primary w-100 py-2">Simpan</button></div>
+                <div class="modal-footer border-0 pt-0"><button type="submit" class="btn btn-primary w-100 py-2 rounded-pill">Simpan</button></div>
             </form>
         </div>
     </div>
 
     <!-- MODAL EDIT -->
     <div class="modal fade" id="editModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <form class="modal-content rounded-4" action="<?= base_url('admin/kegiatan/edit') ?>" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <form class="modal-content rounded-4 border-0 shadow-lg" action="<?= base_url('admin/kegiatan/edit') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold">Edit Kegiatan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -261,7 +311,7 @@
                         <div class="col-md-8"><label class="form-label small fw-bold text-muted">DESKRIPSI</label><textarea name="deskripsi" id="edit_deskripsi" class="form-control" rows="2" required></textarea></div>
                     </div>
                 </div>
-                <div class="modal-footer border-0 pt-0"><button type="submit" class="btn btn-warning text-white w-100 py-2">Update Perubahan</button></div>
+                <div class="modal-footer border-0 pt-0"><button type="submit" class="btn btn-warning text-white w-100 py-2 rounded-pill">Update Perubahan</button></div>
             </form>
         </div>
     </div>

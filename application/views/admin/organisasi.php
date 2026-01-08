@@ -2,11 +2,13 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Kelola Struktur - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/admin-mobile.css') ?>">
     <style>
         .org-box {
             background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;
@@ -66,17 +68,17 @@
     <?php $this->load->view('admin/templates/navbar'); ?>
 
     <div class="container py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3 class="fw-bold m-0">Kelola Data Struktur Organisasi</h3>
-            <div>
-                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPengurusModal">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-column flex-md-row align-items-start gap-3">
+            <h3 class="fw-bold m-0"><i class="bi bi-diagram-3-fill me-2 text-primary"></i>Kelola Struktur</h3>
+            <div class="w-100 w-md-auto">
+                 <button class="btn btn-primary w-100 w-md-auto rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addPengurusModal">
                     <i class="bi bi-plus-lg me-2"></i> Tambah Pengurus
                 </button>
             </div>
         </div>
 
         <?php if ($this->session->flashdata('success_msg')): ?>
-        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+        <div class="alert alert-success alert-dismissible fade show mb-4 border-0 shadow-sm rounded-4" role="alert">
             <i class="bi bi-check-circle-fill me-2"></i><?= $this->session->flashdata('success_msg') ?>
             <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         </div>
@@ -128,7 +130,6 @@
         <div class="card border-0 shadow-sm rounded-4 mb-4">
             <div class="card-header bg-white border-bottom-0 pt-3 text-center">
                 <span class="section-badge bg-success text-white shadow-sm"><i class="bi bi-people-fill me-2"></i> FKKMBT</span>
-                <!-- Print Removed in Migration for simplification unless requested, or can be added later -->
             </div>
             <div class="card-body bg-light bg-opacity-10 p-4">
                  <?php if(empty($struct_fkkmbt)): ?><p class="text-muted small text-center">Belum ada data.</p><?php else: ?>
@@ -190,54 +191,56 @@
 
     <!-- Modal Add Pengurus -->
     <div class="modal fade" id="addPengurusModal" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" action="<?= base_url('admin/organisasi/add') ?>" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content rounded-4 border-0" action="<?= base_url('admin/organisasi/add') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold">Tambah Pengurus</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Organisasi</label>
-                        <select name="tipe_organisasi" class="form-select form-select-sm" required>
+                        <label class="form-label small fw-bold text-muted">ORGANISASI</label>
+                        <select name="tipe_organisasi" class="form-select" required>
                             <option value="fkkmbt">FKKMBT</option>
                             <option value="fkkmmbt">FKKMMBT</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Level</label>
-                        <select name="level" class="form-select form-select-sm" required>
+                        <label class="form-label small fw-bold text-muted">LEVEL</label>
+                        <select name="level" class="form-select" required>
                             <option value="1">Ketua (Level 1)</option>
                             <option value="2">Wakil/Sekretaris (Level 2)</option>
                             <option value="3">Anggota/Seksi (Level 3)</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Nama Lengkap</label>
-                        <input type="text" name="nama" class="form-control form-control-sm" required>
+                        <label class="form-label small fw-bold text-muted">NAMA LENGKAP</label>
+                        <input type="text" name="nama" class="form-control" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label small fw-bold text-muted">GENDER</label>
+                            <select name="jenis_kelamin" class="form-select" required>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
+                             <label class="form-label small fw-bold text-muted">JABATAN</label>
+                            <input type="text" name="jabatan" class="form-control" required>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-select form-select-sm" required>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
+                        <label class="form-label small fw-bold text-muted">KONTAK WA</label>
+                        <input type="text" name="kontak" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Jabatan</label>
-                        <input type="text" name="jabatan" class="form-control form-control-sm" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Kontak WA</label>
-                        <input type="text" name="kontak" class="form-control form-control-sm">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Foto</label>
-                        <input type="file" name="foto" class="form-control form-control-sm">
+                        <label class="form-label small fw-bold text-muted">FOTO PROFIL</label>
+                        <input type="file" name="foto" class="form-control">
                     </div>
                 </div>
-                <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-primary btn-sm px-4 rounded-pill">Simpan</button>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill py-2">Simpan Data</button>
                 </div>
             </form>
         </div>
@@ -245,50 +248,52 @@
 
     <!-- Modal Edit Pengurus -->
     <div class="modal fade" id="editPengurusModal" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" action="<?= base_url('admin/organisasi/edit') ?>" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog modal-dialog-centered">
+            <form class="modal-content rounded-4 border-0" action="<?= base_url('admin/organisasi/edit') ?>" method="POST" enctype="multipart/form-data">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold">Edit Data Pengurus</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body p-4">
                     <input type="hidden" name="id" id="edit_id">
                     
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Level</label>
-                        <select name="level" id="edit_level" class="form-select form-select-sm" required>
+                        <label class="form-label small fw-bold text-muted">LEVEL</label>
+                        <select name="level" id="edit_level" class="form-select" required>
                             <option value="1">Ketua (Level 1)</option>
                             <option value="2">Wakil/Sekretaris (Level 2)</option>
                             <option value="3">Anggota/Seksi (Level 3)</option>
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Nama Lengkap</label>
-                        <input type="text" name="nama" id="edit_nama" class="form-control form-control-sm" required>
+                        <label class="form-label small fw-bold text-muted">NAMA LENGKAP</label>
+                        <input type="text" name="nama" id="edit_nama" class="form-control" required>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mb-3">
+                            <label class="form-label small fw-bold text-muted">GENDER</label>
+                            <select name="jenis_kelamin" id="edit_jk" class="form-select" required>
+                                <option value="L">Laki-laki</option>
+                                <option value="P">Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label class="form-label small fw-bold text-muted">JABATAN</label>
+                            <input type="text" name="jabatan" id="edit_jabatan" class="form-control" required>
+                        </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Jenis Kelamin</label>
-                        <select name="jenis_kelamin" id="edit_jk" class="form-select form-select-sm" required>
-                            <option value="L">Laki-laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
+                        <label class="form-label small fw-bold text-muted">KONTAK WA</label>
+                        <input type="text" name="kontak" id="edit_kontak" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label small fw-bold">Jabatan</label>
-                        <input type="text" name="jabatan" id="edit_jabatan" class="form-control form-control-sm" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Kontak WA</label>
-                        <input type="text" name="kontak" id="edit_kontak" class="form-control form-control-sm">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label small fw-bold">Ganti Foto (Opsional)</label>
-                        <input type="file" name="foto" class="form-control form-control-sm">
-                        <small class="text-muted d-block mt-1">*Kosongkan jika tidak ingin mengubah foto</small>
+                        <label class="form-label small fw-bold text-muted">GANTI FOTO</label>
+                        <input type="file" name="foto" class="form-control">
+                        <small class="text-muted d-block mt-1 fst-italic">*Kosongkan jika tidak ubah foto</small>
                     </div>
                 </div>
-                <div class="modal-footer border-0">
-                    <button type="submit" class="btn btn-warning text-white btn-sm px-4 rounded-pill">Update Perubahan</button>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="submit" class="btn btn-warning text-white w-100 rounded-pill py-2">Update Perubahan</button>
                 </div>
             </form>
         </div>
