@@ -3,6 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Surat_model extends CI_Model {
     
+    public function __construct() {
+        parent::__construct();
+        $this->check_table_exists();
+    }
+
+    private function check_table_exists() {
+        $query = "CREATE TABLE IF NOT EXISTS `pengajuan_surat` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `warga_id` int(11) NOT NULL,
+            `jenis_surat` enum('Surat Pengantar','Keterangan Domisili','Izin Keramaian','Keterangan Kematian') NOT NULL,
+            `keperluan` text NOT NULL,
+            `keterangan` text DEFAULT NULL,
+            `status` enum('Pending','Diproses','Selesai','Ditolak') DEFAULT 'Pending',
+            `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+        $this->db->query($query);
+    }
+    
     public function create_surat($data) {
         return $this->db->insert('pengajuan_surat', $data);
     }
