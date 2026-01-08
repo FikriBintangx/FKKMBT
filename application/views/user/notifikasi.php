@@ -1,60 +1,70 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Notifikasi - FKKMBT</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/mobile.css?v='.time()) ?>">
-</head>
-<body class="bg-light">
+<?php $this->load->view('user/templates/header'); ?>
 
-    <!-- Mobile App Bar -->
-    <div class="app-bar d-lg-none">
-        <div class="d-flex align-items-center gap-3">
-            <a href="<?= base_url('user/dashboard') ?>" class="text-white"><i class="bi bi-chevron-left fs-4"></i></a>
-            <span class="fw-bold">Pesan & Notifikasi</span>
+<!-- Header with Gradient -->
+<div class="header-section" style="background: linear-gradient(135deg, #022c22 0%, #14532d 100%); padding: 30px 20px 80px; color: white; border-radius: 0 0 30px 30px; position: relative; z-index: 1;">
+    <div class="d-flex align-items-center gap-3">
+        <a href="<?= base_url('user/dashboard') ?>" class="text-white text-decoration-none bg-white bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+        <div class="flex-grow-1">
+            <h5 class="fw-bold mb-0">Notifikasi</h5>
+            <p class="mb-0 small opacity-75">Update terbaru seputar lingkungan</p>
         </div>
+        <button class="btn btn-white-glass btn-sm border-0 bg-white bg-opacity-20 text-white rounded-pill px-3">
+            <i class="bi bi-check-all me-1"></i> Baca Semua
+        </button>
     </div>
+</div>
 
-    <main class="container py-3">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="fw-bold mb-0">Terbaru</h5>
-            <a href="#" class="small text-primary text-decoration-none">Tandai sudah baca</a>
+<main class="container py-4" style="margin-top: -60px; position: relative; z-index: 2;">
+
+    <?php if(empty($notifikasi)): ?>
+        <div class="card border-0 shadow-sm rounded-4 text-center py-5">
+            <div class="card-body">
+                <div class="bg-light rounded-circle mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px;">
+                    <i class="bi bi-bell-slash fs-1 text-muted opacity-50"></i>
+                </div>
+                <h6 class="fw-bold text-dark">Tidak Ada Notifikasi</h6>
+                <p class="text-muted small mb-0">Anda akan menerima update di sini.</p>
+            </div>
         </div>
-
-        <?php foreach($notifications as $n): ?>
-            <div class="card mb-3 shadow-none border-0">
-                <div class="card-body p-3">
-                    <div class="d-flex gap-3">
-                        <div class="rounded-4 <?= $n['bg'] ?> text-white d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
-                            <i class="bi <?= $n['icon'] ?> fs-4"></i>
-                        </div>
-                        <div class="flex-grow-1">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <h6 class="fw-bold mb-1" style="font-size: 14px;"><?= $n['title'] ?></h6>
-                                <small class="text-muted" style="font-size: 10px;"><?= $n['time'] ?></small>
+    <?php else: ?>
+        <div class="d-flex flex-column gap-3">
+            <?php foreach($notifikasi as $notif): ?>
+                <div class="card border-0 shadow-sm rounded-4 card-hover-effect">
+                    <div class="card-body p-3">
+                        <div class="d-flex gap-3">
+                            <div class="flex-shrink-0">
+                                <?php if($notif['tipe'] == 'success'): ?>
+                                    <div class="bg-success bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-check-circle-fill text-success fs-5"></i>
+                                    </div>
+                                <?php elseif($notif['tipe'] == 'warning'): ?>
+                                    <div class="bg-warning bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-exclamation-circle-fill text-warning fs-5"></i>
+                                    </div>
+                                <?php else: ?>
+                                    <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                                        <i class="bi bi-info-circle-fill text-primary fs-5"></i>
+                                    </div>
+                                <?php endif; ?>
                             </div>
-                            <p class="small text-secondary mb-0"><?= $n['desc'] ?></p>
+                            <div class="flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-start mb-1">
+                                    <h6 class="fw-bold mb-0 text-dark small"><?= $notif['judul'] ?></h6>
+                                    <small class="text-muted" style="font-size: 10px;"><?= $notif['waktu'] ?></small>
+                                </div>
+                                <p class="text-muted small mb-0" style="font-size: 12px; line-height: 1.4;">
+                                    <?= $notif['pesan'] ?>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-        
-        <div class="text-center py-5">
-            <p class="text-muted small">Tidak ada notifikasi lainnya.</p>
+            <?php endforeach; ?>
         </div>
-    </main>
+    <?php endif; ?>
 
-    <!-- Native Bottom Nav -->
-    <?php $this->load->view('templates/mobile_nav'); ?>
+</main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+<?php $this->load->view('user/templates/footer'); ?>
