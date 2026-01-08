@@ -38,64 +38,79 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
     </div>
     <?php endif; ?>
-
-    <!-- Profil Card -->
-    <div class="card border-0 shadow-sm rounded-4 mb-4">
+    
+    <!-- Kartu Informasi Pribadi -->
+    <div class="card border-0 shadow-sm rounded-4 mb-3">
+        <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-0">
+            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-person-badge text-primary"></i> Informasi Pribadi
+            </h6>
+        </div>
         <div class="card-body p-4">
-            <h5 class="fw-bold mb-4">Informasi Pribadi</h5>
+            <div class="mb-3">
+                <label class="small text-muted mb-1">Nama Lengkap</label>
+                <div class="fw-bold text-dark"><?= isset($warga['nama_lengkap']) ? $warga['nama_lengkap'] : '-' ?></div>
+            </div>
             
             <div class="row g-3">
-                <div class="col-md-6">
-                    <label class="form-label text-muted small">Nama Lengkap</label>
-                    <input type="text" class="form-control" value="<?= $warga['nama_lengkap'] ?? '-' ?>" readonly>
+                <div class="col-6">
+                    <label class="small text-muted mb-1">Blok Rumah</label>
+                    <div class="fw-bold text-dark fs-5"><?= isset($warga['blok']) ? $warga['blok'] : '-' ?></div>
                 </div>
-                <div class="col-md-3">
-                    <label class="form-label text-muted small">Blok</label>
-                    <input type="text" class="form-control" value="<?= $warga['blok'] ?? '-' ?>" readonly>
+                <div class="col-6">
+                    <label class="small text-muted mb-1">No. Rumah</label>
+                    <div class="fw-bold text-dark fs-5"><?= isset($warga['no_rumah']) ? $warga['no_rumah'] : '-' ?></div>
                 </div>
-                <div class="col-md-3">
-                    <label class="form-label text-muted small">No. Rumah</label>
-                    <input type="text" class="form-control" value="<?= $warga['no_rumah'] ?? '-' ?>" readonly>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-muted small">Email</label>
-                    <input type="text" class="form-control" value="<?= isset($user->email) ? $user->email : '-' ?>" readonly>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-muted small">No. HP</label>
-                    <input type="text" class="form-control" value="<?= $warga['no_hp'] ?? '-' ?>" readonly>
-                </div>
-                <div class="col-md-6">
-                    <label class="form-label text-muted small">Jenis Kelamin</label>
-                    <input type="text" class="form-control" value="<?= ($warga['jenis_kelamin'] ?? 'L') == 'L' ? 'Laki-laki' : 'Perempuan' ?>" readonly>
-                </div>
-            </div>
-
-            <div class="alert alert-info mt-4 mb-0">
-                <small>
-                    <i class="bi bi-info-circle me-1"></i>
-                    Untuk mengubah data profil, silakan hubungi admin RT.
-                </small>
             </div>
         </div>
     </div>
 
-    <!-- Ubah Password Card -->
-    <div class="card border-0 shadow-sm rounded-4">
+    <!-- Kartu Kontak -->
+    <div class="card border-0 shadow-sm rounded-4 mb-3">
+         <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-0">
+            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-telephone text-success"></i> Kontak & Akun
+            </h6>
+        </div>
         <div class="card-body p-4">
-            <h5 class="fw-bold mb-4">Ubah Password</h5>
-            
-            <form action="<?= base_url('user/profil/change_password') ?>" method="POST">
-                <div class="mb-3">
-                    <label class="form-label fw-semibold">Password Lama *</label>
-                    <div class="input-group">
-                        <input type="password" name="old_password" id="old_password" class="form-control" required>
-                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('old_password', this)">
-                            <i class="bi bi-eye"></i>
-                        </button>
-                    </div>
+             <div class="mb-3">
+                <label class="small text-muted mb-1">Email</label>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-medium text-dark"><?= isset($user->email) ? $user->email : '-' ?></span>
+                    <?php if(isset($user->email)): ?>
+                        <i class="bi bi-check-circle-fill text-success small" title="Terverifikasi"></i>
+                    <?php endif; ?>
                 </div>
-                
+            </div>
+            <div class="mb-0">
+                <label class="small text-muted mb-1">No. Handphone</label>
+                <div class="fw-medium text-dark"><?= isset($warga['no_hp']) ? $warga['no_hp'] : '-' ?></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kartu Keamanan (Ganti Password) -->
+    <div class="card border-0 shadow-sm rounded-4">
+        <div class="card-header bg-white border-bottom-0 pt-4 px-4 pb-0">
+            <h6 class="fw-bold mb-0 d-flex align-items-center gap-2">
+                <i class="bi bi-shield-lock text-danger"></i> Keamanan
+            </h6>
+        </div>
+        <div class="card-body p-4">
+            
+            <?php if($this->session->flashdata('success')): ?>
+                <div class="alert alert-success rounded-3 small py-2 mb-3">
+                    <i class="bi bi-check-circle me-1"></i> <?= $this->session->flashdata('success') ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if($this->session->flashdata('error')): ?>
+                <div class="alert alert-danger rounded-3 small py-2 mb-3">
+                    <i class="bi bi-exclamation-circle me-1"></i> <?= $this->session->flashdata('error') ?>
+                </div>
+            <?php endif; ?>
+
+            <form action="<?= base_url('user/profil/change_password') ?>" method="POST">
                 <div class="mb-3">
                     <label class="form-label fw-semibold">Password Baru *</label>
                     <div class="input-group">
