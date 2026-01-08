@@ -41,4 +41,43 @@ class User_model extends CI_Model {
         $query = $this->db->get('users');
         return $query->num_rows() > 0;
     }
+
+    public function get_user_by_email($email) {
+        $this->db->where('email', $email);
+        $query = $this->db->get('users');
+        return $query->row(); // Returns object or null
+    }
+
+    public function get_warga_by_user_id($user_id) {
+        $this->db->where('user_id', $user_id);
+        $query = $this->db->get('warga');
+        return $query->row_array();
+    }
+
+    public function check_email_exists($email) {
+        $this->db->where('email', $email);
+        $query = $this->db->get('users');
+        return $query->num_rows() > 0;
+    }
+
+    public function update_password($user_id, $new_password) {
+        $data = [
+            'password' => password_hash($new_password, PASSWORD_DEFAULT)
+        ];
+        $this->db->where('id', $user_id);
+        return $this->db->update('users', $data);
+    }
+
+    // Helper function to generate email from name
+    public static function generate_email_from_name($nama) {
+        // Convert to lowercase
+        $email = strtolower($nama);
+        // Replace spaces with dots
+        $email = str_replace(' ', '.', $email);
+        // Remove special characters
+        $email = preg_replace('/[^a-z0-9.]/', '', $email);
+        // Add domain
+        $email = $email . '@fkkmbt.or.id';
+        return $email;
+    }
 }

@@ -2,44 +2,80 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Profil extends CI_Controller {
-
+    
     public function __construct() {
         parent::__construct();
-        if (!$this->session->userdata('user_id')) {
+        // Check if user is logged in as warga
+        if (!$this->session->userdata('user_id') || $this->session->userdata('role') != 'warga') {
             redirect('auth/login');
         }
-        $this->load->model('Dashboard_model');
+        $this->load->model('User_model');
+        $this->load->model('Warga_model');
     }
-
+    
+    // ========================================
+    // HALAMAN PROFIL
+    // ========================================
     public function index() {
         $user_id = $this->session->userdata('user_id');
-        $data['warga'] = $this->Dashboard_model->get_warga_by_user_id($user_id);
-        $data['user'] = $this->db->get_where('users', ['id' => $user_id])->row_array();
+        $warga_id = $this->session->userdata('warga_id');
+        
+        $data['page_title'] = 'Profil Saya';
+        $data['user'] = $this->User_model->get_user_by_username($this->session->userdata('username'));
+        $data['warga'] = $this->Warga_model->get_warga_by_id($warga_id);
         
         $this->load->view('user/profil', $data);
     }
-
-    public function update() {
-        $user_id = $this->session->userdata('user_id');
-        $data_warga = [
-            'nama_lengkap' => $this->input->post('nama_lengkap'),
-            'no_hp' => $this->input->post('no_hp'),
-            'blok' => $this->input->post('blok'),
-            'no_rumah' => $this->input->post('no_rumah'),
-            'alamat' => $this->input->post('alamat')
-        ];
-        
-        $this->db->where('user_id', $user_id);
-        $this->db->update('warga', $data_warga);
-        
-        $password = $this->input->post('password');
-        if (!empty($password)) {
-            $data_user = ['password' => password_hash($password, PASSWORD_DEFAULT)];
-            $this->db->where('id', $user_id);
-            $this->db->update('users', $data_user);
+    
+    // ========================================
+    // UBAH PASSWORD
+    // ========================================
+    public function change_password() {
+        if ($this->input->method() == 'post') {
+            $user_id = $this->session->userdata('user_id');
+            $old_password = $this->input->post('old_password');
+            $new_password = $this->input->post('new_password');
+            $confirm_password = $this->input->post('confirm_password');
+            
+            // Get current user
+            $user = $this->User_model->get_user_by_username($this->session->userdata('username'));
+            
+            // Verify old password
+            $old_password_valid = false;
+            if (password_verify($old_password, $user->password)) {
+                $old_password_valid = true;
+            } elseif ($old_password === $user->password) {
+                // Plaintext fallback
+                $old_password_valid = true;
+            }
+            
+            if (!$old_password_valid) {
+                $this->session->set_flashdata('error_msg', 'Password lama salah!');
+                redirect('user/profil');
+                return;
+            }
+            
+            // Validate new password
+            if ($new_password !== $confirm_password) {
+                $this->session->set_flashdata('error_msg', 'Password baru dan konfirmasi tidak cocok!');
+                redirect('user/profil');
+                return;
+            }
+            
+            if (strlen($new_password) < 6) {
+                $this->session->set_flashdata('error_msg', 'Password minimal 6 karakter!');
+                redirect('user/profil');
+                return;
+            }
+            
+            // Update password
+            if ($this->User_model->update_password($user_id, $new_password)) {
+                $this->session->set_flashdata('success_msg', 'Password berhasil diubah!');
+            } else {
+                $this->session->set_flashdata('error_msg', 'Gagal mengubah password.');
+            }
+            
+            redirect('user/profil');
         }
-
-        $this->session->set_flashdata('success_msg', 'Profil berhasil diperbarui!');
-        redirect('user/profil');
     }
 }

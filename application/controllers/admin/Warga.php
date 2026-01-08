@@ -33,54 +33,32 @@ class Warga extends CI_Controller {
             $no_hp = $this->input->post('no_hp');
             $jenis_kelamin = $this->input->post('jenis_kelamin');
             
-            // Username Logic
-            $manual_username = trim($this->input->post('username'));
-            if (!empty($manual_username)) {
-                // Check duplicate
-                if ($this->User_model->check_username_exists($manual_username)) {
-                    $this->session->set_flashdata('error_msg', "Username '$manual_username' sudah dipakai!");
-                    redirect('admin/warga');
-                }
-                $username = $manual_username;
-            } else {
-                // Auto generate
-                $username = strtolower(str_replace(' ', '', $nama));
-                // Add number if exists
-                if ($this->User_model->check_username_exists($username)) {
-                    $username .= rand(10, 99);
-                }
+            // AUTO-GENERATE EMAIL from name
+            $email = User_model::generate_email_from_name($nama);
+            
+            // Check if email exists, add number if needed
+            if ($this->User_model->check_email_exists($email)) {
+                $email = str_replace('@fkkmbt.or.id', rand(10,99) . '@fkkmbt.or.id', $email);
             }
-
-            // Password Logic
+            
+            // Username = email prefix (before @)
+            $username = explode('@', $email)[0];
+            
+            // Password Logic - Auto generate
             $password = $this->input->post('password');
             if (empty($password)) {
+                // Generate random 8 char password
                 $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                 $password = substr(str_shuffle($chars), 0, 8);
             }
             
-            // IMPORTANT: User wanted Plain Text visible admin side as per legacy code
-            // But good practice is hash. Integrating legacy logic:
-            // "hashed" variable in legacy was actually plaintext if requested.
-            // We will store HASH in DB for security in CI3, BUT legacy showed 'raw_password'.
-            // To support Legacy "Show Password" requirement without fully compromising security:
-            // The legacy code actually stored plaintext if commented out.
-            // Let's stick to Hash for real login, but if the user REALLY wants to see it, 
-            // we can't reverse hash. 
-            // CHECKING LEGACY CODE AGAIN: `$hashed = $password;` (line 75 of kelola_warga.php)
-            // It seems they stored it PLAIN TEXT.
-            // OK, I will follow the legacy code's potentially insecure method because required.
-            // But I'll use password_hash for the actual login auth in Auth.php which uses password_verify.
-            // Wait, proper Auth.php uses password_verify. If I store plain, `password_verify` might fail 
-            // unless Auth.php handles both.
-            // Auth.php line 42: `if (password_verify($password, $user->password))`
-            // Auth.php line 44: `elseif ($password === $user->password)` (Plaintext fallback)
-            // So it supports both! I will store PLAIN TEXT as per Legacy request so Admin can see it.
-            
+            // Store PLAIN TEXT password (for admin to see and send to warga via WA)
             $final_password = $password; 
 
             // 1. Insert User
             $user_data = [
                 'username' => $username,
+                'email' => $email,
                 'password' => $final_password,
                 'role' => 'warga'
             ];
@@ -94,12 +72,13 @@ class Warga extends CI_Controller {
                 'blok' => $blok,
                 'no_rumah' => $no_rumah,
                 'no_hp' => $no_hp,
+                'email' => $email,
                 'jenis_kelamin' => $jenis_kelamin
             ];
             $this->db->insert('warga', $warga_data);
 
             $this->session->set_flashdata('success_msg', "Warga berhasil ditambahkan!");
-            $this->session->set_flashdata('generated_password', "Username: <strong>$username</strong> | Password: <strong>$password</strong>");
+            $this->session->set_flashdata('generated_password', "Email: <strong>$email</strong> | Password: <strong>$password</strong><br><small class='text-muted'>Kirim ke WA: $no_hp</small>");
             redirect('admin/warga');
         }
     }

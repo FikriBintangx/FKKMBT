@@ -31,10 +31,14 @@ class Auth extends CI_Controller {
     }
 
     private function _process_login() {
-        $username = $this->input->post('username');
+        $login_input = $this->input->post('username'); // Could be email or username
         $password = $this->input->post('password');
 
-        $user = $this->User_model->get_user_by_username($username);
+        // Try to get user by email first, then username
+        $user = $this->User_model->get_user_by_email($login_input);
+        if (!$user) {
+            $user = $this->User_model->get_user_by_username($login_input);
+        }
 
         if ($user) {
             // Check password (Hash then Plaintext fallback)
@@ -47,12 +51,24 @@ class Auth extends CI_Controller {
             }
 
             if ($auth_success) {
+                // Get additional data based on role
+                $additional_data = [];
+                if ($user->role == 'warga') {
+                    $warga = $this->User_model->get_warga_by_user_id($user->id);
+                    if ($warga) {
+                        $additional_data['warga_id'] = $warga['id'];
+                        $additional_data['nama_lengkap'] = $warga['nama_lengkap'];
+                    }
+                }
+
                 // Set Session
-                $session_data = array(
+                $session_data = array_merge([
                     'user_id' => $user->id,
                     'username' => $user->username,
+                    'email' => $user->email,
                     'role' => $user->role
-                );
+                ], $additional_data);
+                
                 $this->session->set_userdata($session_data);
 
                 // Redirect
@@ -66,7 +82,7 @@ class Auth extends CI_Controller {
                 redirect('auth/login');
             }
         } else {
-            $this->session->set_flashdata('error_msg', 'Username tidak ditemukan!');
+            $this->session->set_flashdata('error_msg', 'Email/Username tidak ditemukan!');
             redirect('auth/login');
         }
     }
